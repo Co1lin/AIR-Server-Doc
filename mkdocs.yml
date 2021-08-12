@@ -1,4 +1,5 @@
 site_name: AIR Server Usage Guide
+repo_url: https://github.com/Co1lin/AIR-Server-Doc
 
 theme:
   name: material
