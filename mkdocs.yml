@@ -2,6 +2,7 @@ site_name: AIR Server Usage Guide
 
 theme:
   name: material
+  custom_dir: docs/overrides
 
   palette:
     - media: "(prefers-color-scheme: light)"
