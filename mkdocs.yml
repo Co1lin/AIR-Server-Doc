@@ -1,1 +1,4 @@
-site_name: My Docs
+site_name: AIR Server Usage Guide
+
+theme:
+  name: material
