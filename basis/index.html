@@ -422,7 +422,7 @@
 <li>用于存放系统的 1T SSD </li>
 <li>用于存放用户数据的 HDD 。</li>
 </ul>
-<p>允许用户往系统盘写入曾频繁导致服务器因<strong>系统盘爆满</strong>而宕机，因此，<strong>请各位用户将所有数据（包括 conda 环境）存放至 <code>/data</code>  目录下</strong>，防止实验数据的不断增多写满系统盘。</p>
+<p>允许用户往系统盘写入曾频繁导致服务器因<strong>系统盘爆满</strong>而宕机，因此，<strong>请各位用户将所有数据（包括 conda 环境）存放至 <code>/data</code>  目录下</strong>，防止实验数据不断增多，写满系统盘。</p>
 <div class="admonition tips">
 <p class="admonition-title">Conda 环境的创建和迁移</p>
 <p>请参照： <a href="../conda">Conda 使用指南</a></p>
@@ -433,7 +433,7 @@
 <h2 id="3">3. 内存占用较大可能会被终止</h2>
 <p>内存爆满也曾多次导致服务器卡死而连接不上。因此，服务器上使用了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 以避免内存爆满。当可用内存低于 10% 后，内存占用最多的进程会被杀死。</p>
 <div class="admonition tips">
-<p class="admonition-title">保存 checkpoints 以降低实验进程被杀死后的损失</p>
+<p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
 </div>
                 
               

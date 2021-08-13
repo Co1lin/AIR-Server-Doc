@@ -399,45 +399,45 @@
                 
                 
                 <h1 id="gpu">GPU</h1>
-<p>正在引入Slurm调度系统，在不久的将来在所有机器上都可以使用Slurm提交任务。</p>
+<p>正在引入 Slurm 调度系统，在不久的将来在所有机器上都可以使用 Slurm 提交任务。</p>
 <h2 id="1-air1-air2">1. AIR1 &amp; AIR2</h2>
-<p>AIR1服务器配备8张RTX 3090 24GB显卡；AIR2服务器配备10张RTX 3090 24GB显卡。</p>
-<p>在运行实验前，请通过以下指令指定需要使用的GPU卡的编号（编号从0开始）</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">export</span> <span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s1">&#39;0,1,2&#39;</span> <span class="c1"># 指定程序在GPU#0，GPU#1，GPU#2上运行</span>
+<p>AIR1 服务器配备 8 张 RTX 3090 24GB 显卡；AIR2 服务器配备 10 张 RTX 3090 24GB 显卡。</p>
+<p>在运行实验前，请通过以下指令指定需要使用的 GPU 卡的编号（编号从 0 开始）</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">export</span> <span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s1">&#39;0,1,2&#39;</span> <span class="c1"># 指定程序在 GPU#0，GPU#1，GPU#2 上运行</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">避免程序异常占用显存</p>
-<p>请定时检查程序的运行状态。如果你的程序异常退出，可能会有子进程仍然存活，此时其它程序无法利用该子进程占用的显存。请通过<code>nvidia-smi</code>命令检查是否有异常进程占用显存。</p>
+<p>请定时检查程序的运行状态。如果你的程序异常退出，可能会有子进程仍然存活，此时其它程序无法利用该子进程占用的显存。请通过 <code>nvidia-smi</code> 命令检查是否有异常进程占用显存。</p>
 </div>
 <h2 id="2-air3">2. AIR3</h2>
-<p>AIR3服务器配备3张A100显卡，其中一张显卡按照运算单元3:2:2，显存20GB:10GB:10GB的方式分割成为三张虚拟显卡。完整、20GB、10GB显卡在下文中用<code>7c40gb</code>、<code>3c20g</code>、<code>2c10g</code>指代。</p>
-<p>AIR3服务器部署了slurm系统，（这里简单介绍一下slurm）</p>
+<p>AIR3 服务器配备 3 张 A100 显卡，其中一张显卡按照运算单元 3:2:2，显存 20GB:10GB:10GB 的方式分割成为三张虚拟显卡。完整、20GB、10GB 显卡在下文中用 <code>7c40gb</code>、<code>3c20g</code>、<code>2c10g</code> 指代。</p>
+<p>AIR3 服务器部署了 slurm 系统，（这里简单介绍一下 slurm）</p>
 <p>常用命令如下：</p>
 <ul>
-<li>查看当前运行&amp;排队的任务</li>
+<li>查看当前运行 &amp; 排队的任务</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue  <span class="c1"># 包括各任务的JOBID</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue  <span class="c1"># 包括各任务的 JOBID</span>
 </code></pre></div>
 <ul>
-<li>申请GPU资源后进入shell（交互模式）</li>
+<li>申请 GPU 资源后进入 shell（交互模式）</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40g:1  <span class="c1"># 申请使用一张完整的A100卡</span>
-<span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20g:1  <span class="c1"># 申请使用一张占3/7流处理器，20GB显存的虚拟显卡</span>
-<span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10g:2  <span class="c1"># 申请使用一张占2/7流处理器，10GB显存的虚拟显卡</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40g:1  <span class="c1"># 申请使用一张完整的 A100 卡</span>
+<span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20g:1  <span class="c1"># 申请使用一张占 3/7 流处理器，20GB 显存的虚拟显卡</span>
+<span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10g:2  <span class="c1"># 申请使用一张占 2/7 流处理器，10GB 显存的虚拟显卡</span>
 </code></pre></div>
 <ul>
-<li>申请GPU资源执行命令</li>
+<li>申请 GPU 资源执行命令</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:3c20g:1 python run.py  <span class="c1"># 申请方式同上，在前台执行命令</span>
 </code></pre></div>
 <ul>
-<li>申请GPU资源执行后台脚本 ==TODO==</li>
-<li>申请取消<code>JOBID</code>为<code>id</code>的任务</li>
+<li>申请 GPU 资源执行后台脚本 ==TODO==</li>
+<li>申请取消 <code>JOBID</code> 为 <code>id</code> 的任务</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scancel <span class="o">[</span>id<span class="o">]</span>
 </code></pre></div>
 <div class="admonition tip">
-<p>使用Slurm系统无需通过<code>CUDA_VISIBLE_DEVICES</code>指定使用的设备。设备由Slurm系统自动分配。</p>
+<p>使用 Slurm 系统无需通过 <code>CUDA_VISIBLE_DEVICES</code> 指定使用的设备。设备由 Slurm 系统自动分配。</p>
 </div>
                 
               
@@ -445,7 +445,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (96.3%), <a href='mailto:mail@co1in.me'>Co1lin</a> (3.7%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (36.36%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (63.64%)</span>
       </small>
     </div>
   
