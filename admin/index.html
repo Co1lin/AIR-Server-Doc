@@ -14,7 +14,7 @@
     
     
       
-        <title>Conda - Server Usage Guide of AIR</title>
+        <title>Administration - Server Usage Guide of AIR</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#conda" class="md-skip">
+        <a href="#administration" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Conda
+              Administration
             
           </span>
         </div>
@@ -255,21 +255,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../conda/" class="md-nav__link">
         Conda
       </a>
-      
     </li>
   
 
@@ -295,11 +285,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../admin/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Administration
       </a>
+      
     </li>
   
 
@@ -334,32 +334,20 @@
               
   
                 
-                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/conda.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/admin.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="conda">Conda</h1>
-<p>为了避免耗尽系统盘空间，请通过以下方式在 <code>/data</code> 分区下创建新的环境：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>env_name<span class="o">]</span>
-</code></pre></div>
-<p>通过以下命令激活新的环境：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda activate /envs/<span class="o">[</span>env_name<span class="o">]</span>
-</code></pre></div>
-<p>对于在系统分区（包括但不限于通过 <code>conda create -n name</code> 方式创建的环境）下的虚拟环境，请尽快迁移到 <code>/data</code> 目录下，迁移方法如下：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>new_env_name<span class="o">]</span> --clone <span class="o">[</span>old_env<span class="o">]</span>
-<span class="linenos" data-linenos="2 "></span>conda remove -n <span class="o">[</span>old_env<span class="o">]</span> --all
-</code></pre></div>
-<div class="admonition tips">
-<p class="admonition-title"><code>/env</code> 是指向 <code>/data/.conda/envs</code> 的软链接</p>
-</div>
+                <h1 id="administration">Administration</h1>
+<p>This page is intended for administrators.</p>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (34.78%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (65.22%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a></span>
       </small>
     </div>
   
@@ -381,7 +369,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../basis/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 基本常识" rel="prev">
+        <a href="../gpu/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GPU" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -390,26 +378,11 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              基本常识
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../gpu/" class="md-footer__link md-footer__link--next" aria-label="Next: GPU" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
               GPU
             </div>
           </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
         </a>
+      
       
     </nav>
   
