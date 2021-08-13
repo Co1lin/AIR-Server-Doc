@@ -7,6 +7,7 @@ conda create -p /envs/[env_name]
 ```
 
 通过以下命令激活新的环境：
+
 ```shell
 conda activate /envs/[env_name]
 ```

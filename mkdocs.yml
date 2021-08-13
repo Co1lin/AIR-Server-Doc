@@ -2,6 +2,12 @@ site_name: Server Usage Guide of AIR
 repo_url: https://github.com/Co1lin/AIR-Server-Doc
 edit_uri: edit/main/docs/
 
+nav:
+  - 'index.md'
+  - 'basis.md'
+  - 'conda.md'
+  - 'gpu.md'
+
 theme:
   name: material
   custom_dir: docs/overrides
@@ -19,7 +25,9 @@ theme:
         name: Switch to light mode
 
   features:
-    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes
 
 markdown_extensions:
   - admonition
