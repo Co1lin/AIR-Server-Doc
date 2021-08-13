@@ -6,6 +6,7 @@ nav:
   - 'index.md'
   - 'basis.md'
   - 'conda.md'
+  - 'gpu.md'
   - 'admin.md'
 
 theme:
