@@ -240,36 +240,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../GPU/" class="md-nav__link">
-        GPU
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
-        Authentication & Permissions
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -320,7 +290,7 @@
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 内存占用过大可能会被终止
+    3. 内存占用较大可能会被终止
   </a>
   
 </li>
@@ -356,8 +326,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../storage/" class="md-nav__link">
-        Storage
+      <a href="../gpu.md" class="md-nav__link">
+        None
       </a>
     </li>
   
@@ -404,7 +374,7 @@
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 内存占用过大可能会被终止
+    3. 内存占用较大可能会被终止
   </a>
   
 </li>
@@ -439,13 +409,13 @@
 </ul>
 <p>允许用户往系统盘写入曾频繁导致服务器因<strong>系统盘爆满</strong>而宕机，因此，<strong>请各位用户将所有数据（包括 conda 环境）存放至 <code>/data</code>  目录下</strong>，防止实验数据的不断增多写满系统盘。</p>
 <div class="admonition tips">
-<p class="admonition-title">conda 环境的创建和迁移</p>
+<p class="admonition-title">Conda 环境的创建和迁移</p>
 <p>请参照： <a href="../conda">Conda 使用指南</a></p>
 </div>
 <p>(<code>/data</code> 目录是基于多块大容量 HDD 的 lvm 分区。)</p>
 <h2 id="2">2. 做好宕机的准备</h2>
 <p>由于各种奇怪的原因，服务器并不能保证永不宕机。因此，请在跑实验时适度保存 checkpoints ，以在意外发生之后能快速恢复到之前的实验状态。</p>
-<h2 id="3">3. 内存占用过大可能会被终止</h2>
+<h2 id="3">3. 内存占用较大可能会被终止</h2>
 <p>内存爆满也曾多次导致服务器卡死而连接不上。因此，服务器上使用了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 以避免内存爆满。当可用内存低于 10% 后，内存占用最多的进程会被杀死。</p>
 <div class="admonition tips">
 <p class="admonition-title">保存 checkpoints 以降低实验进程被杀死后的损失</p>
@@ -470,11 +440,6 @@
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
-            Back to top
-          </a>
-        
       </main>
       
         
@@ -483,7 +448,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../auth/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Authentication &amp; Permissions" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: 概述" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -492,7 +457,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Authentication & Permissions
+              概述
             </div>
           </div>
         </a>
@@ -534,7 +499,7 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>

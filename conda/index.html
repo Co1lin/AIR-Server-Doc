@@ -242,36 +242,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../GPU/" class="md-nav__link">
-        GPU
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
-        Authentication & Permissions
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../basis/" class="md-nav__link">
         基本常识
       </a>
@@ -312,8 +282,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../storage/" class="md-nav__link">
-        Storage
+      <a href="../gpu.md" class="md-nav__link">
+        None
       </a>
     </li>
   
@@ -358,9 +328,9 @@
 <p>为了避免耗尽系统盘空间，请通过以下方式在 <code>/data</code> 分区下创建新的环境：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div>
-<p>通过以下命令激活新的环境：
+<p>通过以下命令激活新的环境：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda activate /envs/<span class="o">[</span>env_name<span class="o">]</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>对于在系统分区（包括但不限于通过 <code>conda create -n name</code> 方式创建的环境）下的虚拟环境，请尽快迁移到 <code>/data</code> 目录下，迁移方法如下：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>new_env_name<span class="o">]</span> --clone <span class="o">[</span>old_env<span class="o">]</span>
 <span class="linenos" data-linenos="2 "></span>conda remove -n <span class="o">[</span>old_env<span class="o">]</span> --all
@@ -374,7 +344,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (31.82%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (68.18%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (34.78%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (65.22%)</span>
       </small>
     </div>
   
@@ -387,11 +357,6 @@
             </article>
           </div>
         </div>
-        
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
-            Back to top
-          </a>
         
       </main>
       
@@ -416,21 +381,6 @@
         </a>
       
       
-        
-        <a href="../storage/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Storage
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
     </nav>
   
   <div class="md-footer-meta md-typeset">
@@ -452,7 +402,7 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
