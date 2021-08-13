@@ -7,6 +7,7 @@ nav:
   - 'basis.md'
   - 'conda.md'
   - 'gpu.md'
+  - 'admin.md'
 
 theme:
   name: material
