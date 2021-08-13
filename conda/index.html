@@ -14,7 +14,7 @@
     
     
       
-        <title>Conda - Server Usage Guide of AIR</title>
+        <title>Conda使用指南 - Server Usage Guide of AIR</title>
       
     
     
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Conda
+              Conda使用指南
             
           </span>
         </div>
@@ -282,7 +282,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Conda
+        Conda使用指南
       </a>
       
     </li>
@@ -339,20 +339,27 @@
                   </a>
                 
                 
-                <h1 id="conda">Conda</h1>
+                <h1 id="conda">Conda使用指南</h1>
 <p>为了避免耗尽系统盘空间，请通过以下方式在<code>/data</code>目录下创建新的环境：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div>
 <p>通过以下命令激活新的环境：
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda activate /envs/<span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div></p>
+<p>对于在系统分区(包括但不限于通过<code>conda create -n name</code>方式创建的环境)下的虚拟环境，请尽快迁移到/data目录下，迁移方法如下：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>new_env_name<span class="o">]</span> --clone <span class="o">[</span>old_env<span class="o">]</span>
+<span class="linenos" data-linenos="2 "></span>conda remove -n <span class="o">[</span>old_env<span class="o">]</span> --all
+</code></pre></div>
+<blockquote>
+<p><code>/env</code>是指向<code>/data/.conda/envs</code>的软链接。</p>
+</blockquote>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (69.23%), <a href='mailto:mail@co1in.me'>Co1lin</a> (30.77%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (86.36%), <a href='mailto:mail@co1in.me'>Co1lin</a> (13.64%)</span>
       </small>
     </div>
   
