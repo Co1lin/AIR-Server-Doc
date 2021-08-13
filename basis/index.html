@@ -9,19 +9,19 @@
       
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
     
     
       
-        <title>Server Usage Guide of AIR</title>
+        <title>基本常识 - Server Usage Guide of AIR</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f7f47774.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -55,7 +55,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -76,7 +76,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Server Usage Guide of AIR" class="md-header__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
+    <a href=".." title="Server Usage Guide of AIR" class="md-header__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              概述
+              基本常识
             
           </span>
         </div>
@@ -195,7 +195,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Server Usage Guide of AIR" class="md-nav__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
+    <a href=".." title="Server Usage Guide of AIR" class="md-nav__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -225,6 +225,51 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GPU/" class="md-nav__link">
+        GPU
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth/" class="md-nav__link">
+        Authentication & Permissions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -237,12 +282,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          概述
+          基本常识
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        概述
+      <a href="./" class="md-nav__link md-nav__link--active">
+        基本常识
       </a>
       
         
@@ -261,14 +306,21 @@
       
         <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    1. 使用前必读
+    1. 数据存在哪
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
-    2. 资源列表
+    2. 做好宕机的准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 内存占用过大可能会被终止
   </a>
   
 </li>
@@ -289,52 +341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="GPU/" class="md-nav__link">
-        GPU
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="auth/" class="md-nav__link">
-        Authentication & Permissions
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="basis/" class="md-nav__link">
-        基本常识
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="conda/" class="md-nav__link">
+      <a href="../conda/" class="md-nav__link">
         Conda 使用指南
       </a>
     </li>
@@ -349,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="storage/" class="md-nav__link">
+      <a href="../storage/" class="md-nav__link">
         Storage
       </a>
     </li>
@@ -383,14 +390,21 @@
       
         <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    1. 使用前必读
+    1. 数据存在哪
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
-    2. 资源列表
+    2. 做好宕机的准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 内存占用过大可能会被终止
   </a>
   
 </li>
@@ -408,61 +422,33 @@
               
   
                 
-                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/basis.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="_1">概述</h1>
-<h2 id="1">1. 使用前必读</h2>
+                <h1 id="_1">基本常识</h1>
+<h2 id="1">1. 数据存在哪</h2>
 <div class="admonition danger">
-<p class="admonition-title">请认真阅读本指南</p>
-<p>这是一份 AIR 计算资源的使用指南，其中包括了若干注意事项和命令帮助。为了服务器的稳定运行以及使用者的数据安全，请各位用户认真阅读，否则很容易导致<strong>服务器宕机</strong>、<strong>实验数据丢失</strong>等严重后果。</p>
+<p class="admonition-title">请各位用户将所有数据存放至 <code>/data</code>  目录下</p>
 </div>
+<p>目前，服务器的硬盘分为两种：</p>
+<ul>
+<li>用于存放系统的 1T SSD </li>
+<li>用于存放用户数据的 HDD 。</li>
+</ul>
+<p>允许用户往系统盘写入曾频繁导致服务器因<strong>系统盘爆满</strong>而宕机，因此，<strong>请各位用户将所有数据（包括 conda 环境）存放至 <code>/data</code>  目录下</strong>，防止实验数据的不断增多写满系统盘。</p>
 <div class="admonition tips">
-<p class="admonition-title">食用方法</p>
-<p>本指南包括了关于：数据存放位置、内存限制、 GPU 资源使用、 conda 环境等方面的注意事项和指引。点击左侧目录中的标题查看每个方面的相关内容。</p>
+<p class="admonition-title">conda 环境的创建和迁移</p>
+<p>请参照： <a href="../conda">Conda 使用指南</a></p>
 </div>
-<h2 id="2">2. 资源列表</h2>
-<p>AIR 目前提供 3 台服务器供大家使用：</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">IP地址</th>
-<th align="center">端口</th>
-<th align="center">内存</th>
-<th align="center">GPU</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">AIR1</td>
-<td align="center">103.242.175.226</td>
-<td align="center">22</td>
-<td align="center">250GiB</td>
-<td align="center">RTX 3090 24GB ✖️8</td>
-</tr>
-<tr>
-<td align="center">AIR2</td>
-<td align="center">103.242.175.120</td>
-<td align="center">22</td>
-<td align="center">250GiB</td>
-<td align="center">RTX 3090 24GB ✖️10</td>
-</tr>
-<tr>
-<td align="center">AIR3</td>
-<td align="center">103.242.175.249</td>
-<td align="center">22000</td>
-<td align="center">125GiB</td>
-<td align="center">A100 40GB ✖️2<br> A100-MIG 20GB ✖️1<br>A100-MIG 10GB ✖️2</td>
-</tr>
-</tbody>
-</table>
-<p>（账号与密码请联系管理员获取。）</p>
-<div class="admonition danger">
-<p class="admonition-title">不要着急使用</p>
-<p>请阅读 <a href="basis">基本常识</a> 。</p>
+<p>(<code>/data</code> 目录是基于多块大容量 HDD 的 lvm 分区。)</p>
+<h2 id="2">2. 做好宕机的准备</h2>
+<p>由于各种奇怪的原因，服务器并不能保证永不宕机。因此，请在跑实验时适度保存 checkpoints ，以在意外发生之后能快速恢复到之前的实验状态。</p>
+<h2 id="3">3. 内存占用过大可能会被终止</h2>
+<p>内存爆满也曾多次导致服务器卡死而连接不上。因此，服务器上使用了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 以避免内存爆满。当可用内存低于 10% 后，内存占用最多的进程会被杀死。</p>
+<div class="admonition tips">
+<p class="admonition-title">保存 checkpoints 以降低实验进程被杀死后的损失</p>
 </div>
                 
               
@@ -470,7 +456,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (64.0%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (36.0%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a></span>
       </small>
     </div>
   
@@ -496,15 +482,30 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        
+        <a href="../auth/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Authentication &amp; Permissions" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Authentication & Permissions
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="GPU/" class="md-footer__link md-footer__link--next" aria-label="Next: GPU" rel="next">
+        <a href="../conda/" class="md-footer__link md-footer__link--next" aria-label="Next: Conda 使用指南" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              GPU
+              Conda 使用指南
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -533,12 +534,12 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.febc23d1.min.js"></script>
+      <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
       
-        <script src="javascripts/config.js"></script>
+        <script src="../javascripts/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

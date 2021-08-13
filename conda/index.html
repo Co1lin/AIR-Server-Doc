@@ -14,7 +14,7 @@
     
     
       
-        <title>Conda使用指南 - Server Usage Guide of AIR</title>
+        <title>Conda 使用指南 - Server Usage Guide of AIR</title>
       
     
     
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Conda使用指南
+              Conda 使用指南
             
           </span>
         </div>
@@ -270,6 +270,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../basis/" class="md-nav__link">
+        基本常识
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -282,7 +297,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Conda使用指南
+        Conda 使用指南
       </a>
       
     </li>
@@ -339,27 +354,27 @@
                   </a>
                 
                 
-                <h1 id="conda">Conda使用指南</h1>
-<p>为了避免耗尽系统盘空间，请通过以下方式在<code>/data</code>目录下创建新的环境：</p>
+                <h1 id="conda">Conda 使用指南</h1>
+<p>为了避免耗尽系统盘空间，请通过以下方式在 <code>/data</code> 分区下创建新的环境：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div>
 <p>通过以下命令激活新的环境：
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda activate /envs/<span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div></p>
-<p>对于在系统分区(包括但不限于通过<code>conda create -n name</code>方式创建的环境)下的虚拟环境，请尽快迁移到/data目录下，迁移方法如下：</p>
+<p>对于在系统分区（包括但不限于通过 <code>conda create -n name</code> 方式创建的环境）下的虚拟环境，请尽快迁移到 <code>/data</code> 目录下，迁移方法如下：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>new_env_name<span class="o">]</span> --clone <span class="o">[</span>old_env<span class="o">]</span>
 <span class="linenos" data-linenos="2 "></span>conda remove -n <span class="o">[</span>old_env<span class="o">]</span> --all
 </code></pre></div>
-<blockquote>
-<p><code>/env</code>是指向<code>/data/.conda/envs</code>的软链接。</p>
-</blockquote>
+<div class="admonition tips">
+<p class="admonition-title"><code>/env</code> 是指向 <code>/data/.conda/envs</code> 的软链接</p>
+</div>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (86.36%), <a href='mailto:mail@co1in.me'>Co1lin</a> (13.64%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (31.82%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (68.18%)</span>
       </small>
     </div>
   
@@ -386,7 +401,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../auth/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Authentication &amp; Permissions" rel="prev">
+        <a href="../basis/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 基本常识" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -395,7 +410,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Authentication & Permissions
+              基本常识
             </div>
           </div>
         </a>
