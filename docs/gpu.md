@@ -34,7 +34,7 @@ squeue  # 包括各任务的JOBID
 ```shell
 sterm --gres=gpu:7c40g:1  # 申请使用一张完整的A100卡
 sterm --gres=gpu:3c20g:1  # 申请使用一张占3/7流处理器，20GB显存的虚拟显卡
-sterm --gres=gpu:2c10g:2  # 申请使用一张占2/7流处理器，10GB显存的虚拟显卡
+sterm --gres=gpu:2c10g:1  # 申请使用一张占2/7流处理器，10GB显存的虚拟显卡
 ```
 
 * 申请GPU资源执行命令
@@ -50,5 +50,8 @@ srun --gres=gpu:3c20g:1 python run.py  # 申请方式同上，在前台执行命
 scancel [id]
 ```
 
-!!! tip ""
+!!! warning 
+    A100上的虚拟显卡由NVIDIA MIG实现，分割后的虚拟显卡也称为MIG实例。由于该系统的限制，多张MIG实例无法同时使用，因此通过slurm系统申请系统MIG资源时最多只可以申请1张，否则将会造成资源的浪费。
+
+!!! note
     使用Slurm系统无需通过`CUDA_VISIBLE_DEVICES`指定使用的设备。设备由Slurm系统自动分配。
