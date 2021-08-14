@@ -421,9 +421,9 @@
 <ul>
 <li>申请 GPU 资源后进入 shell（交互模式）</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40g:1  <span class="c1"># 申请使用一张完整的 A100 卡</span>
-<span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20g:1  <span class="c1"># 申请使用一张占 3/7 流处理器，20GB 显存的虚拟显卡</span>
-<span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10g:2  <span class="c1"># 申请使用一张占 2/7 流处理器，10GB 显存的虚拟显卡</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40g:1  <span class="c1"># 申请使用一张完整的A100卡</span>
+<span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20g:1  <span class="c1"># 申请使用一张占3/7流处理器，20GB显存的虚拟显卡</span>
+<span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10g:1  <span class="c1"># 申请使用一张占2/7流处理器，10GB显存的虚拟显卡</span>
 </code></pre></div>
 <ul>
 <li>申请 GPU 资源执行命令</li>
@@ -436,8 +436,13 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scancel <span class="o">[</span>id<span class="o">]</span>
 </code></pre></div>
-<div class="admonition tip">
-<p>使用 Slurm 系统无需通过 <code>CUDA_VISIBLE_DEVICES</code> 指定使用的设备。设备由 Slurm 系统自动分配。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A100上的虚拟显卡由NVIDIA MIG实现，分割后的虚拟显卡也称为MIG实例。由于该系统的限制，多张MIG实例无法同时使用，因此通过slurm系统申请系统MIG资源时最多只可以申请1张，否则将会造成资源的浪费。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>使用Slurm系统无需通过<code>CUDA_VISIBLE_DEVICES</code>指定使用的设备。设备由Slurm系统自动分配。</p>
 </div>
                 
               
@@ -445,7 +450,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (36.36%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (63.64%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (26.32%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (73.68%)</span>
       </small>
     </div>
   
