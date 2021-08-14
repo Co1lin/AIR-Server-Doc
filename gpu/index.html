@@ -410,7 +410,7 @@
 <p>请定时检查程序的运行状态。如果你的程序异常退出，可能会有子进程仍然存活，此时其它程序无法利用该子进程占用的显存。请通过 <code>nvidia-smi</code> 命令检查是否有异常进程占用显存。</p>
 </div>
 <h2 id="2-air3">2. AIR3</h2>
-<p>AIR3 服务器配备 3 张 A100 显卡，其中一张显卡按照运算单元 3:2:2，显存 20GB:10GB:10GB 的方式分割成为三张虚拟显卡。完整、20GB、10GB 显卡在下文中用 <code>7c40gb</code>、<code>3c20g</code>、<code>2c10g</code> 指代。</p>
+<p>AIR3 服务器配备 3 张 A100 显卡，其中一张显卡按照运算单元 3:2:2，显存 20GB:10GB:10GB 的方式分割成为三张虚拟显卡。完整、20GB、10GB 显卡在下文中用 <code>7c40gb</code>、<code>3c20gb</code>、<code>2c10gb</code> 指代。</p>
 <p>AIR3 服务器部署了 slurm 系统，（这里简单介绍一下 slurm）</p>
 <p>常用命令如下：</p>
 <ul>
@@ -421,14 +421,14 @@
 <ul>
 <li>申请 GPU 资源后进入 shell（交互模式）</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40g:1  <span class="c1"># 申请使用一张完整的A100卡</span>
-<span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20g:1  <span class="c1"># 申请使用一张占3/7流处理器，20GB显存的虚拟显卡</span>
-<span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10g:1  <span class="c1"># 申请使用一张占2/7流处理器，10GB显存的虚拟显卡</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40gb:1  <span class="c1"># 申请使用一张完整的A100卡</span>
+<span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20gb:1  <span class="c1"># 申请使用一张占3/7流处理器，20GB显存的虚拟显卡</span>
+<span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10gb:1  <span class="c1"># 申请使用一张占2/7流处理器，10GB显存的虚拟显卡</span>
 </code></pre></div>
 <ul>
 <li>申请 GPU 资源执行命令</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:3c20g:1 python run.py  <span class="c1"># 申请方式同上，在前台执行命令</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:3c20gb:1 python run.py  <span class="c1"># 申请方式同上，在前台执行命令</span>
 </code></pre></div>
 <ul>
 <li>申请 GPU 资源执行后台脚本 ==TODO==</li>
@@ -450,7 +450,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (26.32%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (73.68%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (24.56%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (75.44%)</span>
       </small>
     </div>
   
