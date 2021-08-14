@@ -17,7 +17,7 @@ export CUDA_VISIBLE_DEVICES='0,1,2' # 指定程序在 GPU#0，GPU#1，GPU#2 上�
 
 ## AIR3
 
-AIR3 服务器配备 3 张 A100 显卡，其中一张显卡按照运算单元 3:2:2，显存 20GB:10GB:10GB 的方式分割成为三张虚拟显卡。完整、20GB、10GB 显卡在下文中用 `7c40gb`、`3c20g`、`2c10g` 指代。
+AIR3 服务器配备 3 张 A100 显卡，其中一张显卡按照运算单元 3:2:2，显存 20GB:10GB:10GB 的方式分割成为三张虚拟显卡。完整、20GB、10GB 显卡在下文中用 `7c40gb`、`3c20gb`、`2c10gb` 指代。
 
 AIR3 服务器部署了 slurm 系统，（这里简单介绍一下 slurm）
 
@@ -32,15 +32,15 @@ squeue  # 包括各任务的 JOBID
 * 申请 GPU 资源后进入 shell（交互模式）
 
 ```shell
-sterm --gres=gpu:7c40g:1  # 申请使用一张完整的A100卡
-sterm --gres=gpu:3c20g:1  # 申请使用一张占3/7流处理器，20GB显存的虚拟显卡
-sterm --gres=gpu:2c10g:1  # 申请使用一张占2/7流处理器，10GB显存的虚拟显卡
+sterm --gres=gpu:7c40gb:1  # 申请使用一张完整的A100卡
+sterm --gres=gpu:3c20gb:1  # 申请使用一张占3/7流处理器，20GB显存的虚拟显卡
+sterm --gres=gpu:2c10gb:1  # 申请使用一张占2/7流处理器，10GB显存的虚拟显卡
 ```
 
 * 申请 GPU 资源执行命令
 
 ```shell
-srun --gres=gpu:3c20g:1 python run.py  # 申请方式同上，在前台执行命令
+srun --gres=gpu:3c20gb:1 python run.py  # 申请方式同上，在前台执行命令
 ```
 
 * 申请 GPU 资源执行后台脚本 ==TODO==
