@@ -295,6 +295,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 合理使用显存
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 死掉的程序仍可能占用显存
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -394,6 +408,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 合理使用显存
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 死掉的程序仍可能占用显存
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -435,6 +463,53 @@
 <div class="admonition tips">
 <p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
 </div>
+<h2 id="4">4. 合理使用显存</h2>
+<p>为了所有用户的体验，请适度调整 batch_size ，并且尽量紧凑地安排显存，占用尽可能少的卡。<strong>不要每张卡占用一半不到的显存但是占用多张卡。</strong></p>
+<h2 id="5">5. 死掉的程序仍可能占用显存</h2>
+<p>有时，虽然程序在控制台退出了，你已经不再与其交互了，但仍然可能<strong>残存一些子进程占用显存</strong>（常见于多进程多卡训练中，如 PyTorch 的 <code>DistributedDataParallel</code> ）。此时通常会产生以下现象：</p>
+<ul>
+<li>
+<p>执行 <code>nvidia-smi</code> 的输出中，上方统计的显存占用与下方显示的其上各进程占用的显存之和有明显差距。如：（上面是 <code>20371 MB</code> ，下面是 <code>1028+4 MB</code>）</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>+-----------------------------------------------------------------------------+
+<span class="linenos" data-linenos=" 2 "></span><span class="p">|</span> NVIDIA-SMI <span class="m">470</span>.57.02    Driver Version: <span class="m">470</span>.57.02    CUDA Version: <span class="m">11</span>.4     <span class="p">|</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="p">|</span>-------------------------------+----------------------+----------------------+
+<span class="linenos" data-linenos=" 4 "></span><span class="p">|</span> GPU  Name        Persistence-M<span class="p">|</span> Bus-Id        Disp.A <span class="p">|</span> Volatile Uncorr. ECC <span class="p">|</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="p">|</span> Fan  Temp  Perf  Pwr:Usage/Cap<span class="p">|</span>         Memory-Usage <span class="p">|</span> GPU-Util  Compute M. <span class="p">|</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="p">|</span>                               <span class="p">|</span>                      <span class="p">|</span>               MIG M. <span class="p">|</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">|</span><span class="o">===============================</span>+<span class="o">======================</span>+<span class="o">======================</span><span class="p">|</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="p">|</span>   <span class="m">0</span>  NVIDIA GeForce ...  Off  <span class="p">|</span> <span class="m">00000000</span>:01:00.0 Off <span class="p">|</span>                  N/A <span class="p">|</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="p">|</span> <span class="m">65</span>%   64C    P8   30W / 350W <span class="p">|</span>  20371MiB / 24268MiB <span class="p">|</span>      <span class="m">3</span>%      Default <span class="p">|</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">|</span>                               <span class="p">|</span>                      <span class="p">|</span>                  N/A <span class="p">|</span>
+<span class="linenos" data-linenos="11 "></span>+-------------------------------+----------------------+----------------------+
+<span class="linenos" data-linenos="12 "></span>+-----------------------------------------------------------------------------+
+<span class="linenos" data-linenos="13 "></span><span class="p">|</span> Processes:                                                                  <span class="p">|</span>
+<span class="linenos" data-linenos="14 "></span><span class="p">|</span>  GPU   GI   CI        PID   Type   Process name                  GPU Memory <span class="p">|</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">|</span>        ID   ID                                                   Usage      <span class="p">|</span>
+<span class="linenos" data-linenos="16 "></span><span class="p">|</span><span class="o">=============================================================================</span><span class="p">|</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">|</span>    <span class="m">0</span>   N/A  N/A      <span class="m">5039</span>      G   /usr/lib/xorg/Xorg                  4MiB <span class="p">|</span>
+<span class="linenos" data-linenos="18 "></span><span class="p">|</span>    <span class="m">0</span>   N/A  N/A   <span class="m">1539627</span>      C   python                           1028MiB <span class="p">|</span>
+<span class="linenos" data-linenos="19 "></span>+-----------------------------------------------------------------------------+
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">在 Docker 中运行程序</p>
+<p>如果在 Docker 中使用 GPU 运行程序， 在宿主机上执行 <code>nvidia-smi</code> 看不到进程是正常的。需要在 Docker 中执行  <code>nvidia-smi</code> 。其余同理。</p>
+</div>
+</li>
+<li>
+<p>存在较大显存占用，但是 <code>GPU-Util</code> 始终很低（可以使用 <code>watch -n 0.5 nvidia-smi</code> 进行持续观察）， <code>Power</code> 很低。（但是这两点并不意味着程序一定死了，有可能是程序恰好执行到了 GPU 利用率较低的部分。但是进程号应该能在下方看到。）</p>
+</li>
+</ul>
+<p>这时可以：</p>
+<div class="admonition tips">
+<p class="admonition-title">1. 通过关键字查找进程</p>
+<p>使用 <code>ps aux | grep keyword</code> 命令查看启动命令（或者 PID 、用户等信息）中包含 <code>keyword</code> 的进程。</p>
+</div>
+<div class="admonition tips">
+<p class="admonition-title">2. 查看指定显卡设备上的进程</p>
+<p>使用 <code>fuser -v /dev/nvidia*</code> 命令查看所有显卡上的进程号。将 <code>*</code> 替换为显卡编号（如 <code>fuser -v /dev/nvidia1</code> ）查看指定显卡上的进程号。</p>
+<p>注意，此命令只能显示当前用户的进程，需要加 <code>sudo</code> 才能显示其它用户的进程。 Docker 中的进程很可能以 root 用户存在，因此也无法直接显示。</p>
+</div>
+<p>巧妙结合上述二者可以显示出指定显卡上进程的详细信息。发现显存异常占用后，如果通过上述方法检查出自己已经退出的程序实际上仍然在占用显存，请及时使用 <strong><code>kill -9 &lt;PID&gt;</code></strong> 杀死所有残余进程，节省显存空间。</p>
                 
               
 
