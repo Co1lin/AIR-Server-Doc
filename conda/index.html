@@ -266,9 +266,60 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Conda
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Conda
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 换源加速
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 创建环境
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 激活环境
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 迁移环境
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -323,6 +374,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 换源加速
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 创建环境
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 激活环境
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 迁移环境
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -340,12 +427,33 @@
                 
                 
                 <h1 id="conda">Conda</h1>
+<p><strong>Conda</strong>是一个开源、跨平台、语言无关的包管理与环境管理系统。本篇介绍在集群中使用conda的方法。</p>
+<h2 id="1">1. 换源加速</h2>
+<p>执行下面的命令，使用国内的镜像源加快包安装速度：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nb">echo</span> <span class="s2">&quot;channels: </span>
+<span class="linenos" data-linenos=" 2 "></span><span class="s2">  - defaults</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="s2">show_channel_urls: true</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="s2">default_channels:</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="s2">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="s2">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="s2">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="s2">custom_channels:</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="s2">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
+<span class="linenos" data-linenos="10 "></span><span class="s2">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
+<span class="linenos" data-linenos="11 "></span><span class="s2">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
+<span class="linenos" data-linenos="12 "></span><span class="s2">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
+<span class="linenos" data-linenos="13 "></span><span class="s2">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
+<span class="linenos" data-linenos="14 "></span><span class="s2">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud&quot;</span> &gt; ~/.condarc
+</code></pre></div>
+<h2 id="2">2. 创建环境</h2>
 <p>为了避免耗尽系统盘空间，请通过以下方式在 <code>/data</code> 分区下创建新的环境：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div>
+<h2 id="3">3. 激活环境</h2>
 <p>通过以下命令激活新的环境：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda activate /envs/<span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div>
+<h2 id="4">4. 迁移环境</h2>
 <p>对于在系统分区（包括但不限于通过 <code>conda create -n name</code> 方式创建的环境）下的虚拟环境，请尽快迁移到 <code>/data</code> 目录下，迁移方法如下：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>new_env_name<span class="o">]</span> --clone <span class="o">[</span>old_env<span class="o">]</span>
 <span class="linenos" data-linenos="2 "></span>conda remove -n <span class="o">[</span>old_env<span class="o">]</span> --all
@@ -359,7 +467,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (65.22%), <a href='mailto:mail@co1in.me'>Co1lin</a> (34.78%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (84.62%), <a href='mailto:mail@co1in.me'>Co1lin</a> (15.38%)</span>
       </small>
     </div>
   
