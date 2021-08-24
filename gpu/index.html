@@ -411,7 +411,15 @@
 </div>
 <h2 id="2-air3">2. AIR3</h2>
 <p>AIR3 服务器配备 3 张 A100 显卡，其中一张显卡按照运算单元 3:2:2，显存 20GB:10GB:10GB 的方式分割成为三张虚拟显卡。完整、20GB、10GB 显卡在下文中用 <code>7c40gb</code>、<code>3c20gb</code>、<code>2c10gb</code> 指代。</p>
-<p>AIR3 服务器部署了 slurm 系统，（这里简单介绍一下 slurm）</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>AIR3 服务器部署了 Slurm 系统。<strong>Slurm 任务调度工具</strong>，是一个用于 Linux 和 Unix 内核系统的免费、开源的任务调度工具，被世界范围内的超级计算机和计算集群广泛采用。它提供了三个关键功能：</p>
+<ol>
+<li>为用户分配一定时间的专享或非专享的资源(计算机节点)，以供用户执行工作</li>
+<li>它提供了一个框架，用于启动、执行、监测在节点上运行着的任务(通常是并行的任务，例如 <a href="https://zh.wikipedia.org/wiki/訊息傳遞介面">MPI</a>)</li>
+<li>为任务队列合理地分配资源</li>
+</ol>
 <p>常用命令如下：</p>
 <ul>
 <li>查看当前运行 &amp; 排队的任务</li>
@@ -419,19 +427,21 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue  <span class="c1"># 包括各任务的 JOBID</span>
 </code></pre></div>
 <ul>
-<li>申请 GPU 资源后进入 shell（交互模式）</li>
+<li>申请 GPU 资源，进入 shell（交互模式）</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40gb:1  <span class="c1"># 申请使用一张完整的A100卡</span>
 <span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20gb:1  <span class="c1"># 申请使用一张占3/7流处理器，20GB显存的虚拟显卡</span>
 <span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10gb:1  <span class="c1"># 申请使用一张占2/7流处理器，10GB显存的虚拟显卡</span>
 </code></pre></div>
 <ul>
-<li>申请 GPU 资源执行命令</li>
+<li>申请 GPU 资源，前台执行命令</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:3c20gb:1 python run.py  <span class="c1"># 申请方式同上，在前台执行命令</span>
 </code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>脚本运行结果会显示在命令行中显示。
+</code></pre></div>
 <ul>
-<li>申请 GPU 资源执行脚本 （推荐）</li>
+<li>申请 GPU 资源，后台执行脚本 （推荐）</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sbatch <span class="o">[</span>batchfile<span class="o">]</span>
 </code></pre></div>
@@ -455,7 +465,7 @@
 </code></pre></div>
 <p>脚本运行结果不会显示在命令行中，请查看脚本中指定的输出文件。</p>
 <ul>
-<li>申请取消 <code>JOBID</code> 为 <code>id</code> 的任务</li>
+<li>取消 <code>JOBID</code> 为 <code>id</code> 的任务</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scancel <span class="o">[</span>id<span class="o">]</span>
 </code></pre></div>
@@ -473,7 +483,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (14.12%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (85.88%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (8.6%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (91.4%)</span>
       </small>
     </div>
   
