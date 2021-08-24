@@ -30,13 +30,13 @@ AIR3服务器使用Slurm系统分配GPU资源。
 
 常用命令如下：
 
-* 查看当前运行 & 排队的任务
+### 查看当前运行 & 排队的任务
 
   ```shell
   squeue  # 包括各任务的 JOBID
   ```
 
-* 申请 GPU 资源，进入 shell（交互模式）
+### 申请 GPU 资源，进入 shell（交互模式）
 
   ```shell
   sterm --gres=gpu:7c40gb:1  # 申请使用一张完整的A100卡
@@ -44,7 +44,7 @@ AIR3服务器使用Slurm系统分配GPU资源。
   sterm --gres=gpu:2c10gb:1  # 申请使用一张占2/7流处理器，10GB显存的虚拟显卡
   ```
 
-* 申请 GPU 资源，前台执行命令
+### 申请 GPU 资源，前台执行命令
 
   ```shell
   srun --gres=gpu:3c20gb:1 python run.py  # 申请方式同上，在前台执行命令
@@ -52,7 +52,7 @@ AIR3服务器使用Slurm系统分配GPU资源。
 
 	脚本运行结果会显示在命令行中显示。
 
-* 申请 GPU 资源，后台执行脚本 （推荐）
+### 申请 GPU 资源，后台执行脚本 （推荐）
 
   ```shell
   sbatch [batchfile]
@@ -81,14 +81,15 @@ AIR3服务器使用Slurm系统分配GPU资源。
 
   脚本运行结果不会显示在命令行中，请查看脚本中指定的输出文件。
 
-* 取消 `JOBID` 为 `id` 的任务
+### 取消 `JOBID` 为 `id` 的任务
 
   ```shell
   scancel [id]
   ```
 
-!!! warning 
+!!! warning "一次使用一张虚拟显卡"
     A100上的虚拟显卡由NVIDIA MIG实现，分割后的虚拟显卡也称为MIG实例。由于该系统的限制，多张MIG实例无法同时使用，因此通过slurm系统申请系统MIG资源时最多只可以申请1张，否则将会造成资源的浪费。
+    如果一个MIG实例无法满足实验要求，请申请更高规格的MIG实例，或完整的A100显卡（`7c40gb`实例）
 
-!!! note
+!!! note "无需指定设备"
     使用Slurm系统无需通过`CUDA_VISIBLE_DEVICES`指定使用的设备。设备由Slurm系统自动分配。
