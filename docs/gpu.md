@@ -50,7 +50,7 @@ AIR3服务器使用Slurm系统分配GPU资源。
   srun --gres=gpu:3c20gb:1 python run.py  # 申请方式同上，在前台执行命令
   ```
 
-	脚本运行结果会显示在命令行中显示。
+  脚本运行结果会显示在命令行中显示。
 
 ### 后台执行脚本 （推荐）
 
@@ -72,9 +72,11 @@ AIR3服务器使用Slurm系统分配GPU资源。
   #SBATCH -t 1:00:00                # 任务运行的最长时间为 1 小时
   #!SBATCH --qos=debug              # 作业使用的 QoS 为 debug （QoS系统尚未启用）
   
-  # 输入要执行的命令，例如 ./hello 或 python test.py 等
+  # 使用conda环境
   source ~/.zshrc
-  conda activate /envs/tbw_fp
+  conda activate /envs/[env_name]
+  
+  # 执行程序
   python -V                    
   python -c "print('Hello, world!')"
   ```
@@ -86,7 +88,7 @@ AIR3服务器使用Slurm系统分配GPU资源。
   ```shell
   scancel [id]
   ```
-	
+
 	`id`为任务的ID，可以通过`squeue`命令查看。
 
 !!! warning "一次使用一张虚拟显卡"
