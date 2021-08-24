@@ -321,35 +321,35 @@
         
           <li class="md-nav__item">
   <a href="#21" class="md-nav__link">
-    2.1 查看当前运行 &amp; 排队的任务
+    2.1 查看队列的任务
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-gpu-shell" class="md-nav__link">
-    2.2 申请 GPU 资源，进入 shell（交互模式）
+  <a href="#22-shell" class="md-nav__link">
+    2.2 进入 shell
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-gpu" class="md-nav__link">
-    2.3 申请 GPU 资源，前台执行命令
+  <a href="#23" class="md-nav__link">
+    2.3 前台执行命令
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-gpu" class="md-nav__link">
-    2.4 申请 GPU 资源，后台执行脚本 （推荐）
+  <a href="#24" class="md-nav__link">
+    2.4 后台执行脚本 （推荐）
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-jobid-id" class="md-nav__link">
-    2.5 取消 JOBID 为 id 的任务
+  <a href="#25" class="md-nav__link">
+    2.5 取消任务
   </a>
   
 </li>
@@ -424,35 +424,35 @@
         
           <li class="md-nav__item">
   <a href="#21" class="md-nav__link">
-    2.1 查看当前运行 &amp; 排队的任务
+    2.1 查看队列的任务
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-gpu-shell" class="md-nav__link">
-    2.2 申请 GPU 资源，进入 shell（交互模式）
+  <a href="#22-shell" class="md-nav__link">
+    2.2 进入 shell
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-gpu" class="md-nav__link">
-    2.3 申请 GPU 资源，前台执行命令
+  <a href="#23" class="md-nav__link">
+    2.3 前台执行命令
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-gpu" class="md-nav__link">
-    2.4 申请 GPU 资源，后台执行脚本 （推荐）
+  <a href="#24" class="md-nav__link">
+    2.4 后台执行脚本 （推荐）
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-jobid-id" class="md-nav__link">
-    2.5 取消 JOBID 为 id 的任务
+  <a href="#25" class="md-nav__link">
+    2.5 取消任务
   </a>
   
 </li>
@@ -504,20 +504,20 @@
 </ol>
 </div>
 <p>常用命令如下：</p>
-<h3 id="21">2.1 查看当前运行 &amp; 排队的任务</h3>
+<h3 id="21">2.1 查看队列的任务</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue  <span class="c1"># 包括各任务的 JOBID</span>
 </code></pre></div>
-<h3 id="22-gpu-shell">2.2 申请 GPU 资源，进入 shell（交互模式）</h3>
+<h3 id="22-shell">2.2 进入 shell</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sterm --gres<span class="o">=</span>gpu:7c40gb:1  <span class="c1"># 申请使用一张完整的A100卡</span>
 <span class="linenos" data-linenos="2 "></span>sterm --gres<span class="o">=</span>gpu:3c20gb:1  <span class="c1"># 申请使用一张占3/7流处理器，20GB显存的虚拟显卡</span>
 <span class="linenos" data-linenos="3 "></span>sterm --gres<span class="o">=</span>gpu:2c10gb:1  <span class="c1"># 申请使用一张占2/7流处理器，10GB显存的虚拟显卡</span>
 </code></pre></div>
-<h3 id="23-gpu">2.3 申请 GPU 资源，前台执行命令</h3>
+<h3 id="23">2.3 前台执行命令</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:3c20gb:1 python run.py  <span class="c1"># 申请方式同上，在前台执行命令</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>脚本运行结果会显示在命令行中显示。
 </code></pre></div>
-<h3 id="24-gpu">2.4 申请 GPU 资源，后台执行脚本 （推荐）</h3>
+<h3 id="24">2.4 后台执行脚本 （推荐）</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sbatch <span class="o">[</span>batchfile<span class="o">]</span>
 </code></pre></div>
 <p>运行脚本样例如下：</p>
@@ -539,8 +539,10 @@
 <span class="linenos" data-linenos="16 "></span>python -c <span class="s2">&quot;print(&#39;Hello, world!&#39;)&quot;</span>
 </code></pre></div>
 <p>脚本运行结果不会显示在命令行中，请查看脚本中指定的输出文件。</p>
-<h3 id="25-jobid-id">2.5 取消 <code>JOBID</code> 为 <code>id</code> 的任务</h3>
+<h3 id="25">2.5 取消任务</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scancel <span class="o">[</span>id<span class="o">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>`id`为任务的ID，可以通过`squeue`命令查看。
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">一次使用一张虚拟显卡</p>
@@ -557,7 +559,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (7.37%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (92.63%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (7.22%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (92.78%)</span>
       </small>
     </div>
   
