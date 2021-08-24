@@ -481,6 +481,7 @@
                 
                 
                 <h1 id="gpu">GPU资源使用</h1>
+<p>本文讲解如何使用服务器上的GPU资源。</p>
 <h2 id="1-air1-air2">1. AIR1 &amp; AIR2</h2>
 <p>AIR1 服务器配备 8 张 RTX 3090 24GB 显卡；AIR2 服务器配备 10 张 RTX 3090 24GB 显卡。</p>
 <p>在运行实验前，请通过以下指令指定需要使用的 GPU 卡的编号（编号从 0 开始）</p>
@@ -543,8 +544,7 @@
 <h3 id="25">2.5 取消任务</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scancel <span class="o">[</span>id<span class="o">]</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>`id`为任务的ID，可以通过`squeue`命令查看。
-</code></pre></div>
+<p><code>id</code>为任务的ID，可以通过<code>squeue</code>命令查看。</p>
 <div class="admonition warning">
 <p class="admonition-title">一次使用一张虚拟显卡</p>
 <p>A100上的虚拟显卡由NVIDIA MIG实现，分割后的虚拟显卡也称为MIG实例。由于该系统的限制，多张MIG实例无法同时使用，因此通过slurm系统申请系统MIG资源时最多只可以申请1张，否则将会造成资源的浪费。
@@ -560,7 +560,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (95.0%), <a href='mailto:mail@co1in.me'>Co1lin</a> (5.0%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (95.05%), <a href='mailto:mail@co1in.me'>Co1lin</a> (4.95%)</span>
       </small>
     </div>
   
