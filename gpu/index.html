@@ -515,8 +515,7 @@
 <h3 id="23">2.3 前台执行命令</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:3c20gb:1 python run.py  <span class="c1"># 申请方式同上，在前台执行命令</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>脚本运行结果会显示在命令行中显示。
-</code></pre></div>
+<p>脚本运行结果会显示在命令行中显示。</p>
 <h3 id="24">2.4 后台执行脚本 （推荐）</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sbatch <span class="o">[</span>batchfile<span class="o">]</span>
 </code></pre></div>
@@ -532,11 +531,13 @@
 <span class="linenos" data-linenos=" 9 "></span><span class="c1">#SBATCH -t 1:00:00                # 任务运行的最长时间为 1 小时</span>
 <span class="linenos" data-linenos="10 "></span><span class="c1">#!SBATCH --qos=debug              # 作业使用的 QoS 为 debug （QoS系统尚未启用）</span>
 <span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="c1"># 输入要执行的命令，例如 ./hello 或 python test.py 等</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1"># 使用conda环境</span>
 <span class="linenos" data-linenos="13 "></span><span class="nb">source</span> ~/.zshrc
-<span class="linenos" data-linenos="14 "></span>conda activate /envs/tbw_fp
-<span class="linenos" data-linenos="15 "></span>python -V                    
-<span class="linenos" data-linenos="16 "></span>python -c <span class="s2">&quot;print(&#39;Hello, world!&#39;)&quot;</span>
+<span class="linenos" data-linenos="14 "></span>conda activate /envs/<span class="o">[</span>env_name<span class="o">]</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="c1"># 执行程序</span>
+<span class="linenos" data-linenos="17 "></span>python -V                    
+<span class="linenos" data-linenos="18 "></span>python -c <span class="s2">&quot;print(&#39;Hello, world!&#39;)&quot;</span>
 </code></pre></div>
 <p>脚本运行结果不会显示在命令行中，请查看脚本中指定的输出文件。</p>
 <h3 id="25">2.5 取消任务</h3>
@@ -559,7 +560,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (93.81%), <a href='mailto:mail@co1in.me'>Co1lin</a> (6.19%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (93.94%), <a href='mailto:mail@co1in.me'>Co1lin</a> (6.06%)</span>
       </small>
     </div>
   
