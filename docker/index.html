@@ -285,6 +285,75 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Docker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Docker
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 简介
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-image-container" class="md-nav__link">
+    2. 请及时清理不用的 image 和 container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-imagecontainer" class="md-nav__link">
+    3. 如何保存 image/container ？
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../admin/" class="md-nav__link">
@@ -320,22 +389,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    简介
+  <a href="#1" class="md-nav__link">
+    1. 简介
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#image-container" class="md-nav__link">
-    请及时清理不用的 image 和 container
+  <a href="#2-image-container" class="md-nav__link">
+    2. 请及时清理不用的 image 和 container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#imagecontainer" class="md-nav__link">
-    如何保存 image/container ？
+  <a href="#3-imagecontainer" class="md-nav__link">
+    3. 如何保存 image/container ？
   </a>
   
 </li>
@@ -359,7 +428,7 @@
                 
                 
                 <h1 id="docker">Docker</h1>
-<h2 id="_1">简介</h2>
+<h2 id="1">1. 简介</h2>
 <p>Docker 在 AIR 服务器上的常见作用：</p>
 <ul>
 <li>无需主机上的 <code>sudo</code> 权限执行命令；</li>
@@ -372,7 +441,7 @@
 - container （容器）是执行 <code>docker run</code> 之后产生的。可以通过 <code>docker ps -a</code> 查看系统上所有 container 的运行情况。
 - image 相当于系统安装光盘， container 相当于用 image 安装之后运行起来的主机。所以在 container 做修改并不会修改 image 。同样的 image ，无论从它跑起来的 container 怎么改，每次执行 <code>docker run</code> 之后生成的新容器内部文件都是一样的。</p>
 </div>
-<h2 id="image-container">请及时清理不用的 image 和 container</h2>
+<h2 id="2-image-container">2. 请及时清理不用的 image 和 container</h2>
 <p>前面提到：</p>
 <ul>
 <li>用 <code>docker images</code> 查看所有的镜像。</li>
@@ -383,7 +452,7 @@
 <li>对于不用的镜像，请及时用 <code>docker rmi &lt;image_id&gt;</code> 删除。</li>
 <li>对于不用的容器，请及时用 <code>docker stop &lt;container_id&gt;</code> 和  <code>docker rm &lt;container_id&gt;</code> 停止并删除。</li>
 </ul>
-<h2 id="imagecontainer">如何保存 image/container ？</h2>
+<h2 id="3-imagecontainer">3. 如何保存 image/container ？</h2>
 <p>前面提到，修改 container 并不会修改 image 。但是可以通过</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>docker commit &lt;container_id&gt; &lt;img_name&gt;:&lt;img_tag&gt;
 </code></pre></div>
@@ -422,6 +491,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../gpu/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GPU 资源使用" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              GPU 资源使用
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../admin/" class="md-footer__link md-footer__link--next" aria-label="Next: Administration" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Administration
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
