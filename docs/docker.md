@@ -27,7 +27,7 @@ Docker 在 AIR 服务器上的常见作用：
 - 对于不用的镜像，请及时用 `docker rmi <image_id>` 删除。
 - 对于不用的容器，请及时用 `docker stop <container_id>` 和  `docker rm <container_id>` 停止并删除。
 
-## 如何保存 image/container ？
+## 如何保存 image/container
 
 前面提到，修改 container 并不会修改 image 。但是可以通过
 
