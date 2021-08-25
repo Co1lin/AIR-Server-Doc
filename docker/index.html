@@ -14,7 +14,7 @@
     
     
       
-        <title>Conda - Server Usage Guide of AIR</title>
+        <title>Docker - Server Usage Guide of AIR</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#conda" class="md-skip">
+        <a href="#docker" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Conda
+              Docker
             
           </span>
         </div>
@@ -255,72 +255,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Conda
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../conda/" class="md-nav__link">
         Conda
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 换源加速
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 创建环境
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3. 激活环境
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4. 迁移环境
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -381,29 +320,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 换源加速
+  <a href="#_1" class="md-nav__link">
+    简介
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 创建环境
+  <a href="#image-container" class="md-nav__link">
+    请及时清理不用的 image 和 container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3. 激活环境
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4. 迁移环境
+  <a href="#imagecontainer" class="md-nav__link">
+    如何保存 image/container ？
   </a>
   
 </li>
@@ -421,45 +353,50 @@
               
   
                 
-                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/conda.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/docker.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="conda">Conda</h1>
-<p><strong>Conda</strong> 是一个开源、跨平台、语言无关的包管理与环境管理系统。本篇介绍在集群中使用 conda 的方法。</p>
-<h2 id="1">1. 换源加速</h2>
-<p>执行下面的命令，使用国内的镜像源加快包安装速度：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nb">echo</span> <span class="s2">&quot;channels: </span>
-<span class="linenos" data-linenos=" 2 "></span><span class="s2">  - defaults</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="s2">show_channel_urls: true</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="s2">default_channels:</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="s2">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="s2">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="s2">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="s2">custom_channels:</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="s2">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
-<span class="linenos" data-linenos="10 "></span><span class="s2">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
-<span class="linenos" data-linenos="11 "></span><span class="s2">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
-<span class="linenos" data-linenos="12 "></span><span class="s2">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
-<span class="linenos" data-linenos="13 "></span><span class="s2">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span>
-<span class="linenos" data-linenos="14 "></span><span class="s2">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud&quot;</span> &gt; ~/.condarc
+                <h1 id="docker">Docker</h1>
+<h2 id="_1">简介</h2>
+<p>Docker 在 AIR 服务器上的常见作用：</p>
+<ul>
+<li>无需主机上的 <code>sudo</code> 权限执行命令；</li>
+<li>使用他人打包好的实验环境进行实验，免去配环境的麻烦，以及修改 CUDA 版本等在主机上会影响他人的操作。</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">区分 image 和 container</p>
+<p>初学者常常混淆 Docker 中的 image 和 container 两个概念。
+- image （镜像）是 <code>docker pull</code> 下来的，可以通过 <code>docker images</code> 查看系统上所有的 docker image 。
+- container （容器）是执行 <code>docker run</code> 之后产生的。可以通过 <code>docker ps -a</code> 查看系统上所有 container 的运行情况。
+- image 相当于系统安装光盘， container 相当于用 image 安装之后运行起来的主机。所以在 container 做修改并不会修改 image 。同样的 image ，无论从它跑起来的 container 怎么改，每次执行 <code>docker run</code> 之后生成的新容器内部文件都是一样的。</p>
+</div>
+<h2 id="image-container">请及时清理不用的 image 和 container</h2>
+<p>前面提到：</p>
+<ul>
+<li>用 <code>docker images</code> 查看所有的镜像。</li>
+<li>用 <code>docker ps -a</code> 查看所有的容器。</li>
+</ul>
+<p>为节约磁盘空间，</p>
+<ul>
+<li>对于不用的镜像，请及时用 <code>docker rmi &lt;image_id&gt;</code> 删除。</li>
+<li>对于不用的容器，请及时用 <code>docker stop &lt;container_id&gt;</code> 和  <code>docker rm &lt;container_id&gt;</code> 停止并删除。</li>
+</ul>
+<h2 id="imagecontainer">如何保存 image/container ？</h2>
+<p>前面提到，修改 container 并不会修改 image 。但是可以通过</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>docker commit &lt;container_id&gt; &lt;img_name&gt;:&lt;img_tag&gt;
 </code></pre></div>
-<h2 id="2">2. 创建环境</h2>
-<p>为了避免耗尽系统盘空间，请通过以下方式在 <code>/data</code> 分区下创建新的环境：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>env_name<span class="o">]</span>
+<p>将一个 container commit 成为一个被标记为 <code>img_name:img_tag</code> 的 image 。这可以用于：在某个 image 的 container 中做了修改，保存修改之后状态为 image ，这样可以从新 image 启动，不必从旧 image 启动之后再重复自己的修改。</p>
+<p>在不同机器间传输 image ，除了将 image 发布到类似于 <a href="https://hub.docker.com/">Docker Hub</a> 的仓库然后在其它机器上拉取，还可以通过以下方式以文件形式保存、加载 image 。</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>docker save container_id &gt; container.tar
+<span class="linenos" data-linenos="2 "></span>docker load &lt; container.tar
 </code></pre></div>
-<h2 id="3">3. 激活环境</h2>
-<p>通过以下命令激活新的环境：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda activate /envs/<span class="o">[</span>env_name<span class="o">]</span>
-</code></pre></div>
-<h2 id="4">4. 迁移环境</h2>
-<p>对于在系统分区（包括但不限于通过 <code>conda create -n name</code> 方式创建的环境）下的虚拟环境，请尽快迁移到 <code>/data</code> 目录下，迁移方法如下：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda create -p /envs/<span class="o">[</span>new_env_name<span class="o">]</span> --clone <span class="o">[</span>old_env<span class="o">]</span>
-<span class="linenos" data-linenos="2 "></span>conda remove -n <span class="o">[</span>old_env<span class="o">]</span> --all
-</code></pre></div>
-<div class="admonition tips">
-<p class="admonition-title"><code>/env</code> 是指向 <code>/data/.conda/envs</code> 的软链接 </p>
+<p>显然，结合上述的 <code>commit</code>, <code>save</code>, <code>load</code> 三者，就可以实现 container 的保存与加载。</p>
+<div class="admonition danger">
+<p class="admonition-title">防止 Docker 的 layer （层）信息丢失！</p>
+<p>docker 分层的文件系统使得不同 image 可以共享共有的层。而上述 <code>commit</code>, <code>save</code>, <code>load</code> 操作都能够保留层信息，可以实现层共享或者回退。</p>
+<p>而另一组操作 <code>export</code>, <code>import</code> 虽然也能实现 image 的保存和加载，但会丢失层信息！先 <code>export</code> 再 <code>import</code> 之后的 image 只会有（通常很大的）一层！这使得你的 image 如果传到 docker 仓库上再被 pull 时无法共享机器上现有的层，每次更新时不能仅仅更新最后做了修改的层，而是要更新整个 image ，增加了网络传输量和磁盘空间占用。同时也无法根据历史实现回退。因此不推荐这种操作。</p>
 </div>
                 
               
@@ -467,7 +404,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (17.31%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (82.69%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a></span>
       </small>
     </div>
   
@@ -485,41 +422,6 @@
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../basis/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 基本常识" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              基本常识
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../gpu/" class="md-footer__link md-footer__link--next" aria-label="Next: GPU 资源使用" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              GPU 资源使用
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
