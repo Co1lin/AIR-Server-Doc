@@ -10,6 +10,7 @@ Docker 在 AIR 服务器上的常见作用：
 !!! warning "区分 image 和 container"
     
     初学者常常混淆 Docker 中的 image 和 container 两个概念。
+    
     - image （镜像）是 `docker pull` 下来的，可以通过 `docker images` 查看系统上所有的 docker image 。
     - container （容器）是执行 `docker run` 之后产生的。可以通过 `docker ps -a` 查看系统上所有 container 的运行情况。
     - image 相当于系统安装光盘， container 相当于用 image 安装之后运行起来的主机。所以在 container 做修改并不会修改 image 。同样的 image ，无论从它跑起来的 container 怎么改，每次执行 `docker run` 之后生成的新容器内部文件都是一样的。
@@ -48,5 +49,5 @@ docker load < container.tar
 !!! danger "防止 Docker 的 layer （层）信息丢失！"
     docker 分层的文件系统使得不同 image 可以共享共有的层。而上述 `commit`, `save`, `load` 操作都能够保留层信息，可以实现层共享或者回退。
     
-    而另一组操作 `export`, `import` 虽然也能实现 image 的保存和加载，但会丢失层信息！先 `export` 再 `import` 之后的 image 只会有（通常很大的）一层！这使得你的 image 如果传到 docker 仓库上再被 pull 时无法共享机器上现有的层，每次更新时不能仅仅更新最后做了修改的层，而是要更新整个 image ，增加了网络传输量和磁盘空间占用。同时也无法根据历史实现回退。因此不推荐这种操作。
+    而另一组操作 `export`, `import` 虽然也能实现 image 的保存和加载，但会丢失层信息！先 `export` 再 `import` 之后的 image 只会有（通常很大的）一层！这使得你的 image 如果传到 docker 仓库上再被 pull 时无法共享机器上现有的层，每次更新时不能仅仅更新最后做了修改的层，而是要更新整个 image ，大大增加了网络传输量和磁盘空间占用；同时也无法根据历史实现回退。因此不推荐这种操作。
 
