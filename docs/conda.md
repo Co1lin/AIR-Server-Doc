@@ -1,6 +1,6 @@
 # Conda
 
-**Conda**是一个开源、跨平台、语言无关的包管理与环境管理系统。本篇介绍在集群中使用conda的方法。
+**Conda** 是一个开源、跨平台、语言无关的包管理与环境管理系统。本篇介绍在集群中使用 conda 的方法。
 
 ## 换源加速
 
@@ -48,5 +48,5 @@ conda create -p /envs/[new_env_name] --clone [old_env]
 conda remove -n [old_env] --all
 ```
 
-!!! tips "`/env` 是指向 `/data/.conda/envs` 的软链接"
+!!! tips "`/env` 是指向 `/data/.conda/envs` 的软链接 "
 
