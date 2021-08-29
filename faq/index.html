@@ -14,7 +14,7 @@
     
     
       
-        <title>基本常识 - Server Usage Guide of AIR</title>
+        <title>Faq - Server Usage Guide of AIR</title>
       
     
     
@@ -64,11 +64,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -95,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              基本常识
+              Faq
             
           </span>
         </div>
@@ -240,79 +235,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          基本常识
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../basis/" class="md-nav__link">
         基本常识
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 数据存在哪
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 做好宕机的准备
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3. 内存占用较大可能会被终止
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4. 合理使用显存
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5. 死掉的程序仍可能占用显存
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -384,154 +311,33 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 数据存在哪
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 做好宕机的准备
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3. 内存占用较大可能会被终止
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4. 合理使用显存
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5. 死掉的程序仍可能占用显存
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
   
                 
-                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/basis.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/faq.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="_1">基本常识</h1>
-<h2 id="1">1. 数据存在哪</h2>
-<div class="admonition danger">
-<p class="admonition-title">请各位用户将所有数据存放至 <code>/data</code>  目录下</p>
-</div>
-<p>目前，服务器的硬盘分为两种：</p>
-<ul>
-<li>用于存放系统的 1T SSD </li>
-<li>用于存放用户数据的 HDD 。</li>
-</ul>
-<p>允许用户往系统盘写入曾频繁导致服务器因<strong>系统盘爆满</strong>而宕机，因此，<strong>请各位用户将所有数据（包括 conda 环境）存放至 <code>/data</code>  目录下</strong>，防止实验数据不断增多，写满系统盘。</p>
-<div class="admonition tips">
-<p class="admonition-title">Conda 环境的创建和迁移</p>
-<p>请参照： <a href="../conda">Conda 使用指南</a></p>
-</div>
-<p>(<code>/data</code> 目录是基于多块大容量 HDD 的 lvm 分区。)</p>
-<h2 id="2">2. 做好宕机的准备</h2>
-<p>由于各种奇怪的原因，服务器并不能保证永不宕机。因此，请在跑实验时适度保存 checkpoints ，以在意外发生之后能快速恢复到之前的实验状态。</p>
-<h2 id="3">3. 内存占用较大可能会被终止</h2>
-<p>内存爆满也曾多次导致服务器卡死而连接不上。因此，服务器上使用了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 以避免内存爆满。当可用内存低于 10% 后，内存占用最多的进程会被杀死。</p>
-<div class="admonition tips">
-<p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
-</div>
-<h2 id="4">4. 合理使用显存</h2>
-<p>为了所有用户的体验，请适度调整 batch_size ，并且尽量紧凑地安排显存，占用尽可能少的卡。<strong>不要每张卡占用一半不到的显存但是占用多张卡。</strong></p>
-<h2 id="5">5. 死掉的程序仍可能占用显存</h2>
-<p>有时，虽然程序在控制台退出了，你已经不再与其交互了，但仍然可能<strong>残存一些子进程占用显存</strong>（常见于多进程多卡训练中，如 PyTorch 的 <code>DistributedDataParallel</code> ）。此时通常会产生以下现象：</p>
-<ul>
-<li>
-<p>执行 <code>nvidia-smi</code> 的输出中，上方统计的显存占用与下方显示的其上各进程占用的显存之和有明显差距。如：（上面是 <code>20371 MB</code> ，下面是 <code>1028+4 MB</code>）</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>+-----------------------------------------------------------------------------+
-<span class="linenos" data-linenos=" 2 "></span><span class="p">|</span> NVIDIA-SMI <span class="m">470</span>.57.02    Driver Version: <span class="m">470</span>.57.02    CUDA Version: <span class="m">11</span>.4     <span class="p">|</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="p">|</span>-------------------------------+----------------------+----------------------+
-<span class="linenos" data-linenos=" 4 "></span><span class="p">|</span> GPU  Name        Persistence-M<span class="p">|</span> Bus-Id        Disp.A <span class="p">|</span> Volatile Uncorr. ECC <span class="p">|</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="p">|</span> Fan  Temp  Perf  Pwr:Usage/Cap<span class="p">|</span>         Memory-Usage <span class="p">|</span> GPU-Util  Compute M. <span class="p">|</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="p">|</span>                               <span class="p">|</span>                      <span class="p">|</span>               MIG M. <span class="p">|</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="p">|</span><span class="o">===============================</span>+<span class="o">======================</span>+<span class="o">======================</span><span class="p">|</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="p">|</span>   <span class="m">0</span>  NVIDIA GeForce ...  Off  <span class="p">|</span> <span class="m">00000000</span>:01:00.0 Off <span class="p">|</span>                  N/A <span class="p">|</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="p">|</span> <span class="m">65</span>%   64C    P8   30W / 350W <span class="p">|</span>  20371MiB / 24268MiB <span class="p">|</span>      <span class="m">3</span>%      Default <span class="p">|</span>
-<span class="linenos" data-linenos="10 "></span><span class="p">|</span>                               <span class="p">|</span>                      <span class="p">|</span>                  N/A <span class="p">|</span>
-<span class="linenos" data-linenos="11 "></span>+-------------------------------+----------------------+----------------------+
-<span class="linenos" data-linenos="12 "></span>+-----------------------------------------------------------------------------+
-<span class="linenos" data-linenos="13 "></span><span class="p">|</span> Processes:                                                                  <span class="p">|</span>
-<span class="linenos" data-linenos="14 "></span><span class="p">|</span>  GPU   GI   CI        PID   Type   Process name                  GPU Memory <span class="p">|</span>
-<span class="linenos" data-linenos="15 "></span><span class="p">|</span>        ID   ID                                                   Usage      <span class="p">|</span>
-<span class="linenos" data-linenos="16 "></span><span class="p">|</span><span class="o">=============================================================================</span><span class="p">|</span>
-<span class="linenos" data-linenos="17 "></span><span class="p">|</span>    <span class="m">0</span>   N/A  N/A      <span class="m">5039</span>      G   /usr/lib/xorg/Xorg                  4MiB <span class="p">|</span>
-<span class="linenos" data-linenos="18 "></span><span class="p">|</span>    <span class="m">0</span>   N/A  N/A   <span class="m">1539627</span>      C   python                           1028MiB <span class="p">|</span>
-<span class="linenos" data-linenos="19 "></span>+-----------------------------------------------------------------------------+
+                  <h1>Faq</h1>
+                
+                <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">export</span> <span class="nv">HTTP_PROXY</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
+<span class="linenos" data-linenos="2 "></span><span class="nb">export</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
+<span class="linenos" data-linenos="3 "></span><span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="nb">export</span> <span class="nv">https_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
+<span class="linenos" data-linenos="5 "></span><span class="nb">export</span> <span class="nv">ALL_PROXY</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
+<span class="linenos" data-linenos="6 "></span><span class="nb">export</span> <span class="nv">all_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">在 Docker 中运行程序</p>
-<p>如果在 Docker 中使用 GPU 运行程序， 在宿主机上执行 <code>nvidia-smi</code> 看不到进程是正常的。需要在 Docker 中执行  <code>nvidia-smi</code> 。其余同理。</p>
-</div>
-</li>
-<li>
-<p>存在较大显存占用，但是 <code>GPU-Util</code> 始终很低（可以使用 <code>watch -n 0.5 nvidia-smi</code> 进行持续观察）， <code>Power</code> 很低。（但是这两点并不意味着程序一定死了，有可能是程序恰好执行到了 GPU 利用率较低的部分。不过进程号应该能在下方看到。）</p>
-</li>
-</ul>
-<p>这时可以：</p>
-<div class="admonition tips">
-<p class="admonition-title">1. 通过关键字查找进程</p>
-<p>使用 <code>ps aux | grep keyword</code> 命令查看启动命令（或者 PID 、用户等信息）中包含 <code>keyword</code> 的进程。</p>
-</div>
-<div class="admonition tips">
-<p class="admonition-title">2. 查看指定显卡设备上的进程</p>
-<p>使用 <code>fuser -v /dev/nvidia*</code> 命令查看所有显卡上的进程号。将 <code>*</code> 替换为显卡编号（如 <code>fuser -v /dev/nvidia1</code> ）查看指定显卡上的进程号。</p>
-<p>注意，此命令只能显示当前用户的进程，需要加 <code>sudo</code> 才能显示其它用户的进程。 Docker 中的进程很可能以 root 用户存在，因此也无法直接显示。</p>
-</div>
-<p>巧妙结合上述二者可以显示出指定显卡上进程的详细信息。发现显存异常占用后，如果通过上述方法检查出自己已经退出的程序实际上仍然在占用显存，请及时使用 <strong><code>kill -9 &lt;PID&gt;</code></strong> 杀死所有残余进程，节省显存空间。</p>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a> (98.78%), <a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (1.22%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a></span>
       </small>
     </div>
   
@@ -549,41 +355,6 @@
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: 概述" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              概述
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../conda/" class="md-footer__link md-footer__link--next" aria-label="Next: Conda使用" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Conda使用
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
