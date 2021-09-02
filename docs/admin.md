@@ -14,3 +14,9 @@
 根据PID查看工作目录：
 
 * `pwdx [PID]`
+
+
+
+## Pytorch wheel 下载地址
+
+https://download.pytorch.org/whl/torch_stable.html
