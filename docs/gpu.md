@@ -52,7 +52,7 @@ scancel [JOBID]
 
 ```shell
 sbatch slurm.sh
-````
+```
 
 样例`slurm.sh`脚本如下
 
@@ -63,7 +63,7 @@ sbatch slurm.sh
 #SBATCH --gres gpu:a100:1  # 使用 1 张 A100 显卡
 #SBATCH --time 1:00:00     # 任务运行的最长时间为 1 小时
 #SBATCH --array 0-15       # 可选，提交组合任务（此处提交了16个任务）
-# 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问
+                           # 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问
 #!SBATCH --qos debug       # 任务的优先级为 debug （QoS 系统尚未启用）
 # 上述行指定参数将传递给 sbatch 作为命令行参数
 # 中间不可以有非 #SBATCH 开头的行
