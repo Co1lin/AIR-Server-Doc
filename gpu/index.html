@@ -484,55 +484,54 @@
 </ol>
 </div>
 <h2 id="1">1. 服务器架构</h2>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>graph LR;
-<span class="linenos" data-linenos=" 2 "></span>classDef className fill:#f9f,stroke:#333,stroke-width:4px;
-<span class="linenos" data-linenos=" 3 "></span>    subgraph sA[Cluster];
-<span class="linenos" data-linenos=" 4 "></span>        A[[air-server]];
-<span class="linenos" data-linenos=" 5 "></span>        B[[air-node-01]];
-<span class="linenos" data-linenos=" 6 "></span>        C[[air-node-02]];
-<span class="linenos" data-linenos=" 7 "></span>        D[[air-node-03]];
-<span class="linenos" data-linenos=" 8 "></span>        E[(air-storage)];
-<span class="linenos" data-linenos=" 9 "></span>        G{{2 * A100}};
-<span class="linenos" data-linenos="10 "></span>        H{{6 * A100}};
-<span class="linenos" data-linenos="11 "></span>        I{{2 * A100}};
-<span class="linenos" data-linenos="12 "></span>        J{{6 * A100}};
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span>        subgraph sB[Slurm System]
-<span class="linenos" data-linenos="15 "></span>            A===&gt;|slurm|B;
-<span class="linenos" data-linenos="16 "></span>            A==&gt;|slurm|C;
-<span class="linenos" data-linenos="17 "></span>            A==&gt;|slurm|D;
-<span class="linenos" data-linenos="18 "></span>            A=====G;
-<span class="linenos" data-linenos="19 "></span>            B===H;
-<span class="linenos" data-linenos="20 "></span>            C===I;
-<span class="linenos" data-linenos="21 "></span>            D===J;
-<span class="linenos" data-linenos="22 "></span>        end
-<span class="linenos" data-linenos="23 "></span>        A----|nfs|E;
-<span class="linenos" data-linenos="24 "></span>        B----|nfs|E;
-<span class="linenos" data-linenos="25 "></span>        C----|nfs|E;
-<span class="linenos" data-linenos="26 "></span>        D----|nfs|E;
-<span class="linenos" data-linenos="27 "></span>        K2[[air-01]];
-<span class="linenos" data-linenos="28 "></span>        K3[[air-02]];
-<span class="linenos" data-linenos="29 "></span>        K4{{8 * 3090}};
-<span class="linenos" data-linenos="30 "></span>        K5{{10 * 3090}};
-<span class="linenos" data-linenos="31 "></span>        K6[(HDD on air-01)];
-<span class="linenos" data-linenos="32 "></span>        K7[(HDD on air-02)];
-<span class="linenos" data-linenos="33 "></span>        K2=====K4;
-<span class="linenos" data-linenos="34 "></span>        K2------K6;
-<span class="linenos" data-linenos="35 "></span>
-<span class="linenos" data-linenos="36 "></span>        K3=====K5;
-<span class="linenos" data-linenos="37 "></span>        K3------K7;
-<span class="linenos" data-linenos="38 "></span>        A------|nfs|K6;
-<span class="linenos" data-linenos="39 "></span>        A------|nfs|K7;
-<span class="linenos" data-linenos="40 "></span>    end
-<span class="linenos" data-linenos="41 "></span>    F([103.242.175.247]);
-<span class="linenos" data-linenos="42 "></span>    K0([103.242.175.226]);
-<span class="linenos" data-linenos="43 "></span>    K1([103.242.175.120]);
-<span class="linenos" data-linenos="44 "></span>    K1-.-K3;
-<span class="linenos" data-linenos="45 "></span>    K0-.-K2;
-<span class="linenos" data-linenos="46 "></span>    F-.-A;
-<span class="linenos" data-linenos="47 "></span>    style sA fill:#EED,stroke:#DDD;
-<span class="linenos" data-linenos="48 "></span>    style sB fill:#DEE;
-</code></pre></div>
+<pre class="mermaid"><code>graph LR;
+classDef className fill:#f9f,stroke:#333,stroke-width:4px;
+    subgraph sA[Cluster];
+        A[[air-server]];
+        B[[air-node-01]];
+        C[[air-node-02]];
+        D[[air-node-03]];
+        E[(air-storage)];
+        G{{2 * A100}};
+        H{{6 * A100}};
+        I{{2 * A100}};
+        J{{6 * A100}};
+
+        subgraph sB[Slurm System]
+            A===&gt;|slurm|B;
+            A==&gt;|slurm|C;
+            A==&gt;|slurm|D;
+            A=====G;
+            B===H;
+            C===I;
+            D===J;
+        end
+        A----|nfs|E;
+        B----|nfs|E;
+        C----|nfs|E;
+        D----|nfs|E;
+        K2[[air-01]];
+        K3[[air-02]];
+        K4{{8 * 3090}};
+        K5{{10 * 3090}};
+        K6[(HDD on air-01)];
+        K7[(HDD on air-02)];
+        K2=====K4;
+        K2------K6;
+
+        K3=====K5;
+        K3------K7;
+        A------|nfs|K6;
+        A------|nfs|K7;
+    end
+    F([103.242.175.247]);
+    K0([103.242.175.226]);
+    K1([103.242.175.120]);
+    K1-.-K3;
+    K0-.-K2;
+    F-.-A;
+    style sA fill:#EED,stroke:#DDD;
+    style sB fill:#DEE;</code></pre>
 <h2 id="2">2. 节点与任务</h2>
 <p>在 slurm 系统中，<strong>节点</strong>指可以独立运行程序的服务器。目前 slurm 系统内共有4个节点：</p>
 <ul>
