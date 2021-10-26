@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -18,7 +18,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -74,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Server Usage Guide of AIR" class="md-header__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
       
@@ -109,7 +111,7 @@
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
             </label>
           
         
@@ -175,11 +177,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -276,35 +281,21 @@
       
         <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    1. 数据存在哪
+    1. 做好宕机等灾难发生的准备
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
-    2. 做好宕机等灾难发生的准备
+    2. 内存占用较大可能会被终止
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 内存占用较大可能会被终止
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4. 合理使用显存
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5. 死掉的程序仍可能占用显存
+    3. 死掉的程序仍可能占用显存
   </a>
   
 </li>
@@ -341,7 +332,7 @@
   
     <li class="md-nav__item">
       <a href="../gpu/" class="md-nav__link">
-        使用 GPU 资源
+        通过 slurm 系统使用 GPU 资源
       </a>
     </li>
   
@@ -404,35 +395,21 @@
       
         <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    1. 数据存在哪
+    1. 做好宕机等灾难发生的准备
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
-    2. 做好宕机等灾难发生的准备
+    2. 内存占用较大可能会被终止
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 内存占用较大可能会被终止
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4. 合理使用显存
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5. 死掉的程序仍可能占用显存
+    3. 死掉的程序仍可能占用显存
   </a>
   
 </li>
@@ -456,35 +433,18 @@
                 
                 
                 <h1 id="_1">基本常识</h1>
-<h2 id="1">1. 数据存在哪</h2>
-<div class="admonition danger">
-<p class="admonition-title">请各位用户将所有数据存放至 <code>/data</code>  目录下</p>
-</div>
-<p>目前，服务器的硬盘分为两种：</p>
-<ul>
-<li>用于存放系统的 1T SSD </li>
-<li>用于存放用户数据的 HDD 。</li>
-</ul>
-<p>允许用户往系统盘写入曾频繁导致服务器因<strong>系统盘爆满</strong>而宕机，因此，<strong>请各位用户将所有数据（包括 conda 环境）存放至 <code>/data</code>  目录下</strong>，防止实验数据不断增多，写满系统盘。</p>
-<div class="admonition tips">
-<p class="admonition-title">Conda 环境的创建和迁移</p>
-<p>请参照： <a href="../conda">Conda 使用指南</a></p>
-</div>
-<p>(<code>/data</code> 目录是基于多块大容量 HDD 的 lvm 分区。)</p>
-<h2 id="2">2. 做好宕机等灾难发生的准备</h2>
+<h2 id="1">1. 做好宕机等灾难发生的准备</h2>
 <p>由于各种奇怪的原因，服务器并不能保证永不宕机。为了实验数据以及进度的安全，请做好包括但不限于以下几种准备：</p>
 <ol>
 <li>使用 GitHub 等平台云端托管代码，防止硬盘损坏造成代码丢失。</li>
 <li>在跑实验时适度保存 checkpoints ，以在宕机等意外发生之后能快速恢复到之前的实验状态。</li>
 </ol>
-<h2 id="3">3. 内存占用较大可能会被终止</h2>
+<h2 id="2">2. 内存占用较大可能会被终止</h2>
 <p>内存爆满也曾多次导致服务器卡死而连接不上。因此，服务器上使用了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 以避免内存爆满。当可用内存低于 10% 后，内存占用最多的进程会被杀死。</p>
 <div class="admonition tips">
 <p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
 </div>
-<h2 id="4">4. 合理使用显存</h2>
-<p>为了所有用户的体验，请适度调整 batch_size ，并且尽量紧凑地安排显存，占用尽可能少的卡。<strong>不要每张卡占用一半不到的显存但是占用多张卡。</strong></p>
-<h2 id="5">5. 死掉的程序仍可能占用显存</h2>
+<h2 id="3">3. 死掉的程序仍可能占用显存</h2>
 <p>有时，虽然程序在控制台退出了，你已经不再与其交互了，但仍然可能<strong>残存一些子进程占用显存</strong>（常见于多进程多卡训练中，如 PyTorch 的 <code>DistributedDataParallel</code> ）。此时通常会产生以下现象：</p>
 <ul>
 <li>
@@ -593,10 +553,12 @@
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -608,10 +570,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
       
         <script src="../javascripts/config.js"></script>
       
