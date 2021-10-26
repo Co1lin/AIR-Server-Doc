@@ -14,7 +14,7 @@
     
     
       
-        <title>通过 slurm 系统使用 GPU 资源 - Server Usage Guide of AIR</title>
+        <title>Backup - Server Usage Guide of AIR</title>
       
     
     
@@ -64,11 +64,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#slurm-gpu" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +92,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              通过 slurm 系统使用 GPU 资源
+              Backup
             
           </span>
         </div>
@@ -275,85 +270,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          通过 slurm 系统使用 GPU 资源
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../gpu/" class="md-nav__link">
         通过 slurm 系统使用 GPU 资源
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 服务器架构
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 节点与任务
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-slurm" class="md-nav__link">
-    3. slurm 常用操作 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-slurm" class="md-nav__link">
-    4. slurm 进阶使用
-  </a>
-  
-    <nav class="md-nav" aria-label="4. slurm 进阶使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-sbatch" class="md-nav__link">
-    4.1 sbatch
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -395,155 +316,74 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 服务器架构
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 节点与任务
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-slurm" class="md-nav__link">
-    3. slurm 常用操作 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-slurm" class="md-nav__link">
-    4. slurm 进阶使用
-  </a>
-  
-    <nav class="md-nav" aria-label="4. slurm 进阶使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-sbatch" class="md-nav__link">
-    4.1 sbatch
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
   
                 
-                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/gpu.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/backup.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="slurm-gpu">通过 slurm 系统使用 GPU 资源</h1>
-<p>当前集群中，A100 显卡通过 slurm 系统分配使用；3090 显卡可以直接使用。</p>
-<div class="admonition tip">
-<p class="admonition-title">Slurm 系统</p>
-<p><strong>Slurm 任务调度工具 </strong>，是一个用于 Linux 和 Unix 内核系统的免费、开源的任务调度工具，被世界范围内的超级计算机和计算集群广泛采用。它提供了三个关键功能：</p>
-<ol>
-<li>为用户分配一定时间的专享或非专享的资源 (计算机节点)，以供用户执行工作</li>
-<li>它提供了一个框架，用于启动、执行、监测在节点上运行着的任务 (通常是并行的任务，例如 MPI)</li>
-<li>为任务队列合理地分配资源</li>
-</ol>
-</div>
-<h2 id="1">1. 服务器架构</h2>
-<p><img alt="all" src="../1.png" /></p>
-<h2 id="2">2. 节点与任务</h2>
-<p>在 slurm 系统中，<strong>节点</strong>指可以独立运行程序的服务器。目前 slurm 系统内共有4个节点：</p>
-<ul>
-<li>登录节点 <code>air-server</code> ：集群用户可以通过 <code>ssh</code> 连接 <code>103.242.175.247</code> 登录。跳板节点上配备 2 张 A100 GPU 供调试，该 GPU 使用无需通过 slurm 系统。</li>
-<li>运算节点：共有 3 个，分别是 <code>air-node-01</code>（配备 6 张 A100 GPU），<code>air-node-02</code>（配备 2 张 A100 GPU），<code>air-node-03</code>（配备 6 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见<a href="ref">下方</a>。</li>
-</ul>
-<p><strong>任务</strong>是对程序以及程序运行占用资源的抽象，每一个任务有的单独的编号（<code>JOBID</code>）。用户将程序提交至 slurm 系统后，任务队列会加入一个新任务；当集群中有可用的资源时由 slurm 系统自动分配资源与任务绑定，并从任务队列中取出并开始运行。</p>
-<h2 id="3-slurm">3. slurm 常用操作 <a id="ref"></a></h2>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 运行任务</span>
-<span class="linenos" data-linenos=" 2 "></span>srun --gres<span class="o">=</span>gpu:a100:<span class="o">[</span>gpu_count<span class="o">]</span> <span class="o">[</span>cmd<span class="o">]</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span><span class="c1"># 查看任务队列</span>
-<span class="linenos" data-linenos=" 5 "></span>squeue
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="c1">## 任务ID     用户    任务名     任务状态    已运行时间  运行时间限制 任务运行主机  任务占用资源</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="c1">## JOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    TRES_PER_NODE       </span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1">## 149       tb5zhh  bash      RUNNING   5:46:33   UNLIMITED  air-node-03 gpu:a100:1          </span>
-<span class="linenos" data-linenos="10 "></span><span class="c1">## 150       tb5zhh  bash      RUNNING   5:46:30   UNLIMITED  air-node-03 gpu:a100:1          </span>
-<span class="linenos" data-linenos="11 "></span><span class="c1">## 154       lpf     python    RUNNING   2:22:36   UNLIMITED  air-node-03 gpu:a100:4 </span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="c1"># 查看任务详情（已分配资源，排队原因，失败原因）</span>
-<span class="linenos" data-linenos="14 "></span>scontrol show job <span class="o">[</span>JOBID<span class="o">]</span>
-<span class="linenos" data-linenos="15 "></span>
-<span class="linenos" data-linenos="16 "></span><span class="c1"># 取消任务</span>
-<span class="linenos" data-linenos="17 "></span>scancel <span class="o">[</span>JOBID<span class="o">]</span>
-</code></pre></div>
-<h2 id="4-slurm">4. slurm 进阶使用</h2>
-<h3 id="41-sbatch">4.1 sbatch</h3>
-<p><code>sbatch</code>命令异步地向<code>slurm</code>系统提交任务，执行后立即返回；任务输出由脚本指定。通过<code>sbatch</code>可以快速地向<code>slurm</code>提交大量任务。</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>sbatch slurm.sh
-<span class="linenos" data-linenos=" 2 "></span><span class="sb">````</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>样例<span class="sb">`</span>slurm.sh<span class="sb">`</span>脚本如下
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="sb">```</span>shell
-<span class="linenos" data-linenos=" 7 "></span><span class="c1">#!/bin/bash</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="c1">#SBATCH --job-name example # 作业名为 example</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1">#SBATCH --output %a.out    # 屏幕上的输出文件重定向到 [JOBID].out</span>
-<span class="linenos" data-linenos="10 "></span><span class="c1">#SBATCH --gres gpu:a100:1  # 使用 1 张 A100 显卡</span>
-<span class="linenos" data-linenos="11 "></span><span class="c1">#SBATCH --time 1:00:00     # 任务运行的最长时间为 1 小时</span>
-<span class="linenos" data-linenos="12 "></span><span class="c1">#SBATCH --array 0-15       # 可选，提交组合任务（此处提交了16个任务）</span>
-<span class="linenos" data-linenos="13 "></span><span class="c1"># 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问</span>
-<span class="linenos" data-linenos="14 "></span><span class="c1">#!SBATCH --qos debug       # 任务的优先级为 debug （QoS 系统尚未启用）</span>
-<span class="linenos" data-linenos="15 "></span><span class="c1"># 上述行指定参数将传递给 sbatch 作为命令行参数</span>
-<span class="linenos" data-linenos="16 "></span><span class="c1"># 中间不可以有非 #SBATCH 开头的行</span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="c1"># 执行 sbatch 命令前先通过 conda activate [env_name] 进入环境</span>
-<span class="linenos" data-linenos="19 "></span><span class="c1"># 执行程序</span>
-<span class="linenos" data-linenos="20 "></span><span class="nb">echo</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>
-<span class="linenos" data-linenos="21 "></span>python -V
-<span class="linenos" data-linenos="22 "></span>python -c <span class="s2">&quot;print (&#39;Hello, world!&#39;)&quot;</span>
-</code></pre></div>
+                  <h1>Backup</h1>
+                
+                <pre class="mermaid"><code>graph LR;
+classDef className fill:#f9f,stroke:#333,stroke-width:4px;
+    subgraph sA[Cluster];
+        A[[air-server]];
+        B[[air-node-01]];
+        C[[air-node-02]];
+        D[[air-node-03]];
+        E[(air-storage)];
+        G{{2 * A100}};
+        H{{6 * A100}};
+        I{{2 * A100}};
+        J{{6 * A100}};
+
+        subgraph sB[Slurm System]
+            A===&gt;|slurm|B;
+            A==&gt;|slurm|C;
+            A==&gt;|slurm|D;
+            A=====G;
+            B===H;
+            C===I;
+            D===J;
+        end
+        A----|nfs|E;
+        B----|nfs|E;
+        C----|nfs|E;
+        D----|nfs|E;
+        K2[[air-01]];
+        K3[[air-02]];
+        K4{{8 * 3090}};
+        K5{{10 * 3090}};
+        K6[(HDD on air-01)];
+        K7[(HDD on air-02)];
+        K2=====K4;
+        K2------K6;
+
+        K3=====K5;
+        K3------K7;
+        A------|nfs|K6;
+        A------|nfs|K7;
+    end
+    F([103.242.175.247]);
+    K0([103.242.175.226]);
+    K1([103.242.175.120]);
+    K1-.-K3;
+    K0-.-K2;
+    F-.-A;
+    style sA fill:#EED,stroke:#DDD;
+    style sB fill:#DEE;</code></pre>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (93.42%), <a href='mailto:mail@co1in.me'>Co1lin</a> (6.58%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a></span>
       </small>
     </div>
   
@@ -561,41 +401,6 @@
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../conda/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 使用 Conda" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              使用 Conda
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../docker/" class="md-footer__link md-footer__link--next" aria-label="Next: 使用 Docker" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              使用 Docker
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
