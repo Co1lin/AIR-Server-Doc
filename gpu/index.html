@@ -514,28 +514,25 @@
 <h2 id="4-slurm">4. slurm 进阶使用</h2>
 <h3 id="41-sbatch">4.1 sbatch</h3>
 <p><code>sbatch</code>命令异步地向<code>slurm</code>系统提交任务，执行后立即返回；任务输出由脚本指定。通过<code>sbatch</code>可以快速地向<code>slurm</code>提交大量任务。</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>sbatch slurm.sh
-<span class="linenos" data-linenos=" 2 "></span><span class="sb">````</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>样例<span class="sb">`</span>slurm.sh<span class="sb">`</span>脚本如下
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="sb">```</span>shell
-<span class="linenos" data-linenos=" 7 "></span><span class="c1">#!/bin/bash</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="c1">#SBATCH --job-name example # 作业名为 example</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1">#SBATCH --output %a.out    # 屏幕上的输出文件重定向到 [JOBID].out</span>
-<span class="linenos" data-linenos="10 "></span><span class="c1">#SBATCH --gres gpu:a100:1  # 使用 1 张 A100 显卡</span>
-<span class="linenos" data-linenos="11 "></span><span class="c1">#SBATCH --time 1:00:00     # 任务运行的最长时间为 1 小时</span>
-<span class="linenos" data-linenos="12 "></span><span class="c1">#SBATCH --array 0-15       # 可选，提交组合任务（此处提交了16个任务）</span>
-<span class="linenos" data-linenos="13 "></span><span class="c1"># 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问</span>
-<span class="linenos" data-linenos="14 "></span><span class="c1">#!SBATCH --qos debug       # 任务的优先级为 debug （QoS 系统尚未启用）</span>
-<span class="linenos" data-linenos="15 "></span><span class="c1"># 上述行指定参数将传递给 sbatch 作为命令行参数</span>
-<span class="linenos" data-linenos="16 "></span><span class="c1"># 中间不可以有非 #SBATCH 开头的行</span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="c1"># 执行 sbatch 命令前先通过 conda activate [env_name] 进入环境</span>
-<span class="linenos" data-linenos="19 "></span><span class="c1"># 执行程序</span>
-<span class="linenos" data-linenos="20 "></span><span class="nb">echo</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>
-<span class="linenos" data-linenos="21 "></span>python -V
-<span class="linenos" data-linenos="22 "></span>python -c <span class="s2">&quot;print (&#39;Hello, world!&#39;)&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sbatch slurm.sh
+</code></pre></div>
+<p>样例<code>slurm.sh</code>脚本如下</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="ch">#!/bin/bash</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">#SBATCH --job-name example # 作业名为 example</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">#SBATCH --output %a.out    # 屏幕上的输出文件重定向到 [JOBID].out</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">#SBATCH --gres gpu:a100:1  # 使用 1 张 A100 显卡</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">#SBATCH --time 1:00:00     # 任务运行的最长时间为 1 小时</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1">#SBATCH --array 0-15       # 可选，提交组合任务（此处提交了16个任务）</span>
+<span class="linenos" data-linenos=" 7 "></span>                           <span class="c1"># 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">#!SBATCH --qos debug       # 任务的优先级为 debug （QoS 系统尚未启用）</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 上述行指定参数将传递给 sbatch 作为命令行参数</span>
+<span class="linenos" data-linenos="10 "></span><span class="c1"># 中间不可以有非 #SBATCH 开头的行</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="c1"># 执行 sbatch 命令前先通过 conda activate [env_name] 进入环境</span>
+<span class="linenos" data-linenos="13 "></span><span class="c1"># 执行程序</span>
+<span class="linenos" data-linenos="14 "></span><span class="nb">echo</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>
+<span class="linenos" data-linenos="15 "></span>python -V
+<span class="linenos" data-linenos="16 "></span>python -c <span class="s2">&quot;print (&#39;Hello, world!&#39;)&quot;</span>
 </code></pre></div>
                 
               
