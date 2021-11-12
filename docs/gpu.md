@@ -58,10 +58,22 @@ squeue
 显示正在运行与正在排队的任务。样例输出：
 
 ```shell
-# JOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    TRES_PER_NODE       
-# 149       tb5zhh  bash      RUNNING   5:46:33   UNLIMITED  air-node-03 gpu:a100:1          
-# 150       tb5zhh  bash      RUNNING   5:46:30   UNLIMITED  air-node-03 gpu:a100:1          
-# 154       lpf     python    RUNNING   2:22:36   UNLIMITED  air-node-03 gpu:a100:4 
+JOBIDJOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    MIN_MEMORY          MEM_PER_TRES        TRES_PER_NODE       PENDING_TIME        REASON              
+1162 1162      liyang  python3   PENDING   0:00      7-00:00:00             0                   gpu:20000           gpu:a100:6          132683              Resources           
+1207 1207      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34464               Priority            
+1208 1208      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34460               Priority            
+1209 1209      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34455               Priority            
+1210 1210      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34438               Priority            
+1211 1211      wangzy  clipmean_2PENDING   0:00      4-04:00:00             0                   gpu:20000           gpu:a100:2          32737               Priority            
+656  656       most    dna       RUNNING   9-04:30:41UNLIMITED  air-node-04 240G                gpu:48000           gpu:a100:6          2                   None                
+1160 1160      wangzy  clipmean_2RUNNING   2-00:48:064-04:00:00 air-node-01 2000M               gpu:20000           gpu:a100:2          44                  None                
+1163 1163      wangzy  clipmean_2RUNNING   1-06:51:344-04:00:00 air-node-03 0                   gpu:20000           gpu:a100:2          16721               None                
+1174 1174      huoyy   bash      RUNNING   1-06:51:347-00:00:00 air-node-04 0                   gpu:20000           gpu:a100:1          376                 None                
+1186 1186      tb5zhh  bash      RUNNING   1-04:03:323-00:00:00 air-node-01 0                   gpu:20000           gpu:a100:1          0                   None                
+1187 1187      tb5zhh  bash      RUNNING   1-04:02:023-00:00:00 air-node-01 0                   gpu:20000           gpu:a100:1          23                  None                
+1188 1188      tb5zhh  bash      RUNNING   1-04:01:323-00:00:00 air-node-03 0                   gpu:20000           gpu:a100:1          30                  None                
+1189 1189      tb5zhh  bash      RUNNING   1-04:00:023-00:00:00 air-node-01 0                   gpu:20000           gpu:a100:1          98                  None                
+
 ```
 
 输出表格字段含义：
