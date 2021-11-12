@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -18,7 +18,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -248,7 +248,7 @@
   
     <li class="md-nav__item">
       <a href="../basis/" class="md-nav__link">
-        基本常识
+        注意事项
       </a>
     </li>
   
@@ -296,6 +296,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -311,36 +313,64 @@
       
         <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    1. 服务器架构
+    1. 节点与任务
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 节点与任务
+  <a href="#2-slurm" class="md-nav__link">
+    2. slurm 常用操作 
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-slurm" class="md-nav__link">
-    3. slurm 常用操作 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-slurm" class="md-nav__link">
-    4. slurm 进阶使用
-  </a>
-  
-    <nav class="md-nav" aria-label="4. slurm 进阶使用">
+    <nav class="md-nav" aria-label="2. slurm 常用操作 ">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-sbatch" class="md-nav__link">
-    4.1 sbatch
+  <a href="#21-srun" class="md-nav__link">
+    2.1 srun: 提交任务并前台运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-squeue" class="md-nav__link">
+    2.2 squeue: 查看任务队列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 调度策略
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-scontrol" class="md-nav__link">
+    2.4 scontrol: 查看正在运行任务的状态
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-sinfo" class="md-nav__link">
+    2.5 sinfo: 查看集群运算节点的状态
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-scancel" class="md-nav__link">
+    2.6 scancel: 取消任务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-sbatch" class="md-nav__link">
+    2.7 sbatch: 批量提交后台任务
   </a>
   
 </li>
@@ -400,6 +430,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -415,36 +447,64 @@
       
         <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    1. 服务器架构
+    1. 节点与任务
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 节点与任务
+  <a href="#2-slurm" class="md-nav__link">
+    2. slurm 常用操作 
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-slurm" class="md-nav__link">
-    3. slurm 常用操作 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-slurm" class="md-nav__link">
-    4. slurm 进阶使用
-  </a>
-  
-    <nav class="md-nav" aria-label="4. slurm 进阶使用">
+    <nav class="md-nav" aria-label="2. slurm 常用操作 ">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-sbatch" class="md-nav__link">
-    4.1 sbatch
+  <a href="#21-srun" class="md-nav__link">
+    2.1 srun: 提交任务并前台运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-squeue" class="md-nav__link">
+    2.2 squeue: 查看任务队列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 调度策略
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-scontrol" class="md-nav__link">
+    2.4 scontrol: 查看正在运行任务的状态
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-sinfo" class="md-nav__link">
+    2.5 sinfo: 查看集群运算节点的状态
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-scancel" class="md-nav__link">
+    2.6 scancel: 取消任务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-sbatch" class="md-nav__link">
+    2.7 sbatch: 批量提交后台任务
   </a>
   
 </li>
@@ -483,48 +543,194 @@
 <li>为任务队列合理地分配资源</li>
 </ol>
 </div>
-<h2 id="1">1. 服务器架构</h2>
-<p><img alt="all" src="../1.png" /></p>
-<h2 id="2">2. 节点与任务</h2>
+<h2 id="1">1. 节点与任务</h2>
 <p>在 slurm 系统中，<strong>节点</strong>指可以独立运行程序的服务器。目前 slurm 系统内共有4个节点：</p>
 <ul>
 <li>登录节点 <code>air-server</code> ：集群用户可以通过 <code>ssh</code> 连接 <code>103.242.175.247</code> 登录。跳板节点上配备 2 张 A100 GPU 供调试，该 GPU 使用无需通过 slurm 系统。</li>
 <li>运算节点：共有 3 个，分别是 <code>air-node-01</code>（配备 6 张 A100 GPU），<code>air-node-02</code>（配备 2 张 A100 GPU），<code>air-node-03</code>（配备 6 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见<a href="ref">下方</a>。</li>
 </ul>
 <p><strong>任务</strong>是对程序以及程序运行占用资源的抽象，每一个任务有的单独的编号（<code>JOBID</code>）。用户将程序提交至 slurm 系统后，任务队列会加入一个新任务；当集群中有可用的资源时由 slurm 系统自动分配资源与任务绑定，并从任务队列中取出并开始运行。</p>
-<h2 id="3-slurm">3. slurm 常用操作 <a id="ref"></a></h2>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 运行任务</span>
-<span class="linenos" data-linenos=" 2 "></span>srun --gres<span class="o">=</span>gpu:a100:<span class="o">[</span>gpu_count<span class="o">]</span> <span class="o">[</span>cmd<span class="o">]</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span><span class="c1"># 查看任务队列</span>
-<span class="linenos" data-linenos=" 5 "></span>squeue
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="c1">## 任务ID     用户    任务名     任务状态    已运行时间  运行时间限制 任务运行主机  任务占用资源</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="c1">## JOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    TRES_PER_NODE       </span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1">## 149       tb5zhh  bash      RUNNING   5:46:33   UNLIMITED  air-node-03 gpu:a100:1          </span>
-<span class="linenos" data-linenos="10 "></span><span class="c1">## 150       tb5zhh  bash      RUNNING   5:46:30   UNLIMITED  air-node-03 gpu:a100:1          </span>
-<span class="linenos" data-linenos="11 "></span><span class="c1">## 154       lpf     python    RUNNING   2:22:36   UNLIMITED  air-node-03 gpu:a100:4 </span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="c1"># 查看任务详情（已分配资源，排队原因，失败原因）</span>
-<span class="linenos" data-linenos="14 "></span>scontrol show job <span class="o">[</span>JOBID<span class="o">]</span>
-<span class="linenos" data-linenos="15 "></span>
-<span class="linenos" data-linenos="16 "></span><span class="c1"># 取消任务</span>
-<span class="linenos" data-linenos="17 "></span>scancel <span class="o">[</span>JOBID<span class="o">]</span>
+<h2 id="2-slurm">2. slurm 常用操作 <span id="ref" /></h2>
+<h3 id="21-srun">2.1 srun: 提交任务并前台运行</h3>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:a100:GPU_COUNT --time<span class="o">=</span>d-hh:mm:ss <span class="o">[</span>--mem<span class="o">=</span><span class="m">20000</span><span class="o">]</span> CMD
 </code></pre></div>
-<h2 id="4-slurm">4. slurm 进阶使用</h2>
-<h3 id="41-sbatch">4.1 sbatch</h3>
-<p><code>sbatch</code>命令异步地向<code>slurm</code>系统提交任务，执行后立即返回；任务输出由脚本指定。通过<code>sbatch</code>可以快速地向<code>slurm</code>提交大量任务。</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sbatch slurm.sh
+CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任务后，程序输出到 <code>stdout</code> 与 <code>stderr</code> ，在控制台中可以看到程序的所有输出。</p>
+<p>如需后台运行任务请使用 <code>tmux</code> / <code>screen</code> 等工具或使用下方 <code>sbatch</code>命令提交任务。</p>
+<p>参数说明：</p>
+<ul>
+<li><code>--gres</code>: <strong>G</strong>eneric <strong>RES</strong>ources，申请使用的 GPU 类型与数量</li>
+<li>目前集群中只有 NVIDIA A100 40GB 一种GPU，用 a100 指代</li>
+<li>参数格式：<code>gpu:a100:GPU_COUNT</code></li>
+<li><code>--time</code>: 程序运行的最长运行时间</li>
+<li>默认值为1分钟，最大值为7天</li>
+<li>如果任务需要运行更长时间，请联系集群管理员</li>
+<li><strong>超过最长运行时间的任务会被强行终止</strong></li>
+<li>参数格式： <code>d-hh:mm:ss</code></li>
+<li>
+<p><code>--mem</code>: （可选）任务请求使用的内存</p>
+</li>
+<li>
+<p>默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数</p>
+</li>
+<li>参数格式：整数，单位为 MB</li>
+</ul>
+<p>!!! info "参数位置"
+    提供给 <code>srun</code> 命令的参数应当置于程序命令 CMD 之前，否则会被认为是提供给 CMD 的运行参数。</p>
+<p>!!! danger "运行时间"
+    为了合理使用GPU资源，请提交任务时指定一个合理的最长运行时间。请注意，过长的运行时间可能导致调度的优先级降低，详情请见下方调度策略说明。</p>
+<h3 id="22-squeue">2.2 squeue: 查看任务队列</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue
 </code></pre></div>
-<p>样例<code>slurm.sh</code>脚本如下</p>
+<p>显示正在运行与正在排队的任务。样例输出：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># JOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    TRES_PER_NODE       </span>
+<span class="linenos" data-linenos="2 "></span><span class="c1"># 149       tb5zhh  bash      RUNNING   5:46:33   UNLIMITED  air-node-03 gpu:a100:1          </span>
+<span class="linenos" data-linenos="3 "></span><span class="c1"># 150       tb5zhh  bash      RUNNING   5:46:30   UNLIMITED  air-node-03 gpu:a100:1          </span>
+<span class="linenos" data-linenos="4 "></span><span class="c1"># 154       lpf     python    RUNNING   2:22:36   UNLIMITED  air-node-03 gpu:a100:4 </span>
+</code></pre></div>
+<p>输出表格字段含义：</p>
+<ul>
+<li>
+<p><code>JOBID</code>: 任务序号</p>
+</li>
+<li>
+<p><code>USER</code>: 任务提交用户</p>
+</li>
+<li><code>NAME</code>: 任务名称。默认值为可执行文件名 (<code>bash</code>, <code>python</code> 等)，使用 <code>sbatch</code> 命令提交任务可以自定义任务名</li>
+<li><code>STATE</code>: 任务状态，常见任务状态如下：</li>
+<li><code>RUNNING</code>: 任务正在运行</li>
+<li><code>PENDING</code>: 任务正在队列中等待分配资源</li>
+<li><code>COMPLETING</code>: 任务正在终止</li>
+<li>出现其他状态时请联系管理员</li>
+<li><code>TIME</code>: 任务已运行时长</li>
+<li><code>TIME_LIMIT</code>: 任务最长运行时间。<strong>超过最长运行时间的任务会被强行终止</strong></li>
+<li><code>NODE_LIST</code>: 任务使用的运算节点</li>
+<li><code>TRES_PER_NODE</code>: 任务申请使用的资源数量</li>
+<li><code>MIN_MEMORY</code>: 任务申请使用的最小内存</li>
+<li><code>MEM_PER_TRES</code>: 为每一张 GPU 卡配给的内存</li>
+<li><code>PENDING_TIME</code>: 任务在队列中等待时长，单位为秒</li>
+<li><code>REASON</code>: 任务排队原因</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue --start
+</code></pre></div>
+<p>显示正在排队的任务，以及任务开始运行的最晚时间。</p>
+<p>请注意，根据调度算法，<code>START_TIME</code> 字段在任务进入队列时即可确定并<strong>不会改变</strong>，任何时候队列中的任务只会<strong>早于 <code>START_TIME</code> 开始运行</strong>。</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>JOBID   PARTITION     NAME     USER ST          START_TIME  NODES SCHEDNODES           NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="m">1207</span>     debug   python   wangym PD <span class="m">2021</span>-11-14T09:29:49      <span class="m">1</span> <span class="o">(</span>null<span class="o">)</span>               <span class="o">(</span>Priority<span class="o">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="m">1208</span>     debug   python   wangym PD <span class="m">2021</span>-11-14T09:29:49      <span class="m">1</span> <span class="o">(</span>null<span class="o">)</span>               <span class="o">(</span>Priority<span class="o">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="m">1209</span>     debug   python   wangym PD <span class="m">2021</span>-11-14T09:29:49      <span class="m">1</span> <span class="o">(</span>null<span class="o">)</span>               <span class="o">(</span>Priority<span class="o">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="m">1210</span>     debug   python   wangym PD <span class="m">2021</span>-11-14T09:29:49      <span class="m">1</span> <span class="o">(</span>null<span class="o">)</span>               <span class="o">(</span>Priority<span class="o">)</span>
+<span class="linenos" data-linenos="6 "></span><span class="m">1211</span>     debug clipmean   wangzy PD <span class="m">2021</span>-11-14T09:29:49      <span class="m">1</span> <span class="o">(</span>null<span class="o">)</span>               <span class="o">(</span>Priority<span class="o">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="m">1162</span>     debug  python3   liyang PD <span class="m">2021</span>-11-14T23:12:54      <span class="m">1</span> <span class="o">(</span>null<span class="o">)</span>               <span class="o">(</span>Resources<span class="o">)</span>
+</code></pre></div>
+<h3 id="23">2.3 调度策略</h3>
+<p>整体而言，Slurm 系统按照进入队列的顺序来调度任务，但有一种情况允许后进入队列的任务先开始运行（插队）。当且仅当新进入队列的任务满足：</p>
+<ol>
+<li>申请使用的资源能够被当前集群所满足（集群上有空闲的 GPU）</li>
+<li>申请运行的最长时间不会导致队列现有任务开始时间推迟（不影响正在排队的任务）</li>
+</ol>
+<p>时，该新任务将允许优先被调度。</p>
+<p>!!! info "参数位置"
+    我们可以通过俄罗斯方块游戏来理解这个调度策略：集群可以形象化理解为一个固定宽度的桶，水平方向代表集群资源整体数量，竖直方向代表时间；每一个任务都是一个长方形（任务块），长方形的横边长为任务申请资源数量，竖边长为任务指定的最长运行时间。
+    随着时间的推移，桶中的任务会逐渐下降，任务块接触桶底并逐渐在竖直方向上缩短，表示任务正在运行，并正在接近提交时指定的 deadline。
+    任务进入调度队列的过程，就是每一个任务块进入集群桶中的过程。Slurm 系统会为每一个任务安排一个最靠近桶底的位置：当任务较少，可用资源较多，任务直接被安排在桶底，任务就可以马上开始执行；当可用资源无法满足任务需求时，任务会被安排在尽可能接近桶底的位置。值得说明的是，一旦任务进入桶中，任务在时间轴上的绝对位置<strong>会被固定</strong>，不会因为队列中的新任务而改变；这意味着一旦进入队列，任务就有一个最晚开始执行的时间节点。
+    上述提到的插队规则，形象的理解就是：对于新进入桶中的任务块，如果在尽可能靠近桶底的位置上仍有能够放下该任务块的空位，则可以将任务置于该空位，这样一方面不会影响已经在桶中的任务，任务本身运行时间也能提前。
+    这里的调度规则，也是希望大家合理指定任务最长运行时间的原因。最长运行时间越短，任务块的竖直长度越短，就越有可能被安排在距离桶底进的位置，从而越早开始执行。</p>
+<h3 id="24-scontrol">2.4 scontrol: 查看正在运行任务的状态</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scontrol show job JOBID
+</code></pre></div>
+<p>该命令返回任务的详细状态。在该命令的输出中，能够找到关于任务的所有信息：提交时间、开始时间、运行时长、申请资源、排队时长、排队原因等。</p>
+<h3 id="25-sinfo">2.5 sinfo: 查看集群运算节点的状态</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sinfo
+</code></pre></div>
+<p>该命令返回集群中运算节点的名称、节点资源总量、节点资源已使用量等信息。样例输出如下：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>NODELIST            STATE       AVAIL GRES                          GRES_USED                          MEMORY              ALLOCMEM            REASON              
+<span class="linenos" data-linenos="2 "></span>air-node-01         mixed       up    gpu:a100:8                    gpu:a100:7<span class="o">(</span>IDX:1-7<span class="o">)</span>                <span class="m">402800</span>              <span class="m">140000</span>              none                
+<span class="linenos" data-linenos="3 "></span>air-node-03         mixed       up    gpu:a100:6                    gpu:a100:6<span class="o">(</span>IDX:0-5<span class="o">)</span>                <span class="m">402800</span>              <span class="m">120000</span>              none                
+<span class="linenos" data-linenos="4 "></span>air-node-04         mixed       up    gpu:a100:8                    gpu:a100:8<span class="o">(</span>IDX:0-7<span class="o">)</span>                <span class="m">402800</span>              <span class="m">285760</span>              none
+</code></pre></div>
+<p>输出表格字段含义：</p>
+<ul>
+<li><code>NODELIST</code>: 节点名称</li>
+<li><code>STATE</code>: 节点状态</li>
+<li><code>idle</code>: 节点空闲</li>
+<li><code>mixed</code>: 节点正在运行任务，但是仍有可用资源<ul>
+<li>请注意，此处所指资源包括CPU、内存、GPU等，此状态不保证有空闲的 GPU 卡</li>
+</ul>
+</li>
+<li><code>alloc</code>: 节点所有资源均被占用</li>
+<li><code>draining</code>, <code>drained</code>: 无法在该节点上提交新任务，但是会等待节点上现有任务运行结束。<ul>
+<li>出现此状态原因可由 <code>REASON</code> 字段查看，通常为节点维护或调试</li>
+<li>现有任务结束前为 <code>draining</code> ，全部现有任务结束后为 <code>drained</code></li>
+</ul>
+</li>
+<li><code>completing</code>: 节点上所有任务均处于<code>COMPLETING</code>状态<ul>
+<li>此状态是暂时的，如果长时间保持此状态请联系管理员</li>
+</ul>
+</li>
+<li><code>fail</code>: 节点不可用<ul>
+<li>出现此状态请联系管理员</li>
+</ul>
+</li>
+<li><code>AVAIL</code>: 节点状态（简略版）</li>
+<li><code>up</code>: 可用</li>
+<li><code>down</code>, <code>drain</code>: 不可用</li>
+<li><code>GRES</code>: 节点可用 GPU 资源</li>
+<li><code>GRES_USED</code>: 节点已分配 GPU 资源数量及序号</li>
+<li><code>MEMORY</code>: 节点可用内存，单位为MB</li>
+<li><code>ALLOC_MEM</code>: 节点已分配内存，单位为MB</li>
+<li><code>REASON</code>: 节点异常状态原因</li>
+</ul>
+<h3 id="26-scancel">2.6 scancel: 取消任务</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scancel JOBID
+</code></pre></div>
+<p>取消任务。只能取消自己提交的任务。</p>
+<p><strong><code>scancel</code> 操作对象为任务组 ID 时，会取消任务组中所有任务。详情请见下方 <code>sbatch</code> 说明。</strong></p>
+<p>该操作不可逆，执行前请再三确认。</p>
+<h3 id="27-sbatch">2.7 sbatch: 批量提交后台任务</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sbatch run.sh
+</code></pre></div>
+<p>根据 <code>run.sh</code> 向 Slurm 中批量提交任务，执行后立即返回。如果任务在 <code>conda</code> 环境中执行，在运行 <code>sbatch</code> 前应当先进入该 <code>conda</code> 环境。</p>
+<p>样例脚本第一行<strong>必须为</strong> <code>#!/bin/bash</code>.</p>
+<p><code>sbatch</code> 的命令行参数可以通过两种方式指定：</p>
+<ol>
+<li>置于 <code>sbatch</code> 命令后，如 <code>sbatch --gres=gpu:a100:1 run.sh</code></li>
+<li>置于 <code>run.sh</code> 开头，以 shell 注释的方式提供，如 <code>#SBATCH --gres=gpu:a100:1</code> ；所有 <code>#SBATCH</code> 行须相邻。</li>
+</ol>
+<p>参数说明：</p>
+<ul>
+<li><code>--job-name</code>: 提交的任务名称。会出现在 <code>squeue</code> 命令的 <code>NAME</code> 字段内，默认为可执行文件名。</li>
+<li><code>--array</code>: 提交批量任务（任务组）。</li>
+<li>使用此选项时，会一次性将多个任务提交至 Slurm 系统。</li>
+<li>每一个任务组与普通任务的地位是等同的，任务组本身有一个 ID (<code>ARRAYID</code>)。<strong>对这个 ID 使用 <code>scancel</code> 会取消任务组中所有任务</strong></li>
+<li>任务组中的每个任务会有一个组内序号（<code>ARRAYINDEX</code>），通过环境变量 <code>SLURM_ARRAY_TASK_ID</code> 访问。需要单独去取消组内任务时，请使用 <code>scancel ARRAYID_ARRAYINDEX</code> </li>
+<li>此选项提供的值，即为任务组中任务的序号。例如 <code>0-15</code> 会提交 16 个任务；这16个任务内环境变量 <code>SLURM_ARRAY_TASK_ID</code> 的值分别为 0, 1, 2, ... 15。</li>
+<li>允许的参数格式：<code>0-15</code> (0, 1, 2, ... 15), <code>0,1,2,3</code> , <code>0,1,6-8</code>, <code>0-15:4</code> (0, 4, 8, 12), <code>0-15%4</code> (提交 16 个任务，但是只能有 4 个任务同时运行)</li>
+<li>
+<p>最小任务序号为 0</p>
+</li>
+<li>
+<p><code>--output</code>: 任务的输出文件</p>
+</li>
+<li>对于单任务，<code>%j</code> 表示任务 ID 占位符。如果任务 ID 为 10086， <code>--output %j.out</code> 表示任务输出到 <code>10086.out</code> </li>
+<li>对于多任务，<code>%A</code> 表示任务组ID，<code>%a</code> 表示组内序号。如果任务组 ID 为 10086，某任务组内序号为 4 ，<code>--output %A_%a.out</code> 表示任务输出到 <code>10086_4.out</code></li>
+<li>对于单任务，默认输出为 <code>slurm-%j.out</code></li>
+<li>
+<p>对于多任务，默认输出为 <code>slurm-%A_%a.out</code></p>
+</li>
+<li>
+<p><code>--gres</code>: 任务申请的 GPU 资源，格式同 <code>srun</code> 中 <code>--gres</code></p>
+</li>
+<li><code>--time</code>: 任务最长运行时间，格式同 <code>srun</code> 中 <code>--time</code></li>
+</ul>
+<p>样例 <code>run.sh</code> 脚本如下：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="ch">#!/bin/bash</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="c1">#SBATCH --job-name example # 作业名为 example</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="c1">#SBATCH --output %a.out    # 屏幕上的输出文件重定向到 [JOBID].out</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="c1">#SBATCH --gres gpu:a100:1  # 使用 1 张 A100 显卡</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="c1">#SBATCH --time 1:00:00     # 任务运行的最长时间为 1 小时</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="c1">#SBATCH --array 0-15       # 可选，提交组合任务（此处提交了16个任务）</span>
-<span class="linenos" data-linenos=" 7 "></span>                           <span class="c1"># 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="c1">#!SBATCH --qos debug       # 任务的优先级为 debug （QoS 系统尚未启用）</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">#SBATCH --job-name example</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">#SBATCH --output %A_%a.out   </span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">#SBATCH --gres gpu:a100:1 </span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">#SBATCH --time 1:00:00     </span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1">#SBATCH --array 0-15</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1"># 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问</span>
 <span class="linenos" data-linenos=" 9 "></span><span class="c1"># 上述行指定参数将传递给 sbatch 作为命令行参数</span>
 <span class="linenos" data-linenos="10 "></span><span class="c1"># 中间不可以有非 #SBATCH 开头的行</span>
 <span class="linenos" data-linenos="11 "></span>
@@ -540,7 +746,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (93.42%), <a href='mailto:mail@co1in.me'>Co1lin</a> (6.58%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (97.89%), <a href='mailto:mail@co1in.me'>Co1lin</a> (2.11%)</span>
       </small>
     </div>
   
@@ -615,10 +821,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../assets/javascripts/bundle.b1047164.min.js"></script>
       
         <script src="../javascripts/config.js"></script>
       

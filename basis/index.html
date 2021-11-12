@@ -10,15 +10,15 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
-        <title>基本常识 - Server Usage Guide of AIR</title>
+        <title>注意事项 - Server Usage Guide of AIR</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              基本常识
+              注意事项
             
           </span>
         </div>
@@ -257,15 +257,17 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          基本常识
+          注意事项
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        基本常识
+        注意事项
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -280,22 +282,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 做好宕机等灾难发生的准备
+  <a href="#1-slurm-gpu" class="md-nav__link">
+    1. 通过 Slurm 系统使用 GPU 资源
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
-    2. 内存占用较大可能会被终止
+    2. 磁盘配额
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 死掉的程序仍可能占用显存
+    3. 做好宕机等灾难发生的准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 内存占用较大可能会被终止
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 死掉的程序仍可能占用显存
   </a>
   
 </li>
@@ -380,6 +396,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -394,22 +412,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 做好宕机等灾难发生的准备
+  <a href="#1-slurm-gpu" class="md-nav__link">
+    1. 通过 Slurm 系统使用 GPU 资源
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
-    2. 内存占用较大可能会被终止
+    2. 磁盘配额
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 死掉的程序仍可能占用显存
+    3. 做好宕机等灾难发生的准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 内存占用较大可能会被终止
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 死掉的程序仍可能占用显存
   </a>
   
 </li>
@@ -432,19 +464,27 @@
                   </a>
                 
                 
-                <h1 id="_1">基本常识</h1>
-<h2 id="1">1. 做好宕机等灾难发生的准备</h2>
+                <h1 id="_1">注意事项</h1>
+<h2 id="1-slurm-gpu">1. 通过 Slurm 系统使用 GPU 资源</h2>
+<p>iw</p>
+<h2 id="2">2. 磁盘配额</h2>
+<p>服务器部署了中心化的存储节点<code>air-storage</code>，并通过NFS挂载在所有机器的<code>/home</code>目录下。</p>
+<p>目前，各个实验室在使用存储时均有<code>3000G</code>的软配额与<code>5000G</code>的硬配额。当存储使用量超过软配额时，有7天的过渡时间将存储使用量下降到配额内；当存储使用量超过软配额7天，或存储使用量超过硬配额，用户将不能再向磁盘写入更多数据。</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 查看当前用户组的磁盘配额</span>
+<span class="linenos" data-linenos="2 "></span>ssh air-storage quota -gs
+</code></pre></div>
+<h2 id="3">3. 做好宕机等灾难发生的准备</h2>
 <p>由于各种奇怪的原因，服务器并不能保证永不宕机。为了实验数据以及进度的安全，请做好包括但不限于以下几种准备：</p>
 <ol>
 <li>使用 GitHub 等平台云端托管代码，防止硬盘损坏造成代码丢失。</li>
 <li>在跑实验时适度保存 checkpoints ，以在宕机等意外发生之后能快速恢复到之前的实验状态。</li>
 </ol>
-<h2 id="2">2. 内存占用较大可能会被终止</h2>
+<h2 id="4">4. 内存占用较大可能会被终止</h2>
 <p>内存爆满也曾多次导致服务器卡死而连接不上。因此，服务器上使用了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 以避免内存爆满。当可用内存低于 10% 后，内存占用最多的进程会被杀死。</p>
 <div class="admonition tips">
 <p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
 </div>
-<h2 id="3">3. 死掉的程序仍可能占用显存</h2>
+<h2 id="5">5. 死掉的程序仍可能占用显存</h2>
 <p>有时，虽然程序在控制台退出了，你已经不再与其交互了，但仍然可能<strong>残存一些子进程占用显存</strong>（常见于多进程多卡训练中，如 PyTorch 的 <code>DistributedDataParallel</code> ）。此时通常会产生以下现象：</p>
 <ul>
 <li>
@@ -495,7 +535,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:mail@co1in.me'>Co1lin</a></span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (20.51%), <a href='mailto:mail@co1in.me'>Co1lin</a> (79.49%)</span>
       </small>
     </div>
   
@@ -570,10 +610,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../assets/javascripts/bundle.b1047164.min.js"></script>
       
         <script src="../javascripts/config.js"></script>
       
