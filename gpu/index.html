@@ -588,10 +588,21 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue
 </code></pre></div>
 <p>显示正在运行与正在排队的任务。样例输出：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># JOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    TRES_PER_NODE       </span>
-<span class="linenos" data-linenos="2 "></span><span class="c1"># 149       tb5zhh  bash      RUNNING   5:46:33   UNLIMITED  air-node-03 gpu:a100:1          </span>
-<span class="linenos" data-linenos="3 "></span><span class="c1"># 150       tb5zhh  bash      RUNNING   5:46:30   UNLIMITED  air-node-03 gpu:a100:1          </span>
-<span class="linenos" data-linenos="4 "></span><span class="c1"># 154       lpf     python    RUNNING   2:22:36   UNLIMITED  air-node-03 gpu:a100:4 </span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>JOBIDJOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    MIN_MEMORY          MEM_PER_TRES        TRES_PER_NODE       PENDING_TIME        REASON              
+<span class="linenos" data-linenos=" 2 "></span><span class="m">1162</span> <span class="m">1162</span>      liyang  python3   PENDING   <span class="m">0</span>:00      <span class="m">7</span>-00:00:00             <span class="m">0</span>                   gpu:20000           gpu:a100:6          <span class="m">132683</span>              Resources           
+<span class="linenos" data-linenos=" 3 "></span><span class="m">1207</span> <span class="m">1207</span>      wangym  python    PENDING   <span class="m">0</span>:00      <span class="m">1</span>:00                   <span class="m">0</span>                   gpu:20000           gpu:a100:2          <span class="m">34464</span>               Priority            
+<span class="linenos" data-linenos=" 4 "></span><span class="m">1208</span> <span class="m">1208</span>      wangym  python    PENDING   <span class="m">0</span>:00      <span class="m">1</span>:00                   <span class="m">0</span>                   gpu:20000           gpu:a100:2          <span class="m">34460</span>               Priority            
+<span class="linenos" data-linenos=" 5 "></span><span class="m">1209</span> <span class="m">1209</span>      wangym  python    PENDING   <span class="m">0</span>:00      <span class="m">1</span>:00                   <span class="m">0</span>                   gpu:20000           gpu:a100:2          <span class="m">34455</span>               Priority            
+<span class="linenos" data-linenos=" 6 "></span><span class="m">1210</span> <span class="m">1210</span>      wangym  python    PENDING   <span class="m">0</span>:00      <span class="m">1</span>:00                   <span class="m">0</span>                   gpu:20000           gpu:a100:2          <span class="m">34438</span>               Priority            
+<span class="linenos" data-linenos=" 7 "></span><span class="m">1211</span> <span class="m">1211</span>      wangzy  clipmean_2PENDING   <span class="m">0</span>:00      <span class="m">4</span>-04:00:00             <span class="m">0</span>                   gpu:20000           gpu:a100:2          <span class="m">32737</span>               Priority            
+<span class="linenos" data-linenos=" 8 "></span><span class="m">656</span>  <span class="m">656</span>       most    dna       RUNNING   <span class="m">9</span>-04:30:41UNLIMITED  air-node-04 240G                gpu:48000           gpu:a100:6          <span class="m">2</span>                   None                
+<span class="linenos" data-linenos=" 9 "></span><span class="m">1160</span> <span class="m">1160</span>      wangzy  clipmean_2RUNNING   <span class="m">2</span>-00:48:064-04:00:00 air-node-01 2000M               gpu:20000           gpu:a100:2          <span class="m">44</span>                  None                
+<span class="linenos" data-linenos="10 "></span><span class="m">1163</span> <span class="m">1163</span>      wangzy  clipmean_2RUNNING   <span class="m">1</span>-06:51:344-04:00:00 air-node-03 <span class="m">0</span>                   gpu:20000           gpu:a100:2          <span class="m">16721</span>               None                
+<span class="linenos" data-linenos="11 "></span><span class="m">1174</span> <span class="m">1174</span>      huoyy   bash      RUNNING   <span class="m">1</span>-06:51:347-00:00:00 air-node-04 <span class="m">0</span>                   gpu:20000           gpu:a100:1          <span class="m">376</span>                 None                
+<span class="linenos" data-linenos="12 "></span><span class="m">1186</span> <span class="m">1186</span>      tb5zhh  bash      RUNNING   <span class="m">1</span>-04:03:323-00:00:00 air-node-01 <span class="m">0</span>                   gpu:20000           gpu:a100:1          <span class="m">0</span>                   None                
+<span class="linenos" data-linenos="13 "></span><span class="m">1187</span> <span class="m">1187</span>      tb5zhh  bash      RUNNING   <span class="m">1</span>-04:02:023-00:00:00 air-node-01 <span class="m">0</span>                   gpu:20000           gpu:a100:1          <span class="m">23</span>                  None                
+<span class="linenos" data-linenos="14 "></span><span class="m">1188</span> <span class="m">1188</span>      tb5zhh  bash      RUNNING   <span class="m">1</span>-04:01:323-00:00:00 air-node-03 <span class="m">0</span>                   gpu:20000           gpu:a100:1          <span class="m">30</span>                  None                
+<span class="linenos" data-linenos="15 "></span><span class="m">1189</span> <span class="m">1189</span>      tb5zhh  bash      RUNNING   <span class="m">1</span>-04:00:023-00:00:00 air-node-01 <span class="m">0</span>                   gpu:20000           gpu:a100:1          <span class="m">98</span>                  None                
 </code></pre></div>
 <p>输出表格字段含义：</p>
 <ul>
@@ -752,7 +763,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (97.85%), <a href='mailto:mail@co1in.me'>Co1lin</a> (2.15%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (97.96%), <a href='mailto:mail@co1in.me'>Co1lin</a> (2.04%)</span>
       </small>
     </div>
   
