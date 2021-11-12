@@ -555,29 +555,35 @@
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:a100:GPU_COUNT --time<span class="o">=</span>d-hh:mm:ss <span class="o">[</span>--mem<span class="o">=</span><span class="m">20000</span><span class="o">]</span> CMD
 </code></pre></div>
 CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任务后，程序输出到 <code>stdout</code> 与 <code>stderr</code> ，在控制台中可以看到程序的所有输出。</p>
-<p>如需后台运行任务请使用 <code>tmux</code> / <code>screen</code> 等工具或使用下方 <code>sbatch</code>命令提交任务。</p>
+<p>如需后台运行任务请使用 <code>tmux</code> / <code>screen</code> 等工具或使用下方 <code>sbatch</code> 命令提交任务。</p>
 <p>参数说明：</p>
 <ul>
-<li><code>--gres</code>: <strong>G</strong>eneric <strong>RES</strong>ources，申请使用的 GPU 类型与数量</li>
+<li><code>--gres</code>: <strong>G</strong>eneric <strong>RES</strong>ources，申请使用的 GPU 类型与数量<ul>
 <li>目前集群中只有 NVIDIA A100 40GB 一种GPU，用 a100 指代</li>
 <li>参数格式：<code>gpu:a100:GPU_COUNT</code></li>
-<li><code>--time</code>: 程序运行的最长运行时间</li>
+</ul>
+</li>
+<li><code>--time</code>: 程序运行的最长运行时间<ul>
 <li>默认值为1分钟，最大值为7天</li>
 <li>如果任务需要运行更长时间，请联系集群管理员</li>
 <li><strong>超过最长运行时间的任务会被强行终止</strong></li>
 <li>参数格式： <code>d-hh:mm:ss</code></li>
-<li>
-<p><code>--mem</code>: （可选）任务请求使用的内存</p>
+</ul>
 </li>
-<li>
-<p>默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数</p>
-</li>
+<li><code>--mem</code>: （可选）任务请求使用的内存<ul>
+<li>默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数</li>
 <li>参数格式：整数，单位为 MB</li>
 </ul>
-<p>!!! info "参数位置"
-    提供给 <code>srun</code> 命令的参数应当置于程序命令 CMD 之前，否则会被认为是提供给 CMD 的运行参数。</p>
-<p>!!! danger "运行时间"
-    为了合理使用GPU资源，请提交任务时指定一个合理的最长运行时间。请注意，过长的运行时间可能导致调度的优先级降低，详情请见下方调度策略说明。</p>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">参数位置</p>
+<p>提供给 <code>srun</code> 命令的参数应当置于程序命令 CMD 之前，否则会被认为是提供给 CMD 的运行参数。</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">运行时间</p>
+<p>为了合理使用GPU资源，请提交任务时指定一个合理的最长运行时间。请注意，过长的运行时间可能导致调度的优先级降低，详情请见下方调度策略说明。</p>
+</div>
 <h3 id="22-squeue">2.2 squeue: 查看任务队列</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>squeue
 </code></pre></div>
@@ -589,18 +595,16 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 </code></pre></div>
 <p>输出表格字段含义：</p>
 <ul>
-<li>
-<p><code>JOBID</code>: 任务序号</p>
-</li>
-<li>
-<p><code>USER</code>: 任务提交用户</p>
-</li>
+<li><code>JOBID</code>: 任务序号</li>
+<li><code>USER</code>: 任务提交用户</li>
 <li><code>NAME</code>: 任务名称。默认值为可执行文件名 (<code>bash</code>, <code>python</code> 等)，使用 <code>sbatch</code> 命令提交任务可以自定义任务名</li>
-<li><code>STATE</code>: 任务状态，常见任务状态如下：</li>
+<li><code>STATE</code>: 任务状态，常见任务状态如下：<ul>
 <li><code>RUNNING</code>: 任务正在运行</li>
 <li><code>PENDING</code>: 任务正在队列中等待分配资源</li>
 <li><code>COMPLETING</code>: 任务正在终止</li>
 <li>出现其他状态时请联系管理员</li>
+</ul>
+</li>
 <li><code>TIME</code>: 任务已运行时长</li>
 <li><code>TIME_LIMIT</code>: 任务最长运行时间。<strong>超过最长运行时间的任务会被强行终止</strong></li>
 <li><code>NODE_LIST</code>: 任务使用的运算节点</li>
@@ -629,12 +633,14 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li>申请运行的最长时间不会导致队列现有任务开始时间推迟（不影响正在排队的任务）</li>
 </ol>
 <p>时，该新任务将允许优先被调度。</p>
-<p>!!! info "参数位置"
-    我们可以通过俄罗斯方块游戏来理解这个调度策略：集群可以形象化理解为一个固定宽度的桶，水平方向代表集群资源整体数量，竖直方向代表时间；每一个任务都是一个长方形（任务块），长方形的横边长为任务申请资源数量，竖边长为任务指定的最长运行时间。
-    随着时间的推移，桶中的任务会逐渐下降，任务块接触桶底并逐渐在竖直方向上缩短，表示任务正在运行，并正在接近提交时指定的 deadline。
-    任务进入调度队列的过程，就是每一个任务块进入集群桶中的过程。Slurm 系统会为每一个任务安排一个最靠近桶底的位置：当任务较少，可用资源较多，任务直接被安排在桶底，任务就可以马上开始执行；当可用资源无法满足任务需求时，任务会被安排在尽可能接近桶底的位置。值得说明的是，一旦任务进入桶中，任务在时间轴上的绝对位置<strong>会被固定</strong>，不会因为队列中的新任务而改变；这意味着一旦进入队列，任务就有一个最晚开始执行的时间节点。
-    上述提到的插队规则，形象的理解就是：对于新进入桶中的任务块，如果在尽可能靠近桶底的位置上仍有能够放下该任务块的空位，则可以将任务置于该空位，这样一方面不会影响已经在桶中的任务，任务本身运行时间也能提前。
-    这里的调度规则，也是希望大家合理指定任务最长运行时间的原因。最长运行时间越短，任务块的竖直长度越短，就越有可能被安排在距离桶底进的位置，从而越早开始执行。</p>
+<div class="admonition info">
+<p class="admonition-title">参数位置</p>
+<p>我们可以通过俄罗斯方块游戏来理解这个调度策略：集群可以形象化理解为一个固定宽度的桶，水平方向代表集群资源整体数量，竖直方向代表时间；每一个任务都是一个长方形（任务块），长方形的横边长为任务申请资源数量，竖边长为任务指定的最长运行时间。
+随着时间的推移，桶中的任务会逐渐下降，任务块接触桶底并逐渐在竖直方向上缩短，表示任务正在运行，并正在接近提交时指定的 deadline。
+任务进入调度队列的过程，就是每一个任务块进入集群桶中的过程。Slurm 系统会为每一个任务安排一个最靠近桶底的位置：当任务较少，可用资源较多，任务直接被安排在桶底，任务就可以马上开始执行；当可用资源无法满足任务需求时，任务会被安排在尽可能接近桶底的位置。值得说明的是，一旦任务进入桶中，任务在时间轴上的绝对位置<strong>会被固定</strong>，不会因为队列中的新任务而改变；这意味着一旦进入队列，任务就有一个最晚开始执行的时间节点。
+上述提到的插队规则，形象的理解就是：对于新进入桶中的任务块，如果在尽可能靠近桶底的位置上仍有能够放下该任务块的空位，则可以将任务置于该空位，这样一方面不会影响已经在桶中的任务，任务本身运行时间也能提前。
+这里的调度规则，也是希望大家合理指定任务最长运行时间的原因。最长运行时间越短，任务块的竖直长度越短，就越有可能被安排在距离桶底进的位置，从而越早开始执行。</p>
+</div>
 <h3 id="24-scontrol">2.4 scontrol: 查看正在运行任务的状态</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>scontrol show job JOBID
 </code></pre></div>
@@ -651,7 +657,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <p>输出表格字段含义：</p>
 <ul>
 <li><code>NODELIST</code>: 节点名称</li>
-<li><code>STATE</code>: 节点状态</li>
+<li><code>STATE</code>: 节点状态<ul>
 <li><code>idle</code>: 节点空闲</li>
 <li><code>mixed</code>: 节点正在运行任务，但是仍有可用资源<ul>
 <li>请注意，此处所指资源包括CPU、内存、GPU等，此状态不保证有空闲的 GPU 卡</li>
@@ -671,9 +677,13 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li>出现此状态请联系管理员</li>
 </ul>
 </li>
-<li><code>AVAIL</code>: 节点状态（简略版）</li>
+</ul>
+</li>
+<li><code>AVAIL</code>: 节点状态（简略版）<ul>
 <li><code>up</code>: 可用</li>
 <li><code>down</code>, <code>drain</code>: 不可用</li>
+</ul>
+</li>
 <li><code>GRES</code>: 节点可用 GPU 资源</li>
 <li><code>GRES_USED</code>: 节点已分配 GPU 资源数量及序号</li>
 <li><code>MEMORY</code>: 节点可用内存，单位为MB</li>
@@ -699,27 +709,23 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <p>参数说明：</p>
 <ul>
 <li><code>--job-name</code>: 提交的任务名称。会出现在 <code>squeue</code> 命令的 <code>NAME</code> 字段内，默认为可执行文件名。</li>
-<li><code>--array</code>: 提交批量任务（任务组）。</li>
+<li><code>--array</code>: 提交批量任务（任务组）。<ul>
 <li>使用此选项时，会一次性将多个任务提交至 Slurm 系统。</li>
 <li>每一个任务组与普通任务的地位是等同的，任务组本身有一个 ID (<code>ARRAYID</code>)。<strong>对这个 ID 使用 <code>scancel</code> 会取消任务组中所有任务</strong></li>
 <li>任务组中的每个任务会有一个组内序号（<code>ARRAYINDEX</code>），通过环境变量 <code>SLURM_ARRAY_TASK_ID</code> 访问。需要单独去取消组内任务时，请使用 <code>scancel ARRAYID_ARRAYINDEX</code> </li>
 <li>此选项提供的值，即为任务组中任务的序号。例如 <code>0-15</code> 会提交 16 个任务；这16个任务内环境变量 <code>SLURM_ARRAY_TASK_ID</code> 的值分别为 0, 1, 2, ... 15。</li>
 <li>允许的参数格式：<code>0-15</code> (0, 1, 2, ... 15), <code>0,1,2,3</code> , <code>0,1,6-8</code>, <code>0-15:4</code> (0, 4, 8, 12), <code>0-15%4</code> (提交 16 个任务，但是只能有 4 个任务同时运行)</li>
-<li>
-<p>最小任务序号为 0</p>
+<li>最小任务序号为 0</li>
+</ul>
 </li>
-<li>
-<p><code>--output</code>: 任务的输出文件</p>
-</li>
+<li><code>--output</code>: 任务的输出文件<ul>
 <li>对于单任务，<code>%j</code> 表示任务 ID 占位符。如果任务 ID 为 10086， <code>--output %j.out</code> 表示任务输出到 <code>10086.out</code> </li>
 <li>对于多任务，<code>%A</code> 表示任务组ID，<code>%a</code> 表示组内序号。如果任务组 ID 为 10086，某任务组内序号为 4 ，<code>--output %A_%a.out</code> 表示任务输出到 <code>10086_4.out</code></li>
 <li>对于单任务，默认输出为 <code>slurm-%j.out</code></li>
-<li>
-<p>对于多任务，默认输出为 <code>slurm-%A_%a.out</code></p>
+<li>对于多任务，默认输出为 <code>slurm-%A_%a.out</code></li>
+</ul>
 </li>
-<li>
-<p><code>--gres</code>: 任务申请的 GPU 资源，格式同 <code>srun</code> 中 <code>--gres</code></p>
-</li>
+<li><code>--gres</code>: 任务申请的 GPU 资源，格式同 <code>srun</code> 中 <code>--gres</code></li>
 <li><code>--time</code>: 任务最长运行时间，格式同 <code>srun</code> 中 <code>--time</code></li>
 </ul>
 <p>样例 <code>run.sh</code> 脚本如下：</p>
@@ -746,7 +752,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (97.89%), <a href='mailto:mail@co1in.me'>Co1lin</a> (2.11%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (97.85%), <a href='mailto:mail@co1in.me'>Co1lin</a> (2.15%)</span>
       </small>
     </div>
   
