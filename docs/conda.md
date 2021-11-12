@@ -34,6 +34,6 @@ conda create [env_name]
 通过以下命令激活新的环境：
 
 ```shell
-conda activate /envs/[env_name]
+conda activate [env_name]
 ```
 
