@@ -320,10 +320,10 @@
       
         <li class="md-nav__item">
   <a href="#2-slurm" class="md-nav__link">
-    2. slurm 常用操作 
+    2. slurm 常用操作
   </a>
   
-    <nav class="md-nav" aria-label="2. slurm 常用操作 ">
+    <nav class="md-nav" aria-label="2. slurm 常用操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -454,10 +454,10 @@
       
         <li class="md-nav__item">
   <a href="#2-slurm" class="md-nav__link">
-    2. slurm 常用操作 
+    2. slurm 常用操作
   </a>
   
-    <nav class="md-nav" aria-label="2. slurm 常用操作 ">
+    <nav class="md-nav" aria-label="2. slurm 常用操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -547,10 +547,10 @@
 <p>在 slurm 系统中，<strong>节点</strong>指可以独立运行程序的服务器。目前 slurm 系统内共有4个节点：</p>
 <ul>
 <li>登录节点 <code>air-server</code> ：集群用户可以通过 <code>ssh</code> 连接 <code>103.242.175.247</code> 登录。跳板节点上配备 2 张 A100 GPU 供调试，该 GPU 使用无需通过 slurm 系统。</li>
-<li>运算节点：共有 3 个，分别是 <code>air-node-01</code>（配备 6 张 A100 GPU），<code>air-node-02</code>（配备 2 张 A100 GPU），<code>air-node-03</code>（配备 6 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见<a href="ref">下方</a>。</li>
+<li>运算节点：共有 3 个，分别是 <code>air-node-01</code>（配备 6 张 A100 GPU），<code>air-node-02</code>（配备 2 张 A100 GPU），<code>air-node-03</code>（配备 6 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见下。</li>
 </ul>
 <p><strong>任务</strong>是对程序以及程序运行占用资源的抽象，每一个任务有的单独的编号（<code>JOBID</code>）。用户将程序提交至 slurm 系统后，任务队列会加入一个新任务；当集群中有可用的资源时由 slurm 系统自动分配资源与任务绑定，并从任务队列中取出并开始运行。</p>
-<h2 id="2-slurm">2. slurm 常用操作 <span id="ref" /></h2>
+<h2 id="2-slurm">2. slurm 常用操作</h2>
 <h3 id="21-srun">2.1 srun: 提交任务并前台运行</h3>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:a100:GPU_COUNT --time<span class="o">=</span>d-hh:mm:ss <span class="o">[</span>--mem<span class="o">=</span><span class="m">20000</span><span class="o">]</span> CMD
 </code></pre></div>
