@@ -730,7 +730,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li><code>--array</code>: （可选）提交批量任务（任务组）。<ul>
 <li>使用此选项时，会一次性将多个任务提交至 Slurm 系统。</li>
 <li>每一个任务组与普通任务的地位是等同的，任务组本身有一个 ID (<code>ARRAYID</code>)，这个 ID 可以通过 <code>squeue</code> 命令查看。<strong>对这个 ID 使用 <code>scancel</code> 会取消任务组中所有任务</strong></li>
-<li>任务组中的每个任务会有一个组内序号（<code>ARRAYINDEX</code>），通过环境变量 <code>SLURM_ARRAY_TASK_ID</code> 访问。需要单独去取消组内任务时，请使用 <code>scancel ARRAYID_ARRAYINDEX</code> </li>
+<li>任务组中的每个任务会有一个组内序号（<code>ARRAYINDEX</code>），在各任务内通过环境变量 <code>SLURM_ARRAY_TASK_ID</code> 访问。需要单独去取消组内任务时，请使用 <code>scancel ARRAYID_ARRAYINDEX</code> </li>
 <li>此选项提供的值，即为任务组中任务的序号。例如 <code>0-15</code> 会提交 16 个任务；这16个任务内环境变量 <code>SLURM_ARRAY_TASK_ID</code> 的值分别为 0, 1, 2, ... 15。</li>
 <li>允许的参数格式：<code>0-15</code> (0, 1, 2, ... 15), <code>0,1,2,3</code> , <code>0,1,6-8</code>, <code>0-15:4</code> (0, 4, 8, 12), <code>0-15%4</code> (提交 16 个任务，但是只能有 4 个任务同时运行)</li>
 <li>最小任务序号为 0</li>
