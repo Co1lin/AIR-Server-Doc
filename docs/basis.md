@@ -2,7 +2,7 @@
 
 ## 通过 Slurm 系统使用 GPU 资源！
 
-请参考[这里](gpu)。
+请参考[这里](https://co1lin.github.io/AIR-Server-Doc/gpu/)。
 
 ## 磁盘配额
 
@@ -21,7 +21,7 @@ ssh air-storage quota -gs
 
 如果在跳板机上测试程序，请注意当可用内存低于 10% 时，内存占用最多的进程将被杀死。
 
-如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考[这里](gpu)。
+如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考[这里](https://co1lin.github.io/AIR-Server-Doc/basis/)。
 
 !!! tips "保存 checkpoints 以减少实验进程被杀死后的损失"
 

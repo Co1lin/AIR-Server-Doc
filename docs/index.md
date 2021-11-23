@@ -8,7 +8,7 @@
     如果发现本指南中的疏漏之处，请联系管理员，或点击右上角链接进入 GitHub 提交 issue 或 pull request 。
 
 !!! danger "不要着急使用"
-    请阅读 [注意事项](basis) 。
+    请阅读 [注意事项](https://co1lin.github.io/AIR-Server-Doc/basis/) 。
 
 ## 服务器架构
 
