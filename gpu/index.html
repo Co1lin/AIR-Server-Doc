@@ -718,7 +718,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sbatch run.sh
 </code></pre></div>
 <p>根据 <code>run.sh</code> 向 Slurm 中批量提交任务，执行后立即返回。如果任务在 <code>conda</code> 环境中执行，在运行 <code>sbatch</code> 前应当先进入该 <code>conda</code> 环境。</p>
-<p>样例脚本第一行<strong>必须为</strong> <code>#!/bin/bash</code>.</p>
+<p><code>run.sh</code> 第一行<strong>必须为</strong> <code>#!/bin/bash</code>.</p>
 <p><code>sbatch</code> 的命令行参数可以通过两种方式指定：</p>
 <ol>
 <li>置于 <code>sbatch</code> 命令后，如 <code>sbatch --gres=gpu:a100:1 run.sh</code></li>
