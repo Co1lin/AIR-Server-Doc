@@ -466,7 +466,7 @@
                 
                 <h1 id="_1">注意事项</h1>
 <h2 id="1-slurm-gpu">1. 通过 Slurm 系统使用 GPU 资源！</h2>
-<p>请参考<a href="gpu">这里</a>。</p>
+<p>请参考<a href="https://co1lin.github.io/AIR-Server-Doc/gpu/">这里</a>。</p>
 <h2 id="2">2. 磁盘配额</h2>
 <p>服务器部署了中心化的存储节点<code>air-storage</code>，并通过NFS挂载在所有机器的<code>/home</code>目录下。</p>
 <p>目前，各个实验室在使用存储时均有<code>3000G</code>的软配额与<code>5000G</code>的硬配额。当存储使用量超过软配额时，有7天的过渡时间将存储使用量下降到配额内；当存储使用量超过软配额7天，或存储使用量超过硬配额，用户将不能再向磁盘写入更多数据。</p>
@@ -476,7 +476,7 @@
 <h2 id="3">3. 内存占用较大可能会被终止</h2>
 <p>为了避免阻塞操作，集群中的跳板机上部署了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 避免内存占用过多。</p>
 <p>如果在跳板机上测试程序，请注意当可用内存低于 10% 时，内存占用最多的进程将被杀死。</p>
-<p>如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考<a href="gpu">这里</a>。</p>
+<p>如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考<a href="https://co1lin.github.io/AIR-Server-Doc/basis/">这里</a>。</p>
 <div class="admonition tips">
 <p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
 </div>
