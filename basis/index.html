@@ -316,6 +316,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6. 实验环境
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -446,6 +453,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6. 实验环境
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -466,7 +480,7 @@
                 
                 <h1 id="_1">注意事项</h1>
 <h2 id="1-slurm-gpu">1. 通过 Slurm 系统使用 GPU 资源</h2>
-<p>iw</p>
+<p>参见 <a href="gpu">通过 slurm 系统使用 GPU 资源</a></p>
 <h2 id="2">2. 磁盘配额</h2>
 <p>服务器部署了中心化的存储节点<code>air-storage</code>，并通过NFS挂载在所有机器的<code>/home</code>目录下。</p>
 <p>目前，各个实验室在使用存储时均有<code>3000G</code>的软配额与<code>5000G</code>的硬配额。当存储使用量超过软配额时，有7天的过渡时间将存储使用量下降到配额内；当存储使用量超过软配额7天，或存储使用量超过硬配额，用户将不能再向磁盘写入更多数据。</p>
@@ -529,13 +543,20 @@
 <p>注意，此命令只能显示当前用户的进程，需要加 <code>sudo</code> 才能显示其它用户的进程。 Docker 中的进程很可能以 root 用户存在，因此也无法直接显示。</p>
 </div>
 <p>巧妙结合上述二者可以显示出指定显卡上进程的详细信息。发现显存异常占用后，如果通过上述方法检查出自己已经退出的程序实际上仍然在占用显存，请及时使用 <strong><code>kill -9 &lt;PID&gt;</code></strong> 杀死所有残余进程，节省显存空间。</p>
+<h2 id="6">6. 实验环境</h2>
+<ol>
+<li>所有普通用户没有在集群上通过 <code>apt</code> 安装软件包的权限。</li>
+<li>一般机器学习所需的 Python 环境可以通过每个用户创建自己的 <a href="conda">conda 环境</a>来满足；用户有权限在自己的环境下通过 <code>conda</code> 或 <code>pip</code> 安装所需的 Python 包。</li>
+<li>NVIDIA GPU 底层驱动以及 CUDA 管理员已经安装好了。遵循一般惯例， CUDA 的安装路径在 <code>/usr/local</code> 下，如 <code>/usr/local/cuda</code> （默认版本），或者 <code>/usr/local/cuda11.1</code> （特定版本）。使用时只需根据这个路径信息配置好环境变量即可。</li>
+<li>显然， PyTorch 和其它包一样，在每个实验中的版本都可能不同，因此请在自己的环境中自行安装。在 <code>/home/share</code> 下有管理员下载的可以直接 <code>pip install</code> 的安装包，如果满足需求可以直接安装至自己的环境使用。</li>
+</ol>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (20.51%), <a href='mailto:mail@co1in.me'>Co1lin</a> (79.49%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (17.44%), <a href='mailto:mail@co1in.me'>Co1lin</a> (82.56%)</span>
       </small>
     </div>
   
