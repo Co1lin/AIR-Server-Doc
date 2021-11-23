@@ -34,3 +34,11 @@ ssh air-storage quota -gs
 1. 使用 GitHub 等平台云端托管代码，防止硬盘损坏造成代码丢失。
 2. 在跑实验时适度保存 checkpoints ，以在宕机等意外发生之后能快速恢复到之前的实验状态。
 
+
+## 实验环境
+
+1. 所有普通用户没有在集群上通过 `apt` 安装软件包的权限。
+2. 一般机器学习所需的 Python 环境可以通过每个用户创建自己的 [conda 环境](conda)来满足；用户有权限在自己的环境下通过 `conda` 或 `pip` 安装所需的 Python 包。
+3. NVIDIA GPU 底层驱动以及 CUDA Toolkit 已经安装好了。遵循一般惯例， CUDA 的安装路径在 `/usr/local` 下，如 `/usr/local/cuda` （默认版本），或者 `/usr/local/cuda11.1` （特定版本）。使用时只需根据这个路径信息配置好环境变量（通常为 `CUDA_HOME` ）即可。
+4. PyTorch 和其它包一样，在每个实验中的版本都可能不同，因此请在自己的环境中自行安装。在 `/home/share` 下可以直接通过 `pip install` 安装至虚拟环境的安装包，如果满足需求可以直接安装至自己的环境使用。
+
