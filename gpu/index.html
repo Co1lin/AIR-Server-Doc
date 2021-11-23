@@ -727,7 +727,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <p>参数说明：</p>
 <ul>
 <li><code>--job-name</code>: 提交的任务名称。会出现在 <code>squeue</code> 命令的 <code>NAME</code> 字段内，默认为可执行文件名。</li>
-<li><code>--array</code>: 提交批量任务（任务组）。<ul>
+<li><code>--array</code>: （可选）提交批量任务（任务组）。<ul>
 <li>使用此选项时，会一次性将多个任务提交至 Slurm 系统。</li>
 <li>每一个任务组与普通任务的地位是等同的，任务组本身有一个 ID (<code>ARRAYID</code>)。<strong>对这个 ID 使用 <code>scancel</code> 会取消任务组中所有任务</strong></li>
 <li>任务组中的每个任务会有一个组内序号（<code>ARRAYINDEX</code>），通过环境变量 <code>SLURM_ARRAY_TASK_ID</code> 访问。需要单独去取消组内任务时，请使用 <code>scancel ARRAYID_ARRAYINDEX</code> </li>
@@ -736,7 +736,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li>最小任务序号为 0</li>
 </ul>
 </li>
-<li><code>--output</code>: 任务的输出文件<ul>
+<li><code>--output</code>: （可选）任务的输出文件<ul>
 <li>对于单任务，<code>%j</code> 表示任务 ID 占位符。如果任务 ID 为 10086， <code>--output %j.out</code> 表示任务输出到 <code>10086.out</code> </li>
 <li>对于多任务，<code>%A</code> 表示任务组ID，<code>%a</code> 表示组内序号。如果任务组 ID 为 10086，某任务组内序号为 4 ，<code>--output %A_%a.out</code> 表示任务输出到 <code>10086_4.out</code></li>
 <li>对于单任务，默认输出为 <code>slurm-%j.out</code></li>
