@@ -37,3 +37,14 @@ conda create [env_name]
 conda activate [env_name]
 ```
 
+在集群上使用 srun, sbatch 等命令提交任务前，需要先通过上述命令进入特定环境。
+
+## 非 Bash 环境
+
+如果需要在其他 shell ( zsh 等) 中使用 conda ，使用下面等命令进行初始化：
+
+```shell
+/usr/local/miniconda3/bin/conda init
+```
+
+然后重新进入 shell ，即可正常使用 conda 。

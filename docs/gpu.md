@@ -14,7 +14,7 @@
 在 slurm 系统中，**节点**指可以独立运行程序的服务器。目前 slurm 系统内共有4个节点：
 
 * 登录节点 `air-server` ：集群用户可以通过 `ssh` 连接 `103.242.175.247` 登录。跳板节点上配备 2 张 A100 GPU 供调试，该 GPU 使用无需通过 slurm 系统。
-* 运算节点：共有 3 个，分别是 `air-node-01`（配备 6 张 A100 GPU），`air-node-02`（配备 2 张 A100 GPU），`air-node-03`（配备 6 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见下。
+* 运算节点：共有 3 个，分别是 `air-node-01`（配备 8 张 A100 GPU），`air-node-03`（配备 6 张 A100 GPU），`air-node-04`（配备 8 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见下。
 
 **任务**是对程序以及程序运行占用资源的抽象，每一个任务有的单独的编号（`JOBID`）。用户将程序提交至 slurm 系统后，任务队列会加入一个新任务；当集群中有可用的资源时由 slurm 系统自动分配资源与任务绑定，并从任务队列中取出并开始运行。
 
@@ -42,6 +42,13 @@ CMD 为程序正常执行时的命令。使用 `srun` 命令提交任务后，�
 * `--mem`: （可选）任务请求使用的内存
     * 默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数
     * 参数格式：整数，单位为 MB
+* `--mail-user`: （可选）任务状态变更时，接收更新邮件的邮箱
+* `--mail-type`: （可选）在任务状态发生哪些变化时，发送更新邮件
+    * `BEGIN`: 任务从等待队列中取出，开始运行时
+    * `END`: 任务正常结束时
+    * `FAILURE`: 任务异常退出时
+    * `ALL`: 以上三种情况均发送状态更新邮件
+
 
 !!! info "参数位置"
     提供给 `srun` 命令的参数应当置于程序命令 CMD 之前，否则会被认为是提供给 CMD 的运行参数。
@@ -225,16 +232,24 @@ sbatch run.sh
     * 对于多任务，默认输出为 `slurm-%A_%a.out`
 * `--gres`: 任务申请的 GPU 资源，格式同 `srun` 中 `--gres`
 * `--time`: 任务最长运行时间，格式同 `srun` 中 `--time`
+* `--mail-user`: （可选）任务状态变更时，接收更新邮件的邮箱。同 `srun` 中 `--mail-user` 
+* `--mail-type`: （可选）在任务状态发生哪些变化时，发送更新邮件。同 `srun` 中 `--mail-user` 
+    * `BEGIN`: 任务从等待队列中取出，开始运行时
+    * `END`: 任务正常结束时
+    * `FAILURE`: 任务异常退出时
+    * `ALL`: 以上三种情况均发送状态更新邮件
 
 样例 `run.sh` 脚本如下：
 
 ```shell
 #!/bin/bash
-#SBATCH --job-name example
-#SBATCH --output %A_%a.out   
-#SBATCH --gres gpu:a100:1 
-#SBATCH --time 1:00:00     
-#SBATCH --array 0-15
+#SBATCH --job-name example                  # 任务在 squeue 中显示任务名为 example
+#SBATCH --output %A_%a.out                  # 任务输出重定向至 [任务组id]_[组内序号].out
+#SBATCH --gres gpu:a100:1                   # 任务申请使用一张 A100 GPU
+#SBATCH --time 1-1:00:00                    # 任务最长运行 1 天 1 小时，超时任务将被杀死
+#SBATCH --array 0-15                        # 提交 16 个任务，组内序号分别为 0,1,2,...15
+#SBATCH --mail-user example@gmail.com       # 将任务状态更新以邮件形式发送至 example@gmail.com
+#SBATCH --mail-type ALL											# 任务开始运行、正常结束、异常退出时均发送邮件通知
 
 # 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问
 # 上述行指定参数将传递给 sbatch 作为命令行参数
@@ -247,3 +262,6 @@ python -V
 python -c "print ('Hello, world!')"
 ```
 
+## 其它限制
+
+每个用户在集群中最多同时运行 4 个任务。
