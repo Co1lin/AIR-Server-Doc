@@ -727,6 +727,8 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <p>参数说明：</p>
 <ul>
 <li><code>--job-name</code>: 提交的任务名称。会出现在 <code>squeue</code> 命令的 <code>NAME</code> 字段内，默认为可执行文件名。</li>
+<li><code>--gres</code>: 任务申请的 GPU 资源，格式同 <code>srun</code> 中 <code>--gres</code></li>
+<li><code>--time</code>: 任务最长运行时间，格式同 <code>srun</code> 中 <code>--time</code></li>
 <li><code>--array</code>: （可选）提交批量任务（任务组）。<ul>
 <li>使用此选项时，会一次性将多个任务提交至 Slurm 系统。</li>
 <li>每一个任务组与普通任务的地位是等同的，任务组本身有一个 ID (<code>ARRAYID</code>)，这个 ID 可以通过 <code>squeue</code> 命令查看。<strong>对这个 ID 使用 <code>scancel</code> 会取消任务组中所有任务</strong></li>
@@ -741,10 +743,9 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li>对于多任务，<code>%A</code> 表示任务组ID，<code>%a</code> 表示组内序号。如果任务组 ID 为 10086，某任务组内序号为 4 ，<code>--output %A_%a.out</code> 表示任务输出到 <code>10086_4.out</code></li>
 <li>对于单任务，默认输出为 <code>slurm-%j.out</code></li>
 <li>对于多任务，默认输出为 <code>slurm-%A_%a.out</code></li>
+<li>如果指定通知邮箱，任务结束时，结束通知邮件会将输出文件最后 100 行随邮件发送至邮箱</li>
 </ul>
 </li>
-<li><code>--gres</code>: 任务申请的 GPU 资源，格式同 <code>srun</code> 中 <code>--gres</code></li>
-<li><code>--time</code>: 任务最长运行时间，格式同 <code>srun</code> 中 <code>--time</code></li>
 <li><code>--mail-user</code>: （可选）任务状态变更时，接收更新邮件的邮箱。同 <code>srun</code> 中 <code>--mail-user</code> </li>
 <li><code>--mail-type</code>: （可选）在任务状态发生哪些变化时，发送更新邮件。同 <code>srun</code> 中 <code>--mail-user</code> <ul>
 <li><code>BEGIN</code>: 任务从等待队列中取出，开始运行时</li>
