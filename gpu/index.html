@@ -380,6 +380,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 其它限制
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -514,6 +521,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 其它限制
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -547,7 +561,7 @@
 <p>在 slurm 系统中，<strong>节点</strong>指可以独立运行程序的服务器。目前 slurm 系统内共有4个节点：</p>
 <ul>
 <li>登录节点 <code>air-server</code> ：集群用户可以通过 <code>ssh</code> 连接 <code>103.242.175.247</code> 登录。跳板节点上配备 2 张 A100 GPU 供调试，该 GPU 使用无需通过 slurm 系统。</li>
-<li>运算节点：共有 3 个，分别是 <code>air-node-01</code>（配备 6 张 A100 GPU），<code>air-node-02</code>（配备 2 张 A100 GPU），<code>air-node-03</code>（配备 6 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见下。</li>
+<li>运算节点：共有 3 个，分别是 <code>air-node-01</code>（配备 8 张 A100 GPU），<code>air-node-03</code>（配备 6 张 A100 GPU），<code>air-node-04</code>（配备 8 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见下。</li>
 </ul>
 <p><strong>任务</strong>是对程序以及程序运行占用资源的抽象，每一个任务有的单独的编号（<code>JOBID</code>）。用户将程序提交至 slurm 系统后，任务队列会加入一个新任务；当集群中有可用的资源时由 slurm 系统自动分配资源与任务绑定，并从任务队列中取出并开始运行。</p>
 <h2 id="2-slurm">2. slurm 常用操作</h2>
@@ -573,6 +587,14 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li><code>--mem</code>: （可选）任务请求使用的内存<ul>
 <li>默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数</li>
 <li>参数格式：整数，单位为 MB</li>
+</ul>
+</li>
+<li><code>--mail-user</code>: （可选）任务状态变更时，接收更新邮件的邮箱</li>
+<li><code>--mail-type</code>: （可选）在任务状态发生哪些变化时，发送更新邮件<ul>
+<li><code>BEGIN</code>: 任务从等待队列中取出，开始运行时</li>
+<li><code>END</code>: 任务正常结束时</li>
+<li><code>FAILURE</code>: 任务异常退出时</li>
+<li><code>ALL</code>: 以上三种情况均发送状态更新邮件</li>
 </ul>
 </li>
 </ul>
@@ -738,32 +760,44 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 </li>
 <li><code>--gres</code>: 任务申请的 GPU 资源，格式同 <code>srun</code> 中 <code>--gres</code></li>
 <li><code>--time</code>: 任务最长运行时间，格式同 <code>srun</code> 中 <code>--time</code></li>
+<li><code>--mail-user</code>: （可选）任务状态变更时，接收更新邮件的邮箱。同 <code>srun</code> 中 <code>--mail-user</code> </li>
+<li><code>--mail-type</code>: （可选）在任务状态发生哪些变化时，发送更新邮件。同 <code>srun</code> 中 <code>--mail-user</code> <ul>
+<li><code>BEGIN</code>: 任务从等待队列中取出，开始运行时</li>
+<li><code>END</code>: 任务正常结束时</li>
+<li><code>FAILURE</code>: 任务异常退出时</li>
+<li><code>ALL</code>: 以上三种情况均发送状态更新邮件</li>
+</ul>
+</li>
 </ul>
 <p>样例 <code>run.sh</code> 脚本如下：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="ch">#!/bin/bash</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="c1">#SBATCH --job-name example</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="c1">#SBATCH --output %A_%a.out   </span>
-<span class="linenos" data-linenos=" 4 "></span><span class="c1">#SBATCH --gres gpu:a100:1 </span>
-<span class="linenos" data-linenos=" 5 "></span><span class="c1">#SBATCH --time 1:00:00     </span>
-<span class="linenos" data-linenos=" 6 "></span><span class="c1">#SBATCH --array 0-15</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="c1"># 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 上述行指定参数将传递给 sbatch 作为命令行参数</span>
-<span class="linenos" data-linenos="10 "></span><span class="c1"># 中间不可以有非 #SBATCH 开头的行</span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="c1"># 执行 sbatch 命令前先通过 conda activate [env_name] 进入环境</span>
-<span class="linenos" data-linenos="13 "></span><span class="c1"># 执行程序</span>
-<span class="linenos" data-linenos="14 "></span><span class="nb">echo</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>
-<span class="linenos" data-linenos="15 "></span>python -V
-<span class="linenos" data-linenos="16 "></span>python -c <span class="s2">&quot;print (&#39;Hello, world!&#39;)&quot;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">#SBATCH --job-name example                  # 任务在 squeue 中显示任务名为 example</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">#SBATCH --output %A_%a.out                  # 任务输出重定向至 [任务组id]_[组内序号].out</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">#SBATCH --gres gpu:a100:1                   # 任务申请使用一张 A100 GPU</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">#SBATCH --time 1-1:00:00                    # 任务最长运行 1 天 1 小时，超时任务将被杀死</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1">#SBATCH --array 0-15                        # 提交 16 个任务，组内序号分别为 0,1,2,...15</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1">#SBATCH --mail-user example@gmail.com       # 将任务状态更新以邮件形式发送至 example@gmail.com</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">#SBATCH --mail-type ALL                                         # 任务开始运行、正常结束、异常退出时均发送邮件通知</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="c1"># 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 上述行指定参数将传递给 sbatch 作为命令行参数</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1"># 中间不可以有非 #SBATCH 开头的行</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="c1"># 执行 sbatch 命令前先通过 conda activate [env_name] 进入环境</span>
+<span class="linenos" data-linenos="15 "></span><span class="c1"># 执行程序</span>
+<span class="linenos" data-linenos="16 "></span><span class="nb">echo</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>
+<span class="linenos" data-linenos="17 "></span>python -V
+<span class="linenos" data-linenos="18 "></span>python -c <span class="s2">&quot;print (&#39;Hello, world!&#39;)&quot;</span>
 </code></pre></div>
+<h2 id="3">3. 其它限制</h2>
+<p>每个用户在集群中最多同时运行 4 个任务。</p>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (97.99%), <a href='mailto:mail@co1in.me'>Co1lin</a> (2.01%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (98.13%), <a href='mailto:mail@co1in.me'>Co1lin</a> (1.87%)</span>
       </small>
     </div>
   

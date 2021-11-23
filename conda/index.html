@@ -317,6 +317,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-bash" class="md-nav__link">
+    4. 非 Bash 环境
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -418,6 +425,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-bash" class="md-nav__link">
+    4. 非 Bash 环境
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -462,13 +476,19 @@
 <p>通过以下命令激活新的环境：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>conda activate <span class="o">[</span>env_name<span class="o">]</span>
 </code></pre></div>
+<p>在集群上使用 srun, sbatch 等命令提交任务前，需要先通过上述命令进入特定环境。</p>
+<h2 id="4-bash">4. 非 Bash 环境</h2>
+<p>如果需要在其他 shell ( zsh 等) 中使用 conda ，使用下面等命令进行初始化：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>/usr/local/miniconda3/bin/conda init
+</code></pre></div>
+<p>然后重新进入 shell ，即可正常使用 conda 。</p>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (89.74%), <a href='mailto:mail@co1in.me'>Co1lin</a> (10.26%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (92.0%), <a href='mailto:mail@co1in.me'>Co1lin</a> (8.0%)</span>
       </small>
     </div>
   
