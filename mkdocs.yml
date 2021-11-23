@@ -7,7 +7,6 @@ nav:
   - 'basis.md'
   - 'conda.md'
   - 'gpu.md'
-  - 'docker.md'
   - 'admin.md'
 
 theme:
