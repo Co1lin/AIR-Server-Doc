@@ -207,7 +207,7 @@ sbatch run.sh
 
 根据 `run.sh` 向 Slurm 中批量提交任务，执行后立即返回。如果任务在 `conda` 环境中执行，在运行 `sbatch` 前应当先进入该 `conda` 环境。
 
-样例脚本第一行**必须为** `#!/bin/bash`.
+`run.sh` 第一行**必须为** `#!/bin/bash`.
 
 `sbatch` 的命令行参数可以通过两种方式指定：
 
