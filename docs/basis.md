@@ -15,16 +15,6 @@
 ssh air-storage quota -gs
 ```
 
-## 内存占用较大可能会被终止
-
-为了避免阻塞操作，集群中的跳板机上部署了 [earlyoom - The Early OOM Daemon](https://github.com/rfjakob/earlyoom) 避免内存占用过多。
-
-如果在跳板机上测试程序，请注意当可用内存低于 10% 时，内存占用最多的进程将被杀死。
-
-如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考[这里](https://co1lin.github.io/AIR-Server-Doc/basis/)。
-
-!!! tips "保存 checkpoints 以减少实验进程被杀死后的损失"
-
 ## 做好宕机等灾难发生的准备
 
 我们尽可能保证服务器的高可靠性，但是我们并不能保证服务器永不宕机。
@@ -37,8 +27,20 @@ ssh air-storage quota -gs
 
 ## 实验环境
 
-1. 所有普通用户没有在集群上通过 `apt` 安装软件包的权限。
-2. 一般机器学习所需的 Python 环境可以通过每个用户创建自己的 [conda 环境](conda)来满足；用户有权限在自己的环境下通过 `conda` 或 `pip` 安装所需的 Python 包。
-3. NVIDIA GPU 底层驱动以及 CUDA Toolkit 已经安装好了。遵循一般惯例， CUDA 的安装路径在 `/usr/local` 下，如 `/usr/local/cuda` （默认版本），或者 `/usr/local/cuda11.1` （特定版本）。使用时只需根据这个路径信息配置好环境变量（通常为 `CUDA_HOME` ）即可。
-4. PyTorch 和其它包一样，在每个实验中的版本都可能不同，因此请在自己的环境中自行安装。在 `/home/share` 下可以直接通过 `pip install` 安装至虚拟环境的安装包，如果满足需求可以直接安装至自己的环境使用。
+为了避免对服务器环境造成破坏，用户没有在集群上通过 `apt` 安装软件包的权限。
 
+一般机器学习所需的 Python 环境可以通过每个用户创建自己的 [conda 环境](conda)来满足；用户可以在自己的虚拟环境通过 `conda` 或 `pip` 安装所需的 Python 包。
+
+NVIDIA GPU 底层驱动以及 CUDA Toolkit 已经安装好了。遵循一般惯例， CUDA 的安装路径在 `/usr/local` 下，如 `/usr/local/cuda` （默认版本），或者 `/usr/local/cuda11.1` （特定版本）。使用时只需根据这个路径信息配置好环境变量（通常为 `CUDA_HOME` ）即可。
+
+PyTorch 和其它包一样，在每个实验中的版本都可能不同，因此请在自己的环境中自行安装。在 `/home/share` 目录下有一些已下载的 `whl` 文件，可以直接通过 `pip install` 安装至虚拟环境的安装包；如果满足需求可以直接安装至自己的环境使用。
+
+## 内存占用较大可能会被终止
+
+为了避免阻塞操作，集群中的跳板机上部署了 [earlyoom - The Early OOM Daemon](https://github.com/rfjakob/earlyoom) 避免内存占用过多。
+
+如果在跳板机上测试程序，请注意当可用内存低于 10% 时，内存占用最多的进程将被杀死。
+
+如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考[这里](https://co1lin.github.io/AIR-Server-Doc/basis/)。
+
+!!! tips "保存 checkpoints 以减少实验进程被杀死后的损失"

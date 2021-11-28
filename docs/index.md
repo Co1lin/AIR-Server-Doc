@@ -10,6 +10,13 @@
 !!! danger "不要着急使用"
     请阅读 [注意事项](https://co1lin.github.io/AIR-Server-Doc/basis/) 。
 
+## Updates
+
+2021.11.27 更新：
+
+* 任务运行时间上限调整为**3天**，用户运行任务上限为**4个**（队列中任务数量无限制）。如有特殊需求请联系管理员
+* 已在 `air-node-01` 与 `air-node-03` 上添加容器运行支持，如需使用请参考[这里](https://co1lin.github.io/AIR-Server-Doc/enroot/)
+
 ## 服务器架构
 
 ![all](1.png)

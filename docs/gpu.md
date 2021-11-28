@@ -18,9 +18,9 @@
 
 **任务**是对程序以及程序运行占用资源的抽象，每一个任务有的单独的编号（`JOBID`）。用户将程序提交至 slurm 系统后，任务队列会加入一个新任务；当集群中有可用的资源时由 slurm 系统自动分配资源与任务绑定，并从任务队列中取出并开始运行。
 
-## slurm 常用操作
+下面介绍使用Slurm系统的具体命令。
 
-### srun: 提交任务并前台运行
+## srun: 提交任务并前台运行
 
 ```shell
 srun --gres=gpu:a100:GPU_COUNT --time=d-hh:mm:ss [--mem=20000] CMD
@@ -35,10 +35,15 @@ CMD 为程序正常执行时的命令。使用 `srun` 命令提交任务后，�
     * 目前集群中只有 NVIDIA A100 40GB 一种GPU，用 a100 指代
     * 参数格式：`gpu:a100:GPU_COUNT`
 * `--time`: 程序运行的最长运行时间
-    * 默认值为1分钟，最大值为3天
+    * 默认值为1分钟，最大值为**3天**
     * 如果任务需要运行更长时间，请联系集群管理员
     * **超过最长运行时间的任务会被强行终止**
     * 参数格式： `d-hh:mm:ss`
+* `--nodelist`: （可选）指定程序运行的节点机，未指定时将由系统自动分配。目前可选的节点机有：
+    * `air-node-01` （支持容器应用）
+    * `air-node-03` （支持容器应用）
+    * `air-node-04` （暂不支持容器应用）
+
 * `--mem`: （可选）任务请求使用的内存
     * 默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数
     * 参数格式：整数，单位为 MB
@@ -56,7 +61,12 @@ CMD 为程序正常执行时的命令。使用 `srun` 命令提交任务后，�
 !!! danger "运行时间"
     为了合理使用GPU资源，请提交任务时指定一个合理的最长运行时间。请注意，过长的运行时间可能导致调度的优先级降低，详情请见下方调度策略说明。
 
-### squeue: 查看任务队列
+!!! info "容器应用支持"
+    目前集群中部分节点（`air-node-01`, `air-node-03`）已经支持容器应用。
+    提交运行容器的任务需要在使用 `srun` 命令使用额外的一些参数，具体使用方法请参考[这里](https://co1lin.github.io/AIR-Server-Doc/gpu/)。
+    需要运行容器的任务只能通过 `srun` 提交（不能通过 `sbatch`）。
+
+## squeue: 查看任务队列
 
 ```shell
 squeue
@@ -65,34 +75,30 @@ squeue
 显示正在运行与正在排队的任务。样例输出：
 
 ```shell
-JOBIDJOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    MIN_MEMORY          MEM_PER_TRES        TRES_PER_NODE       PENDING_TIME        REASON              
-1162 1162      liyang  python3   PENDING   0:00      7-00:00:00             0                   gpu:20000           gpu:a100:6          132683              Resources           
-1207 1207      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34464               Priority            
-1208 1208      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34460               Priority            
-1209 1209      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34455               Priority            
-1210 1210      wangym  python    PENDING   0:00      1:00                   0                   gpu:20000           gpu:a100:2          34438               Priority            
-1211 1211      wangzy  clipmean_2PENDING   0:00      4-04:00:00             0                   gpu:20000           gpu:a100:2          32737               Priority            
-656  656       most    dna       RUNNING   9-04:30:41UNLIMITED  air-node-04 240G                gpu:48000           gpu:a100:6          2                   None                
-1160 1160      wangzy  clipmean_2RUNNING   2-00:48:064-04:00:00 air-node-01 2000M               gpu:20000           gpu:a100:2          44                  None                
-1163 1163      wangzy  clipmean_2RUNNING   1-06:51:344-04:00:00 air-node-03 0                   gpu:20000           gpu:a100:2          16721               None                
-1174 1174      huoyy   bash      RUNNING   1-06:51:347-00:00:00 air-node-04 0                   gpu:20000           gpu:a100:1          376                 None                
-1186 1186      tb5zhh  bash      RUNNING   1-04:03:323-00:00:00 air-node-01 0                   gpu:20000           gpu:a100:1          0                   None                
-1187 1187      tb5zhh  bash      RUNNING   1-04:02:023-00:00:00 air-node-01 0                   gpu:20000           gpu:a100:1          23                  None                
-1188 1188      tb5zhh  bash      RUNNING   1-04:01:323-00:00:00 air-node-03 0                   gpu:20000           gpu:a100:1          30                  None                
-1189 1189      tb5zhh  bash      RUNNING   1-04:00:023-00:00:00 air-node-01 0                   gpu:20000           gpu:a100:1          98                  None                
-
+JOBIDJOBID     USER    GROUP       NAME      STATE     START_TIME          TIME        TIME_LIMIT  NODELIST    TRES_PER_NODPENDING_REASON
+1803 1803      huoyy   DAIR        python    PENDING   2021-11-28T05:12:06 0:00        10:00                   gpu:a100:1  4923    Resources
+1539 1539      wangym  JJ_Group    python    RUNNING   2021-11-23T16:25:40 4-04:45:40  5-00:00:00  air-node-04 gpu:a100:1  1       None
+1757 1757      liyang  DISCOVER    bash      RUNNING   2021-11-26T11:42:15 1-09:29:05  3-00:00:00  air-node-01 gpu:a100:8  0       None
+1793 1793      wangr   AIR_BIO     lm        RUNNING   2021-11-27T07:11:51 13:59:29    3-00:00:00  air-node-03 gpu:a100:1  38811   None
+1800 1800      yuqy    JJ_Group    python    RUNNING   2021-11-27T14:11:48 6:59:32     15:00:00    air-node-03 gpu:a100:2  0       None
+1801 1801      yuqy    JJ_Group    python    RUNNING   2021-11-27T14:12:06 6:59:14     15:00:00    air-node-03 gpu:a100:2  0       None
+1802 1802      chengp  JJ_Group    python    RUNNING   2021-11-27T17:34:58 3:36:22     2-00:00:00  air-node-03 gpu:a100:01 0       None
 ```
 
 输出表格字段含义：
 
 - `JOBID`: 任务序号
 - `USER`: 任务提交用户
+- `GROUP`: 任务提交用户所属实验室名称
 - `NAME`: 任务名称。默认值为可执行文件名 (`bash`, `python` 等)，使用 `sbatch` 命令提交任务可以自定义任务名
 - `STATE`: 任务状态，常见任务状态如下：
     - `RUNNING`: 任务正在运行
     - `PENDING`: 任务正在队列中等待分配资源
     - `COMPLETING`: 任务正在终止
     - 出现其他状态时请联系管理员
+- `START_TIME`: 任务开始时间。对于等待队列中任务，此字段显示预计最晚开始运行时间 
+    - 根据调度算法，`START_TIME` 字段在任务进入队列时即可确定并**不会改变**，任何时候队列中的任务只会**早于 `START_TIME` 开始运行**
+
 - `TIME`: 任务已运行时长
 - `TIME_LIMIT`: 任务最长运行时间。**超过最长运行时间的任务会被强行终止**
 - `NODE_LIST`: 任务使用的运算节点
@@ -102,25 +108,7 @@ JOBIDJOBID     USER    NAME      STATE     TIME      TIME_LIMIT NODELIST    MIN_
 - `PENDING_TIME`: 任务在队列中等待时长，单位为秒
 - `REASON`: 任务排队原因
 
-```shell
-squeue --start
-```
-
-显示正在排队的任务，以及任务开始运行的最晚时间。
-
-请注意，根据调度算法，`START_TIME` 字段在任务进入队列时即可确定并**不会改变**，任何时候队列中的任务只会**早于 `START_TIME` 开始运行**。
-
-```shell
-JOBID	PARTITION     NAME     USER ST          START_TIME  NODES SCHEDNODES           NODELIST(REASON)
-1207     debug   python   wangym PD 2021-11-14T09:29:49      1 (null)               (Priority)
-1208     debug   python   wangym PD 2021-11-14T09:29:49      1 (null)               (Priority)
-1209     debug   python   wangym PD 2021-11-14T09:29:49      1 (null)               (Priority)
-1210     debug   python   wangym PD 2021-11-14T09:29:49      1 (null)               (Priority)
-1211     debug clipmean   wangzy PD 2021-11-14T09:29:49      1 (null)               (Priority)
-1162     debug  python3   liyang PD 2021-11-14T23:12:54      1 (null)               (Resources)
-```
-
-### 调度策略
+## 调度策略
 
 整体而言，Slurm 系统按照进入队列的顺序来调度任务，但有一种情况允许后进入队列的任务先开始运行（插队）。当且仅当新进入队列的任务满足：
 
@@ -140,7 +128,7 @@ JOBID	PARTITION     NAME     USER ST          START_TIME  NODES SCHEDNODES      
     
     这里的调度规则，也是希望大家合理指定任务最长运行时间的原因。最长运行时间越短，任务块的竖直长度越短，就越有可能被安排在距离桶底近的位置，从而越早开始执行。
 
-### scontrol: 查看正在运行任务的状态
+## scontrol: 查看正在运行任务的状态
 
 ```shell
 scontrol show job JOBID
@@ -148,7 +136,7 @@ scontrol show job JOBID
 
 该命令返回任务的详细状态。在该命令的输出中，能够找到关于任务的所有信息：提交时间、开始时间、运行时长、申请资源、排队时长、排队原因等。
 
-### sinfo: 查看集群运算节点的状态
+## sinfo: 查看集群运算节点的状态
 
 ```shell
 sinfo
@@ -187,7 +175,7 @@ air-node-04         mixed       up    gpu:a100:8                    gpu:a100:8(I
 - `ALLOC_MEM`: 节点已分配内存，单位为MB
 - `REASON`: 节点异常状态原因
 
-### scancel: 取消任务
+## scancel: 取消任务
 
 ```shell
 scancel JOBID
@@ -199,7 +187,7 @@ scancel JOBID
 
 该操作不可逆，执行前请再三确认。
 
-### sbatch: 批量提交后台任务
+## sbatch: 批量提交后台任务
 
 ```shell
 sbatch run.sh
@@ -220,6 +208,7 @@ sbatch run.sh
 * `--job-name`: 提交的任务名称。会出现在 `squeue` 命令的 `NAME` 字段内，默认为可执行文件名。
 * `--gres`: 任务申请的 GPU 资源，格式同 `srun` 中 `--gres`
 * `--time`: 任务最长运行时间，格式同 `srun` 中 `--time`
+* `--nodelist`: （可选）指定任务运行的节点机，格式同 `srun` 中 `--nodelist`
 * `--array`: （可选）提交批量任务（任务组）。
     * 使用此选项时，会一次性将多个任务提交至 Slurm 系统。
     * 每一个任务组与普通任务的地位是等同的，任务组本身有一个 ID (`ARRAYID`)，这个 ID 可以通过 `squeue` 命令查看。**对这个 ID 使用 `scancel` 会取消任务组中所有任务**
@@ -263,6 +252,8 @@ python -V
 python -c "print ('Hello, world!')"
 ```
 
-## 其它限制
+## 任务提交/运行限制
 
-每个用户在集群中最多同时运行 4 个任务。
+**每个用户在集群中最多同时运行 4 个任务**；等待队列中的任务数量不受限制。
+
+**每个任务最长运行时间为3天。**
