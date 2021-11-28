@@ -297,21 +297,21 @@
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 内存占用较大可能会被终止
+    3. 做好宕机等灾难发生的准备
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
-    4. 做好宕机等灾难发生的准备
+    4. 实验环境
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#5" class="md-nav__link">
-    5. 实验环境
+    5. 内存占用较大可能会被终止
   </a>
   
 </li>
@@ -349,6 +349,21 @@
     <li class="md-nav__item">
       <a href="../gpu/" class="md-nav__link">
         通过 slurm 系统使用 GPU 资源
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enroot/" class="md-nav__link">
+        在集群中使用容器应用
       </a>
     </li>
   
@@ -412,21 +427,21 @@
       
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    3. 内存占用较大可能会被终止
+    3. 做好宕机等灾难发生的准备
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
-    4. 做好宕机等灾难发生的准备
+    4. 实验环境
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#5" class="md-nav__link">
-    5. 实验环境
+    5. 内存占用较大可能会被终止
   </a>
   
 </li>
@@ -458,34 +473,32 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 查看当前用户组的磁盘配额</span>
 <span class="linenos" data-linenos="2 "></span>ssh air-storage quota -gs
 </code></pre></div>
-<h2 id="3">3. 内存占用较大可能会被终止</h2>
-<p>为了避免阻塞操作，集群中的跳板机上部署了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 避免内存占用过多。</p>
-<p>如果在跳板机上测试程序，请注意当可用内存低于 10% 时，内存占用最多的进程将被杀死。</p>
-<p>如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考<a href="https://co1lin.github.io/AIR-Server-Doc/basis/">这里</a>。</p>
-<div class="admonition tips">
-<p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
-</div>
-<h2 id="4">4. 做好宕机等灾难发生的准备</h2>
+<h2 id="3">3. 做好宕机等灾难发生的准备</h2>
 <p>我们尽可能保证服务器的高可靠性，但是我们并不能保证服务器永不宕机。</p>
 <p>为了实验数据以及进度的安全，请做好包括但不限于以下几种准备：</p>
 <ol>
 <li>使用 GitHub 等平台云端托管代码，防止硬盘损坏造成代码丢失。</li>
 <li>在跑实验时适度保存 checkpoints ，以在宕机等意外发生之后能快速恢复到之前的实验状态。</li>
 </ol>
-<h2 id="5">5. 实验环境</h2>
-<ol>
-<li>所有普通用户没有在集群上通过 <code>apt</code> 安装软件包的权限。</li>
-<li>一般机器学习所需的 Python 环境可以通过每个用户创建自己的 <a href="conda">conda 环境</a>来满足；用户有权限在自己的环境下通过 <code>conda</code> 或 <code>pip</code> 安装所需的 Python 包。</li>
-<li>NVIDIA GPU 底层驱动以及 CUDA Toolkit 已经安装好了。遵循一般惯例， CUDA 的安装路径在 <code>/usr/local</code> 下，如 <code>/usr/local/cuda</code> （默认版本），或者 <code>/usr/local/cuda11.1</code> （特定版本）。使用时只需根据这个路径信息配置好环境变量（通常为 <code>CUDA_HOME</code> ）即可。</li>
-<li>PyTorch 和其它包一样，在每个实验中的版本都可能不同，因此请在自己的环境中自行安装。在 <code>/home/share</code> 下可以直接通过 <code>pip install</code> 安装至虚拟环境的安装包，如果满足需求可以直接安装至自己的环境使用。</li>
-</ol>
+<h2 id="4">4. 实验环境</h2>
+<p>为了避免对服务器环境造成破坏，用户没有在集群上通过 <code>apt</code> 安装软件包的权限。</p>
+<p>一般机器学习所需的 Python 环境可以通过每个用户创建自己的 <a href="conda">conda 环境</a>来满足；用户可以在自己的虚拟环境通过 <code>conda</code> 或 <code>pip</code> 安装所需的 Python 包。</p>
+<p>NVIDIA GPU 底层驱动以及 CUDA Toolkit 已经安装好了。遵循一般惯例， CUDA 的安装路径在 <code>/usr/local</code> 下，如 <code>/usr/local/cuda</code> （默认版本），或者 <code>/usr/local/cuda11.1</code> （特定版本）。使用时只需根据这个路径信息配置好环境变量（通常为 <code>CUDA_HOME</code> ）即可。</p>
+<p>PyTorch 和其它包一样，在每个实验中的版本都可能不同，因此请在自己的环境中自行安装。在 <code>/home/share</code> 目录下有一些已下载的 <code>whl</code> 文件，可以直接通过 <code>pip install</code> 安装至虚拟环境的安装包；如果满足需求可以直接安装至自己的环境使用。</p>
+<h2 id="5">5. 内存占用较大可能会被终止</h2>
+<p>为了避免阻塞操作，集群中的跳板机上部署了 <a href="https://github.com/rfjakob/earlyoom">earlyoom - The Early OOM Daemon</a> 避免内存占用过多。</p>
+<p>如果在跳板机上测试程序，请注意当可用内存低于 10% 时，内存占用最多的进程将被杀死。</p>
+<p>如果使用 Slurm 系统中跳板机，每申请一张 GPU 会配给 20GB 的内存，使用超出配给内存的任务将被杀死。如果需要申请更多内存，请参考<a href="https://co1lin.github.io/AIR-Server-Doc/basis/">这里</a>。</p>
+<div class="admonition tips">
+<p class="admonition-title">保存 checkpoints 以减少实验进程被杀死后的损失</p>
+</div>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (61.36%), <a href='mailto:mail@co1in.me'>Co1lin</a> (38.64%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (80.43%), <a href='mailto:mail@co1in.me'>Co1lin</a> (19.57%)</span>
       </small>
     </div>
   

@@ -9,19 +9,19 @@
       
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
-        <title>Server Usage Guide of AIR</title>
+        <title>在集群中使用容器应用 - Server Usage Guide of AIR</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a57b2b03.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -55,7 +55,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -78,7 +78,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Server Usage Guide of AIR" class="md-header__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
+    <a href=".." title="Server Usage Guide of AIR" class="md-header__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              概述
+              在集群中使用容器应用
             
           </span>
         </div>
@@ -200,7 +200,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Server Usage Guide of AIR" class="md-nav__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
+    <a href=".." title="Server Usage Guide of AIR" class="md-nav__button md-logo" aria-label="Server Usage Guide of AIR" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -230,6 +230,66 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basis/" class="md-nav__link">
+        注意事项
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conda/" class="md-nav__link">
+        使用 Conda
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpu/" class="md-nav__link">
+        通过 slurm 系统使用 GPU 资源
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -242,12 +302,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          概述
+          在集群中使用容器应用
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        概述
+      <a href="./" class="md-nav__link md-nav__link--active">
+        在集群中使用容器应用
       </a>
       
         
@@ -267,22 +327,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 使用前必读
+  <a href="#1-docker-enroot" class="md-nav__link">
+    1. 将 Docker 镜像转换为 enroot 格式镜像
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-updates" class="md-nav__link">
-    2. Updates
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3. 服务器架构
+  <a href="#2-srun" class="md-nav__link">
+    2. 通过 srun 命令提交在容器中运行的命令
   </a>
   
 </li>
@@ -303,67 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="basis/" class="md-nav__link">
-        注意事项
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="conda/" class="md-nav__link">
-        使用 Conda
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="gpu/" class="md-nav__link">
-        通过 slurm 系统使用 GPU 资源
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="enroot/" class="md-nav__link">
-        在集群中使用容器应用
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="admin/" class="md-nav__link">
+      <a href="../admin/" class="md-nav__link">
         运维备忘
       </a>
     </li>
@@ -398,22 +391,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 使用前必读
+  <a href="#1-docker-enroot" class="md-nav__link">
+    1. 将 Docker 镜像转换为 enroot 格式镜像
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-updates" class="md-nav__link">
-    2. Updates
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3. 服务器架构
+  <a href="#2-srun" class="md-nav__link">
+    2. 通过 srun 命令提交在容器中运行的命令
   </a>
   
 </li>
@@ -431,38 +417,52 @@
               
   
                 
-                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/enroot.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="_1">概述</h1>
-<h2 id="1">1. 使用前必读</h2>
-<div class="admonition danger">
-<p class="admonition-title">请认真阅读本指南</p>
-<p>这是一份 AIR 计算资源的使用指南，其中包括了若干注意事项和命令帮助。
-为了服务器的稳定运行以及使用者的数据安全，请各位用户认真阅读。
-如果发现本指南中的疏漏之处，请联系管理员，或点击右上角链接进入 GitHub 提交 issue 或 pull request 。</p>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">不要着急使用</p>
-<p>请阅读 <a href="https://co1lin.github.io/AIR-Server-Doc/basis/">注意事项</a> 。</p>
-</div>
-<h2 id="2-updates">2. Updates</h2>
-<p>2021.11.27 更新：</p>
+                <h1 id="_1">在集群中使用容器应用</h1>
+<p>由于 Docker 容器存在的一些不足，因此我们采用 NVIDIA 提供的工具 <a href="https://github.com/NVIDIA/enroot">enroot</a> 来在集群上运行 Docker 应用。如果需要使用容器应用，请参照下面的步骤进行操作。</p>
+<h2 id="1-docker-enroot">1. 将 Docker 镜像转换为 enroot 格式镜像</h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># From Docker hub</span>
+<span class="linenos" data-linenos=" 2 "></span>enroot import docker://<span class="o">[</span>USER@<span class="o">][</span>REGISTRY#<span class="o">]</span>IMAGE<span class="o">[</span>:TAG<span class="o">]</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1"># Example: </span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1"># docker pull pytorch/pytorch -&gt; enroot import docker://pytorch/pytorch</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1"># From Docker daemon</span>
+<span class="linenos" data-linenos=" 7 "></span>enroot import dockerd://IMAGE<span class="o">[</span>:TAG<span class="o">]</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1"># Examples</span>
+<span class="linenos" data-linenos=" 9 "></span>docker images
+<span class="linenos" data-linenos="10 "></span><span class="c1"># REPOSITORY        TAG     IMAGE ID                CREATED                 SIZE</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># openjdk               8     448f9e615795    11 days ago     526MB</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1"># -&gt; enroot import dockerd://openjdk:8</span>
+</code></pre></div>
+<p>运行命令后，会在当前目录下生成<code>.sqsh</code> 格式的本地镜像。</p>
+<h2 id="2-srun">2. 通过 <code>srun</code> 命令提交在容器中运行的命令</h2>
+<p>只能通过 <code>srun</code> 命令提交在容器中运行的命令（不支持 <code>sbatch</code> ）。</p>
+<p>阅读以下部分前请先阅读<a href="https://co1lin.github.io/AIR-Server-Doc/gpu/#21-srun"> <code>srun</code> 命令</a>的使用方法。如果需要在容器中运行命令，仅需要在调用 <code>srun</code> 命令时额外添加下面部分参数即可：</p>
 <ul>
-<li>任务运行时间上限调整为<strong>3天</strong>，用户运行任务上限为<strong>4个</strong>（队列中任务数量无限制）。如有特殊需求请联系管理员</li>
-<li>已在 <code>air-node-01</code> 与 <code>air-node-03</code> 上添加容器运行支持，如需使用请参考<a href="https://co1lin.github.io/AIR-Server-Doc/enroot/">这里</a></li>
+<li><code>--container-image</code>: 容器镜像。可以为上一步生成 <code>.sqsh</code> 文件路径，也可以是镜像 URL 如 <code>pytorch/pytorch</code>. 推荐使用前者作为输入，避免重复 <code>import</code> 浪费时间</li>
+<li><code>--container-mounts=SRC:DST[:FLAGS][,SRC:DST...]</code>: （可选）路径映射。将当前系统中 <code>SRC</code> 映射至容器内 <code>DST</code>，如为可读写映射，需将 <code>FLAGS</code> 置为 <code>rw</code></li>
+<li><code>--container-save=SAVE_PATH</code>: （可选）容器保存目录。如果指定这一参数，运行结束后容器会保存自身状态至 <code>SAVE_PATH</code> 下的 <code>.sqsh</code> 格式文件</li>
+<li><code>--container-mount-home</code>: （可选）挂载 <code>/home</code> 目录</li>
+<li><code>--no-container-mount-home</code>: （可选）不挂载 <code>/home</code> 目录</li>
+<li><code>--container-remap-root</code>:  （可选）在容器内身份为 <code>root</code></li>
+<li>
+<p><code>--container-writable</code>: （可选）容器内文件系统挂载为可读写</p>
+</li>
+<li>
+<p><code>--container-readonly</code>: （可选）容器内文件系统挂载为只读</p>
+</li>
 </ul>
-<h2 id="3">3. 服务器架构</h2>
-<p><img alt="all" src="1.png" /></p>
                 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (68.18%), <a href='mailto:mail@co1in.me'>Co1lin</a> (31.82%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a></span>
       </small>
     </div>
   
@@ -483,15 +483,30 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        
+        <a href="../gpu/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 通过 slurm 系统使用 GPU 资源" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              通过 slurm 系统使用 GPU 资源
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="basis/" class="md-footer__link md-footer__link--next" aria-label="Next: 注意事项" rel="next">
+        <a href="../admin/" class="md-footer__link md-footer__link--next" aria-label="Next: 运维备忘" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              注意事项
+              运维备忘
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -522,12 +537,12 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../assets/javascripts/bundle.b1047164.min.js"></script>
       
-        <script src="javascripts/config.js"></script>
+        <script src="../javascripts/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
