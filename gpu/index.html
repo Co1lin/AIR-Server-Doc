@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
     
     
       
@@ -17,7 +17,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.f7951f6f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.bb3983ee.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
@@ -585,7 +585,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 </div>
 <div class="admonition info">
 <p class="admonition-title">容器应用支持</p>
-<p>目前集群中部分节点（<code>air-node-01</code>, <code>air-node-03</code>）已经支持容器应用。
+<p>目前集群中所有节点已经支持容器应用。
 提交运行容器的任务需要在使用 <code>srun</code> 命令使用额外的一些参数，具体使用方法请参考<a href="https://co1lin.github.io/AIR-Server-Doc/gpu/">这里</a>。
 需要运行容器的任务只能通过 <code>srun</code> 提交（不能通过 <code>sbatch</code>）。</p>
 </div>
@@ -765,8 +765,8 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <span class="linenos" data-linenos="18 "></span>python -c <span class="s2">&quot;print (&#39;Hello, world!&#39;)&quot;</span>
 </code></pre></div>
 <h2 id="9">9. 任务提交/运行限制</h2>
-<p><strong>每个用户在集群中最多同时运行 4 个任务</strong>；等待队列中的任务数量不受限制。</p>
-<p><strong>每个任务最长运行时间为3天。</strong></p>
+<p><strong>每个用户在集群中最多同时运行 6 个任务</strong>；等待队列中的任务数量不受限制。</p>
+<p><strong>每个任务最长运行时间为 5 天。</strong></p>
 
               
 
@@ -841,10 +841,10 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.361d90f1.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.649a939e.min.js"></script>
+      <script src="../assets/javascripts/bundle.289a2a4b.min.js"></script>
       
         <script src="../javascripts/config.js"></script>
       
