@@ -4,11 +4,11 @@ edit_uri: edit/main/docs/
 
 nav:
   - 'index.md'
+  - 'vpn.md'
   - 'basis.md'
   - 'conda.md'
   - 'gpu.md'
   - 'enroot.md'
-  - 'admin.md'
 
 theme:
   name: material
