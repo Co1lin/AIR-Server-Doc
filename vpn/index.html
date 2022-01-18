@@ -13,7 +13,7 @@
     
     
       
-        <title>Faq - Server Usage Guide of AIR</title>
+        <title>VPN - Server Usage Guide of AIR</title>
       
     
     
@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#vpn" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -90,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Faq
+              VPN
             
           </span>
         </div>
@@ -235,11 +240,59 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../vpn/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          VPN
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         VPN
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-vpn" class="md-nav__link">
+    1. VPN 使用方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-vpn" class="md-nav__link">
+    2. VPN 内网资源
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -311,26 +364,78 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-vpn" class="md-nav__link">
+    1. VPN 使用方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-vpn" class="md-nav__link">
+    2. VPN 内网资源
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
   
                 
-<a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/faq.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/vpn.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-  <h1>Faq</h1>
-
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">export</span> <span class="nv">HTTP_PROXY</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
-<span class="linenos" data-linenos="2 "></span><span class="nb">export</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
-<span class="linenos" data-linenos="3 "></span><span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
-<span class="linenos" data-linenos="4 "></span><span class="nb">export</span> <span class="nv">https_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
-<span class="linenos" data-linenos="5 "></span><span class="nb">export</span> <span class="nv">ALL_PROXY</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
-<span class="linenos" data-linenos="6 "></span><span class="nb">export</span> <span class="nv">all_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>
-</code></pre></div>
+<h1 id="vpn">VPN</h1>
+<div class="admonition danger">
+<p class="admonition-title">春节之后只能通过 VPN 访问集群</p>
+<p>2022年2月7日之后，集群资源将只能通过 VPN 访问</p>
+</div>
+<h2 id="1-vpn">1. VPN 使用方法</h2>
+<ol>
+<li>打开浏览器输入 <a href="https://103.242.175.254">https://103.242.175.254</a>，点击下载</li>
+</ol>
+<p><img src="./vpn_login.png" style="zoom: 33%;" /></p>
+<ol>
+<li>安装 aTrust 客户端</li>
+<li>安装完成后进入网页端输入用户名、密码登陆</li>
+</ol>
+<h2 id="2-vpn">2. VPN 内网资源</h2>
+<ol>
+<li><code>10.0.0.251</code> : Slurm 集群跳板机</li>
+<li><code>10.0.0.3</code> : 原 8 * 3090 集群</li>
+<li><code>10.0.0.1</code>: 原 10 * 3090 集群</li>
+</ol>
+<p>连接 VPN 后，可正常通过 ssh 等工具访问资源</p>
 
               
 
@@ -349,6 +454,41 @@
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: 概述" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              概述
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../basis/" class="md-footer__link md-footer__link--next" aria-label="Next: 注意事项" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              注意事项
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

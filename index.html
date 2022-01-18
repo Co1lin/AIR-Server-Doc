@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
     
     
       
@@ -17,7 +17,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.cd566b2a.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
@@ -54,7 +54,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -297,6 +297,21 @@
   
   
     <li class="md-nav__item">
+      <a href="vpn/" class="md-nav__link">
+        VPN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="basis/" class="md-nav__link">
         注意事项
       </a>
@@ -344,21 +359,6 @@
     <li class="md-nav__item">
       <a href="enroot/" class="md-nav__link">
         在集群中使用容器应用
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="admin/" class="md-nav__link">
-        运维备忘
       </a>
     </li>
   
@@ -442,6 +442,10 @@
 <p>请阅读 <a href="https://co1lin.github.io/AIR-Server-Doc/basis/">注意事项</a> 。</p>
 </div>
 <h2 id="2-updates">2. Updates</h2>
+<p>2022.01.18 更新：</p>
+<ul>
+<li>加入 VPN 系统使用说明。为保护资源不被攻击，2022年2月7日起集群资源将只能通过 VPN 访问</li>
+</ul>
 <p>2022.01.04 更新：</p>
 <ul>
 <li>每个用户在集群中最多同时运行任务数量调整为 <strong>6 个</strong></li>
@@ -472,7 +476,7 @@
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (82.05%), <a href='mailto:mail@co1in.me'>Co1lin</a> (17.95%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (83.72%), <a href='mailto:mail@co1in.me'>Co1lin</a> (16.28%)</span>
       </small>
     </div>
   
@@ -489,13 +493,13 @@
       
       
         
-        <a href="basis/" class="md-footer__link md-footer__link--next" aria-label="Next: 注意事项" rel="next">
+        <a href="vpn/" class="md-footer__link md-footer__link--next" aria-label="Next: VPN" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              注意事项
+              VPN
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -525,10 +529,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="assets/javascripts/bundle.01de222e.min.js"></script>
       
         <script src="javascripts/config.js"></script>
       

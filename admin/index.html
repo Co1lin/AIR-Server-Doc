@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
     
     
       
@@ -17,7 +17,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.cd566b2a.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
@@ -54,7 +54,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -242,6 +242,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../vpn/" class="md-nav__link">
+        VPN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../basis/" class="md-nav__link">
         注意事项
       </a>
@@ -294,76 +309,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          运维备忘
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        运维备忘
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-denyhosts" class="md-nav__link">
-    1. Denyhosts
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-processes" class="md-nav__link">
-    2. Processes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-pytorch-wheel" class="md-nav__link">
-    3. Pytorch wheel 下载地址
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -391,22 +336,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-denyhosts" class="md-nav__link">
-    1. Denyhosts
+  <a href="#denyhosts" class="md-nav__link">
+    Denyhosts
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-processes" class="md-nav__link">
-    2. Processes
+  <a href="#processes" class="md-nav__link">
+    Processes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-pytorch-wheel" class="md-nav__link">
-    3. Pytorch wheel 下载地址
+  <a href="#pytorch-wheel" class="md-nav__link">
+    Pytorch wheel 下载地址
   </a>
   
 </li>
@@ -430,18 +375,18 @@
 
 
 <h1 id="_1">运维备忘</h1>
-<h2 id="1-denyhosts">1. Denyhosts</h2>
+<h2 id="denyhosts">Denyhosts</h2>
 <p>解除IP封禁：</p>
 <ul>
 <li>将待解除IP地址列入<code>WORK_DIR/allowed-hosts</code></li>
 <li>AIR3上<code>WORK_DIR</code>为<code>/var/lib/denyhosts</code></li>
 </ul>
-<h2 id="2-processes">2. Processes</h2>
+<h2 id="processes">Processes</h2>
 <p>根据PID查看工作目录：</p>
 <ul>
 <li><code>pwdx [PID]</code></li>
 </ul>
-<h2 id="3-pytorch-wheel">3. Pytorch wheel 下载地址</h2>
+<h2 id="pytorch-wheel">Pytorch wheel 下载地址</h2>
 <p>https://download.pytorch.org/whl/torch_stable.html</p>
 
               
@@ -461,26 +406,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../enroot/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 在集群中使用容器应用" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              在集群中使用容器应用
-            </div>
-          </div>
-        </a>
-      
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -502,10 +427,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../assets/javascripts/bundle.01de222e.min.js"></script>
       
         <script src="../javascripts/config.js"></script>
       
