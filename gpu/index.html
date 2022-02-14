@@ -664,7 +664,10 @@
 <p>最后，Slurm干的事情就是把任务（信）分发到 Slurm 节点（工厂），Slurm 节点执行任务指定的程序（工厂拆开信封开始生产）。</p>
 <p>下面介绍使用 Slurm 系统的具体使用方法。</p>
 <h2 id="2-slurm">2. Slurm 系统的基本使用方法</h2>
-<p>!!! warning 要使用 conda 虚拟环境，需要在执行 slurm 相关命令前执行 <code>conda activate xxx</code></p>
+<div class="admonition warning 先进入 conda 环境">
+<p class="admonition-title">Warning</p>
+</div>
+<p>要使用 conda 虚拟环境，需要在执行 slurm 相关命令前执行 <code>conda activate xxx</code></p>
 <p>!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，任务名字叫 <code>hard working</code></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>srun --gres<span class="o">=</span>gpu:a100:2 --time <span class="m">3</span>-12:00:00 --job-name <span class="s2">&quot;hard working&quot;</span> sleep <span class="m">10000</span> 
 <span class="linenos" data-linenos="2 "></span><span class="c1"># 真正用的时候还是不要跑 sleep 了</span>
@@ -710,8 +713,11 @@
 <span class="linenos" data-linenos="11 "></span><span class="nb">exit</span>
 <span class="linenos" data-linenos="12 "></span><span class="c1"># Ctrl+d 也行</span>
 </code></pre></div>
-<p>!!! tips 我想一次提交100个任务排着队，有空就慢慢跑；第 i 个任务就跑 <code>python run.py i</code></p>
-<p>创建文件 <code>batch.sh</code> （文件名可改）</p>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+</div>
+<p>我想一次提交100个任务排着队，有空就慢慢跑；第 i 个任务就跑 <code>python run.py i</code>
+  创建文件 <code>batch.sh</code> （文件名可改）</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="ch">#!/bin/bash</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="c1">#SBATCH --job-name example                  # 任务名叫 example</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="c1">#SBATCH --array 0-99                        # 提交 100 个子任务，序号分别为 0,1,2,...99</span>
@@ -955,7 +961,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (98.67%), <a href='mailto:mail@co1in.me'>Co1lin</a> (1.33%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (98.68%), <a href='mailto:mail@co1in.me'>Co1lin</a> (1.32%)</span>
       </small>
     </div>
   
