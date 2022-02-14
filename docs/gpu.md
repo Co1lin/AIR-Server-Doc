@@ -1,7 +1,5 @@
 # 通过 slurm 系统使用 GPU 资源
 
-当前集群中，A100 显卡通过 slurm 系统分配使用；3090 显卡可以直接使用。
-
 !!! tip "Slurm 系统"
     **Slurm 任务调度工具 **，是一个用于 Linux 和 Unix 内核系统的免费、开源的任务调度工具，被世界范围内的超级计算机和计算集群广泛采用。它提供了三个关键功能：
 
@@ -9,16 +7,161 @@
     2. 它提供了一个框架，用于启动、执行、监测在节点上运行着的任务 (通常是并行的任务，例如 MPI)
     3. 为任务队列合理地分配资源
 
-## 节点与任务
+## Slurm 系统的基本概念
 
-在 slurm 系统中，**节点**指可以独立运行程序的服务器。目前 slurm 系统内共有4个节点：
+### 程序：蛋糕配方
 
-* 登录节点 `air-server` ：集群用户可以通过 `ssh` 连接 `103.242.175.247` 登录。跳板节点上配备 2 张 A100 GPU 供调试，该 GPU 使用无需通过 slurm 系统。
-* 运算节点：共有 3 个，分别是 `air-node-01`（配备 8 张 A100 GPU），`air-node-03`（配备 6 张 A100 GPU），`air-node-04`（配备 8 张 A100 GPU）。集群用户需要通过 slurm 系统提交任务使用运算结点上的 GPU 资源，使用方式见下。
+Slurm 系统是一个任务调度系统，意味着 Slurm 系统安排程序运行的位置（服务器），协调程序占用的资源，但不会参与程序的具体运行过程。任何程序都可以在 Slurm 系统中运行！连接 VPN ，登陆 `10.0.0.251` ，然后试一试使用 Slurm 系统：
 
-**任务**是对程序以及程序运行占用资源的抽象，每一个任务有的单独的编号（`JOBID`）。用户将程序提交至 slurm 系统后，任务队列会加入一个新任务；当集群中有可用的资源时由 slurm 系统自动分配资源与任务绑定，并从任务队列中取出并开始运行。
+```shell
+srun whoami
+```
 
-下面介绍使用Slurm系统的具体命令。
+### 数据：蛋糕原料
+
+Slurm 系统内包含多个服务器，但是所有服务器的 `/home` 目录都由存储节点提供，是一个共享的分区，不用考虑数据在服务器之间拷贝同步的问题。执行以下命令尝试一下吧！
+
+````shell
+echo 'Hi!' > ~/tmp
+hostname && cat ~/tmp
+srun hostname && cat ~/tmp
+````
+
+### Slurm 节点：蛋糕工厂
+
+在 Slurm 系统中，**节点**指可以独立运行程序的服务器，所有服务器都可以执行用户提交的程序。目前 slurm 系统内共有 5 个节点：
+
+* 登录节点 `air-server` ：连接 VPN 后 ssh 登陆 `10.0.0.251` 
+
+  * 跳板节点上配备 2 张 A100 GPU 供调试，该 GPU 使用无需通过 slurm 系统。
+
+* 运算节点：共有 4 个，分别是
+
+  * `air-node-02`（配备 8 张 A100 GPU）
+  * `air-node-03`（配备 6 张 A100 GPU）
+  * `air-node-04`（配备 6 张 A100 GPU）
+  * `air-node-05`（配备 8 张 A100 GPU）
+
+  使用运算结点上的 GPU 资源，需要通过 slurm 系统提交**任务**
+
+### 任务：装载配方的信封
+
+**任务**是对程序以及程序运行占用资源的封装，每一个任务有的单独的编号（`JOBID`）。
+
+任务在 slurm 中的生命周期如下：
+
+1. 任务 被用户**创建**并**提交**至 slurm 系统
+2. 任务 被计算优先级，**进入等待队列**相应位置
+3. 任务 被移除等待队列并**分配资源**，当 满足调度条件（可用资源充足，使用总量限制未达到，资源和时间上限在限制范围内）时
+4. 任务 在被分配的计算节点**开始执行**
+5. 任务 **结束**，关键信息计入审计系统后被销毁
+
+### Slurm 系统：配方信件中转站
+
+最后，Slurm干的事情就是把任务（信）分发到 Slurm 节点（工厂），Slurm 节点执行任务指定的程序（工厂拆开信封开始生产）。
+
+下面介绍使用 Slurm 系统的具体使用方法。
+
+## Slurm 系统的基本使用方法
+
+!!! warning 要使用 conda 虚拟环境，需要在执行 slurm 相关命令前执行 `conda activate xxx`
+
+!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，任务名字叫 `hard working`
+
+```shell
+srun --gres=gpu:a100:2 --time 3-12:00:00 --job-name "hard working" sleep 10000 
+# 真正用的时候还是不要跑 sleep 了
+```
+
+!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，当任务开始执行、结束时发邮件通知我
+
+```shell
+srun --gres=gpu:a100:2 --time 3-12:00:00 --mail-user abc@ef.gh --mail-type BEGIN,END
+```
+
+!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，还要使用 100GB 内存
+
+```shell
+srun --gres=gpu:a100:2 --time 3-12:00:00 --mem 100000 python ...
+```
+
+!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，还要使用 80 个核
+
+```shell
+srun --gres=gpu:a100:2 --time 3-12:00:00 --mem 100000 --cpus-per-task 80 python ...
+```
+
+!!! tips 我要使用 2 张 GPU，通过交互方式运行 python，3 小时（180分钟）就行
+
+```shell
+srun --gres=gpu:a100:2 --time 180 --pty python
+```
+
+!!! tips 我还没想好要跑什么程序，但是我得需要 1 张 GPU，3 天内能跑完
+
+```shell
+salloc --time=3-0 --gres=gpu:a100:1
+# 进入新的 shell，这个时候分配的 3 天时间就开始计时了
+
+# 当你想好后
+srun python ...
+# 还是没想好，先用交互模式试试手
+srun --pty python
+
+# 任务都跑完了，早点结束吧
+exit
+# Ctrl+d 也行
+```
+
+!!! tips 我想用一张 GPU 同时跑两个程序
+
+```shell
+srun --time=3-0 --gres=gpu:a100:1 --pty bash
+# 进入新的 bash 环境，这个时候分配的 3 天时间就开始计时了
+
+# 执行第一个程序，程序输出到 a.out 文件中
+python a.py 1>a.out 2>&1 &
+# 执行第二个程序，程序输出到 b.out 文件中
+python b.py 1>b.out 2>&1 &
+# 当然用 tmux / screen 也可以，不过注意 srun 本身在 tmux 中时就不要再用 tmux 了
+
+# 任务都跑完了，早点结束吧
+exit
+# Ctrl+d 也行
+```
+
+!!! tips 我想一次提交100个任务排着队，有空就慢慢跑；第 i 个任务就跑 `python run.py i`
+
+创建文件 `batch.sh` （文件名可改）
+
+```shell
+#!/bin/bash
+#SBATCH --job-name example                  # 任务名叫 example
+#SBATCH --array 0-99                        # 提交 100 个子任务，序号分别为 0,1,2,...99
+#SBATCH --gres gpu:a100:1                   # 每个子任务都用一张 A100 GPU
+#SBATCH --time 1-1:00:00                    # 子任务 1 天 1 小时就能跑完
+#SBATCH --output %A_%a.out                  # 100个程序输出重定向到 [任务id]_[子任务序号].out
+#SBATCH --mail-user example@gmail.com       # 这些程序开始、结束、异常突出的时候都发邮件告诉我
+#SBATCH --mail-type ALL                     
+
+# 任务 ID 通过 SLURM_ARRAY_TASK_ID 环境变量访问
+# 上述行指定参数将传递给 sbatch 作为命令行参数
+# 中间不可以有非 #SBATCH 开头的行
+
+# 执行 sbatch 命令前先通过 conda activate [env_name] 进入环境
+
+python run.py ${SLURM_ARRAY_TASK_ID}
+```
+
+## 任务优先级与调度策略
+
+TODO
+
+## 任务限制
+
+**每个用户在集群中最多同时运行 6 个任务**；等待队列中的任务数量不受限制。
+
+**每个任务最长运行时间为 5 天。**
 
 ## srun: 提交任务并前台运行
 
@@ -35,14 +178,18 @@ CMD 为程序正常执行时的命令。使用 `srun` 命令提交任务后，�
     * 目前集群中只有 NVIDIA A100 40GB 一种GPU，用 a100 指代
     * 参数格式：`gpu:a100:GPU_COUNT`
 * `--time`: 程序运行的最长运行时间
-    * 默认值为1分钟，最大值为**3天**
+    * 默认值为1分钟
     * 如果任务需要运行更长时间，请联系集群管理员
     * **超过最长运行时间的任务会被强行终止**
     * 参数格式： `d-hh:mm:ss`
 * `--nodelist`: （可选）指定程序运行的节点机，未指定时将由系统自动分配。目前可选的节点机有：
-    * `air-node-01` （支持容器应用）
-    * `air-node-03` （支持容器应用）
-    * `air-node-04` （暂不支持容器应用）
+    * `air-node-02`
+    * `air-node-03`
+    * `air-node-04`
+    * `air-node-05`
+* `--cpus-per-task`: （可选）任务请求使用的 CPU 核数
+    * 默认情况下，每申请一张GPU会配给 10 的 CPU 核心；因此除非程序需要使用大量 CPU 核心，无需指定此参数
+    * 参数格式：整数
 
 * `--mem`: （可选）任务请求使用的内存
     * 默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数
@@ -75,14 +222,13 @@ squeue
 显示正在运行与正在排队的任务。样例输出：
 
 ```shell
-JOBIDJOBID     USER    GROUP       NAME      STATE     START_TIME          TIME        TIME_LIMIT  NODELIST    TRES_PER_NODPENDING_REASON
-1803 1803      huoyy   DAIR        python    PENDING   2021-11-28T05:12:06 0:00        10:00                   gpu:a100:1  4923    Resources
-1539 1539      wangym  JJ_Group    python    RUNNING   2021-11-23T16:25:40 4-04:45:40  5-00:00:00  air-node-04 gpu:a100:1  1       None
-1757 1757      liyang  DISCOVER    bash      RUNNING   2021-11-26T11:42:15 1-09:29:05  3-00:00:00  air-node-01 gpu:a100:8  0       None
-1793 1793      wangr   AIR_BIO     lm        RUNNING   2021-11-27T07:11:51 13:59:29    3-00:00:00  air-node-03 gpu:a100:1  38811   None
-1800 1800      yuqy    JJ_Group    python    RUNNING   2021-11-27T14:11:48 6:59:32     15:00:00    air-node-03 gpu:a100:2  0       None
-1801 1801      yuqy    JJ_Group    python    RUNNING   2021-11-27T14:12:06 6:59:14     15:00:00    air-node-03 gpu:a100:2  0       None
-1802 1802      chengp  JJ_Group    python    RUNNING   2021-11-27T17:34:58 3:36:22     2-00:00:00  air-node-03 gpu:a100:01 0       None
+JOBIDJOBID     USER    GROUP       NAME              STATE     QOS                 TIME        TIME_LIMIT  NODELIST    TRES_PER_NODPENDING_TIM s REASON              PRIORITY
+4437 4437      wenh    AIot        bash              PENDING   normal              0:00        5-00:00:00              gpu:a100:2       254244 s AssocGrpGRESRunMinut10800655
+4245 4245      chenxx  DISCOVER    bash              PENDING   normal              0:00        5-00:00:00              gpu:a100:8       529623 s BadConstraints      0
+4244 4244      liyang  DISCOVER    bash              PENDING   normal              0:00        5-00:00:00              gpu:a100:8       530287 s BadConstraints      0
+4504 4504      wangzy  JJ_Group    sd02w12adap30-hcl-RUNNING   normal              17:17:06    3-00:00:00  air-node-03 gpu:a100:2            1 s None                480769
+4484 4484      yuqy    JJ_Group    advcl-sd02w12adap3RUNNING   normal              20:17:26    3-00:00:00  air-node-03 gpu:a100:2            0 s None                480769
+4515 4515      tb5zhh  DISCOVER    interactive       RUNNING   normal              5:09:52     1-00:00:00  air-node-02 gpu:8                 1 s None                346153
 ```
 
 输出表格字段含义：
@@ -91,42 +237,19 @@ JOBIDJOBID     USER    GROUP       NAME      STATE     START_TIME          TIME 
 - `USER`: 任务提交用户
 - `GROUP`: 任务提交用户所属实验室名称
 - `NAME`: 任务名称。默认值为可执行文件名 (`bash`, `python` 等)，使用 `sbatch` 命令提交任务可以自定义任务名
+- `QOS`: TODO
 - `STATE`: 任务状态，常见任务状态如下：
     - `RUNNING`: 任务正在运行
     - `PENDING`: 任务正在队列中等待分配资源
     - `COMPLETING`: 任务正在终止
     - 出现其他状态时请联系管理员
-- `START_TIME`: 任务开始时间。对于等待队列中任务，此字段显示预计最晚开始运行时间 
-    - 根据调度算法，`START_TIME` 字段在任务进入队列时即可确定并**不会改变**，任何时候队列中的任务只会**早于 `START_TIME` 开始运行**
-
 - `TIME`: 任务已运行时长
 - `TIME_LIMIT`: 任务最长运行时间。**超过最长运行时间的任务会被强行终止**
 - `NODE_LIST`: 任务使用的运算节点
 - `TRES_PER_NODE`: 任务申请使用的资源数量
-- `MIN_MEMORY`: 任务申请使用的最小内存
-- `MEM_PER_TRES`: 为每一张 GPU 卡配给的内存
 - `PENDING_TIME`: 任务在队列中等待时长，单位为秒
 - `REASON`: 任务排队原因
-
-## 调度策略
-
-整体而言，Slurm 系统按照进入队列的顺序来调度任务，但有一种情况允许后进入队列的任务先开始运行（插队）。当且仅当新进入队列的任务满足：
-
-1. 申请使用的资源能够被当前集群所满足（集群上有空闲的 GPU）
-2. 申请运行的最长时间不会导致队列现有任务开始时间推迟（不影响正在排队的任务）
-
-时，该新任务将允许优先被调度。
-
-!!! info "深入理解调度策略"
-    我们可以通过俄罗斯方块游戏来理解这个调度策略：集群可以形象化理解为一个固定宽度的桶，水平方向代表集群资源整体数量，竖直方向代表时间；每一个任务都是一个长方形（任务块），长方形的横边长为任务申请资源数量，竖边长为任务指定的最长运行时间。
-    
-    随着时间的推移，桶中的任务会逐渐下降，任务块接触桶底并逐渐在竖直方向上缩短，表示任务正在运行，并正在接近提交时指定的 deadline。
-    
-    任务进入调度队列的过程，就是每一个任务块进入集群桶中的过程。Slurm 系统会为每一个任务安排一个最靠近桶底的位置：当任务较少，可用资源较多，任务直接被安排在桶底，任务就可以马上开始执行；当可用资源无法满足任务需求时，任务会被安排在尽可能接近桶底的位置。值得说明的是，一旦任务进入桶中，任务在时间轴上的绝对位置**会被固定**，不会因为队列中的新任务而改变；这意味着一旦进入队列，任务就有一个最晚开始执行的时间节点。
-    
-    上述提到的插队规则，形象的理解就是：对于新进入桶中的任务块，如果在尽可能靠近桶底的位置上仍有能够放下该任务块的空位，则可以将任务置于该空位，这样一方面不会影响已经在桶中的任务，任务本身运行时间也能提前。
-    
-    这里的调度规则，也是希望大家合理指定任务最长运行时间的原因。最长运行时间越短，任务块的竖直长度越短，就越有可能被安排在距离桶底近的位置，从而越早开始执行。
+- `PRIORITY`: TODO
 
 ## scontrol: 查看正在运行任务的状态
 
@@ -145,10 +268,11 @@ sinfo
 该命令返回集群中运算节点的名称、节点资源总量、节点资源已使用量等信息。样例输出如下：
 
 ```shell
-NODELIST            STATE       AVAIL GRES                          GRES_USED                          MEMORY              ALLOCMEM            REASON              
-air-node-01         mixed       up    gpu:a100:8                    gpu:a100:7(IDX:1-7)                402800              140000              none                
-air-node-03         mixed       up    gpu:a100:6                    gpu:a100:6(IDX:0-5)                402800              120000              none                
-air-node-04         mixed       up    gpu:a100:8                    gpu:a100:8(IDX:0-7)                402800              285760              none
+NODELIST            STATE       AVAIL GRES                          CPUS(A/I/O/T)       GRES_USED                          MEMORY              ALLOCMEM            REASON              CPUS(A/I/O/T)
+air-node-02         mixed       up    gpu:a100:8                    80/80/0/160         gpu:a100:8(IDX:0-7)                320000              160000              none                80/80/0/160
+air-node-03         mixed       up    gpu:a100:6                    40/80/0/120         gpu:a100:4(IDX:0-1,3-4)            240000              80000               none                40/80/0/120
+air-node-04         idle        up    gpu:a100:6                    0/120/0/120         gpu:a100:0(IDX:N/A)                240000              0                   none                0/120/0/120
+air-node-05         idle        up    gpu:a100:8                    0/160/0/160         gpu:a100:0(IDX:N/A)                320000              0                   none                0/160/0/160
 ```
 
 输出表格字段含义：
@@ -251,9 +375,3 @@ echo ${SLURM_ARRAY_TASK_ID}
 python -V
 python -c "print ('Hello, world!')"
 ```
-
-## 任务提交/运行限制
-
-**每个用户在集群中最多同时运行 6 个任务**；等待队列中的任务数量不受限制。
-
-**每个任务最长运行时间为 5 天。**
