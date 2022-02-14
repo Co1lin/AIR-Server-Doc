@@ -64,7 +64,8 @@ srun hostname && cat ~/tmp
 
 ## Slurm 系统的基本使用方法
 
-!!! warning 要使用 conda 虚拟环境，需要在执行 slurm 相关命令前执行 `conda activate xxx`
+!!! warning 先进入 conda 环境
+  要使用 conda 虚拟环境，需要在执行 slurm 相关命令前执行 `conda activate xxx`
 
 !!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，任务名字叫 `hard working`
 
@@ -130,9 +131,9 @@ exit
 # Ctrl+d 也行
 ```
 
-!!! tips 我想一次提交100个任务排着队，有空就慢慢跑；第 i 个任务就跑 `python run.py i`
-
-创建文件 `batch.sh` （文件名可改）
+!!! tips 
+  我想一次提交100个任务排着队，有空就慢慢跑；第 i 个任务就跑 `python run.py i`
+  创建文件 `batch.sh` （文件名可改）
 
 ```shell
 #!/bin/bash
