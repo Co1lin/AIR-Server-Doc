@@ -442,6 +442,13 @@
 <p>请阅读 <a href="https://co1lin.github.io/AIR-Server-Doc/basis/">注意事项</a> 。</p>
 </div>
 <h2 id="2-updates">2. Updates</h2>
+<p>2022.02.16 更新：</p>
+<ul>
+<li>存储机软配额与硬配额分别调整为 <code>9216G</code> 与 <code>10240G</code> ，超过软配额之后的调整时间降低为 3 天</li>
+<li>文档添加了大量 Slurm 系统的<strong>概念解释</strong>，<strong>使用方法示例</strong></li>
+<li>Slurm 系统采用新的资源使用限制方式：<strong>累计资源使用时</strong>与<strong>当前资源使用时</strong>，原有的 GPU 使用数量，任务运行数量与任务运行时间的限制取消。具体文档说明请见<a href="https://co1lin.github.io/AIR-Server-Doc/gpu/">这里</a></li>
+<li>VPN 系统即将启用，请各位用户提前熟悉 VPN <a href="https://co1lin.github.io/AIR-Server-Doc/vpn/#2-vpn">使用方式</a></li>
+</ul>
 <p>2022.02.11 更新：</p>
 <ul>
 <li>存储机完成扩容，各组磁盘使用软配额与硬配额分别调整为 <code>7168G</code> 与 <code>8192G</code></li>
@@ -474,14 +481,14 @@
 <li>已在 <code>air-node-01</code> 与 <code>air-node-03</code> 上添加容器运行支持，如需使用请参考<a href="https://co1lin.github.io/AIR-Server-Doc/enroot/">这里</a></li>
 </ul>
 <h2 id="3">3. 服务器架构</h2>
-<p><img alt="all" src="1.png" /></p>
+<p><img alt="all" src="2.png" /></p>
 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (85.42%), <a href='mailto:mail@co1in.me'>Co1lin</a> (14.58%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (87.27%), <a href='mailto:mail@co1in.me'>Co1lin</a> (12.73%)</span>
       </small>
     </div>
   

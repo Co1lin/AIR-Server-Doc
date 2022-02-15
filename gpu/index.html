@@ -840,9 +840,28 @@
 <span class="linenos" data-linenos="2 "></span>sbatch batch.sh
 </code></pre></div>
 <h2 id="3">3. 任务优先级与调度策略</h2>
-<p>进入队列的任务按照以下公式计算优先级：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>P
+<p>进入队列的任务按照以下公式计算优先级，优先级数值越高，任务在队列中排队越靠前：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>P = 3 * p_age + 1 * p_fair + 10 * p_qos
 </code></pre></div>
+<p>其中， <code>p_age</code> ， <code>p_fair</code> ， <code>p_qos</code> 均为 0 到 1 范围内浮点数。各因子计算方法如下：</p>
+<ul>
+<li>
+<p><code>p_age</code> ：时间因子，由任务提交开始从 0.0 随时间均匀增长，3 天后增长至 1.0 随后保持不变</p>
+</li>
+<li>
+<p><code>p_fair</code> ：公平因子，由 Slurm 计算得到，可通过 <code>sshare</code> 命令查看。Slurm 系统保证</p>
+</li>
+<li>
+<p>集群资源使用量多的组，其组内用户的公平因子一定严格小于其它组的用户</p>
+</li>
+<li>
+<p>组内用户具有相同的公平因子</p>
+</li>
+<li>
+<p><code>p_qos</code> ：优先级因子。现在，集群上提交的任务具有 <code>qos</code> 属性，可通过 <code>--qos</code> 参数<strong>手动指定</strong>，可选值为 <code>high</code> 与 <code>normal</code> ； <code>high</code> 级别任务的优先级因子为 1.0 ，<code>normal</code> 级别任务的优先级因子为 0.0</p>
+</li>
+</ul>
+<p>每个用户最多只能有 1 个高优先级任务正在运行；每个组最多只能有 4 个高优先级任务在队列中</p>
 <h2 id="4">4. 任务限制</h2>
 <p>从 2022 年 2 月 1 日起，集群启用新的使用限制：</p>
 <h3 id="41">4.1 累计资源使用时限制</h3>
@@ -866,7 +885,7 @@
 <li>A100 GPU：11520 个 * 分钟（8 个 A100 GPU * 1 天）</li>
 </ul>
 <h3 id="43">4.3 高优先级任务限制</h3>
-<p>每一个用户最多提交 1 个高优先级任务。</p>
+<p>每一个用户最多有 1 个高优先级任务正在运行。</p>
 <p>每一个组最多提交 4 个高优先级任务。</p>
 <div class="admonition tip">
 <p class="admonition-title">绕开限制</p>
@@ -892,23 +911,30 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li>参数格式： <code>d-hh:mm:ss</code></li>
 </ul>
 </li>
-<li><code>--nodelist</code>: （可选）指定程序运行的节点机，未指定时将由系统自动分配。目前可选的节点机有：<ul>
+<li>
+<p><code>--qos</code>: （可选）任务的优先级别</p>
+<ul>
+<li>可选级别：<code>high</code>，<code>normal</code></li>
+<li>默认值：<code>normal</code></li>
+<li>每个用户最多只能有 1 个高优先级任务正在运行；每个组最多只能有 4 个高优先级任务在队列中</li>
+<li><code>high</code> 级别任务在队列中的优先级一定比 <code>normal</code> 级别任务要高，会被优先调度开始运行</li>
+</ul>
+</li>
+<li>
+<p><code>--nodelist</code>: （可选）指定程序运行的节点机，未指定时将由系统自动分配。目前可选的节点机有：</p>
+<ul>
 <li><code>air-node-02</code></li>
 <li><code>air-node-03</code></li>
 <li><code>air-node-04</code></li>
 <li><code>air-node-05</code></li>
 </ul>
 </li>
-<li>
-<p><code>--cpus-per-task</code>: （可选）任务请求使用的 CPU 核数</p>
-<ul>
+<li><code>--cpus-per-task</code>: （可选）任务请求使用的 CPU 核数<ul>
 <li>默认情况下，每申请一张GPU会配给 10 的 CPU 核心；因此除非程序需要使用大量 CPU 核心，无需指定此参数</li>
 <li>参数格式：整数</li>
 </ul>
 </li>
-<li>
-<p><code>--mem</code>: （可选）任务请求使用的内存</p>
-<ul>
+<li><code>--mem</code>: （可选）任务请求使用的内存<ul>
 <li>默认情况下，每申请一张GPU会配给 20GB 的内存；因此除非程序需要使用大量内存，无需指定此参数</li>
 <li>参数格式：整数，单位为 MB</li>
 </ul>
@@ -1041,6 +1067,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
 <li><code>--job-name</code>: 提交的任务名称。会出现在 <code>squeue</code> 命令的 <code>NAME</code> 字段内，默认为可执行文件名。</li>
 <li><code>--gres</code>: 任务申请的 GPU 资源，格式同 <code>srun</code> 中 <code>--gres</code></li>
 <li><code>--time</code>: 任务最长运行时间，格式同 <code>srun</code> 中 <code>--time</code></li>
+<li><code>--qos</code>: （可选）任务的优先级别，格式同 <code>srun</code> 中 <code>--qos</code></li>
 <li><code>--nodelist</code>: （可选）指定任务运行的节点机，格式同 <code>srun</code> 中 <code>--nodelist</code></li>
 <li><code>--array</code>: （可选）提交批量任务（任务组）。<ul>
 <li>使用此选项时，会一次性将多个任务提交至 Slurm 系统。</li>
@@ -1094,7 +1121,7 @@ CMD 为程序正常执行时的命令。使用 <code>srun</code> 命令提交任
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (98.86%), <a href='mailto:mail@co1in.me'>Co1lin</a> (1.14%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (98.91%), <a href='mailto:mail@co1in.me'>Co1lin</a> (1.09%)</span>
       </small>
     </div>
   

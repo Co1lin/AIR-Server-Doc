@@ -488,7 +488,7 @@
 <p>请参考<a href="https://co1lin.github.io/AIR-Server-Doc/gpu/">这里</a>。</p>
 <h2 id="2">2. 磁盘配额</h2>
 <p>服务器部署了中心化的存储节点 <code>air-storage</code> ，并通过NFS挂载在所有机器的 <code>/home</code> 目录下。</p>
-<p>目前，各个实验室在使用存储时均有 <code>7168G</code> 的软配额与 <code>8192G</code> 的硬配额。当存储使用量超过软配额时，有 7 天的过渡时间将存储使用量下降到配额内；当存储使用量超过软配额 7 天，或存储使用量超过硬配额，用户将不能再向磁盘写入更多数据。</p>
+<p>目前，各个实验室在使用存储时均有 <code>9216G</code> 的软配额与 <code>10240G</code> 的硬配额。当存储使用量超过软配额时，有 3 天的过渡时间将存储使用量下降到配额内；当存储使用量超过软配额 3 天，或存储使用量超过硬配额，用户将不能再向磁盘写入更多数据。</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 查看当前用户组的磁盘配额</span>
 <span class="linenos" data-linenos="2 "></span>ssh air-storage quota -gs
 </code></pre></div>
