@@ -11,7 +11,9 @@
 
 ### 程序：蛋糕配方
 
-Slurm 系统是一个任务调度系统，意味着 Slurm 系统安排程序运行的位置（服务器），协调程序占用的资源，但不会参与程序的具体运行过程。任何程序都可以在 Slurm 系统中运行！连接 VPN ，登陆 `10.0.0.251` ，然后试一试使用 Slurm 系统：
+Slurm 系统是一个任务调度系统，意味着 Slurm 系统安排程序运行的位置（服务器），协调程序占用的资源，但不会参与程序的具体运行过程。任何程序都可以在 Slurm 系统中运行！
+
+尝试使用 Slurm 系统吧！连接 VPN ，登陆 `10.0.0.251` ，执行以下命令：
 
 ```shell
 srun whoami
@@ -19,7 +21,9 @@ srun whoami
 
 ### 数据：蛋糕原料
 
-Slurm 系统内包含多个服务器，但是所有服务器的 `/home` 目录都由存储节点提供，是一个共享的分区，不用考虑数据在服务器之间拷贝同步的问题。执行以下命令尝试一下吧！
+Slurm 系统内包含多个服务器，但是所有服务器的 `/home` 目录都由存储节点提供，是一个共享的分区，不用考虑数据在服务器之间拷贝同步的问题。
+
+尝试使用共享目录：
 
 ````shell
 echo 'Hi!' > ~/tmp
@@ -64,43 +68,55 @@ srun hostname && cat ~/tmp
 
 ## Slurm 系统的基本使用方法
 
-!!! warning 先进入 conda 环境
-  要使用 conda 虚拟环境，需要在执行 slurm 相关命令前执行 `conda activate xxx`
+!!! warning "先进入 conda 环境"
+    要使用 conda 虚拟环境，需要在执行 slurm 相关命令前执行 `conda activate xxx`
 
-!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，任务名字叫 `hard working`
+!!! note ""
+    我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，任务名字叫 `hard working`
 
 ```shell
+conda activate env
 srun --gres=gpu:a100:2 --time 3-12:00:00 --job-name "hard working" sleep 10000 
 # 真正用的时候还是不要跑 sleep 了
 ```
 
-!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，当任务开始执行、结束时发邮件通知我
+!!! note ""
+    我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，当任务开始执行、结束时发邮件通知我
 
 ```shell
+conda activate env
 srun --gres=gpu:a100:2 --time 3-12:00:00 --mail-user abc@ef.gh --mail-type BEGIN,END
 ```
 
-!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，还要使用 100GB 内存
+!!! note ""
+    我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，还要使用 100GB 内存
 
 ```shell
+conda activate env
 srun --gres=gpu:a100:2 --time 3-12:00:00 --mem 100000 python ...
 ```
 
-!!! tips 我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，还要使用 80 个核
+!!! note ""
+    我要跑 3 天 12 小时内跑完的程序，使用 2 张 GPU，还要使用 80 个核
 
 ```shell
+conda activate env
 srun --gres=gpu:a100:2 --time 3-12:00:00 --mem 100000 --cpus-per-task 80 python ...
 ```
 
-!!! tips 我要使用 2 张 GPU，通过交互方式运行 python，3 小时（180分钟）就行
+!!! note ""
+    我要使用 2 张 GPU，通过交互方式运行 python，3 小时（180分钟）就行
 
 ```shell
+conda activate env
 srun --gres=gpu:a100:2 --time 180 --pty python
 ```
 
-!!! tips 我还没想好要跑什么程序，但是我得需要 1 张 GPU，3 天内能跑完
+!!! note ""
+    我还没想好要跑什么程序，但是我得需要 1 张 GPU，3 天内能跑完
 
 ```shell
+conda activate env
 salloc --time=3-0 --gres=gpu:a100:1
 # 进入新的 shell，这个时候分配的 3 天时间就开始计时了
 
@@ -114,9 +130,11 @@ exit
 # Ctrl+d 也行
 ```
 
-!!! tips 我想用一张 GPU 同时跑两个程序
+!!! note ""
+    我想用一张 GPU 同时跑两个程序
 
 ```shell
+conda activate env
 srun --time=3-0 --gres=gpu:a100:1 --pty bash
 # 进入新的 bash 环境，这个时候分配的 3 天时间就开始计时了
 
@@ -131,9 +149,10 @@ exit
 # Ctrl+d 也行
 ```
 
-!!! tips 
-  我想一次提交100个任务排着队，有空就慢慢跑；第 i 个任务就跑 `python run.py i`
-  创建文件 `batch.sh` （文件名可改）
+!!! note ""
+    我想一次提交100个任务排着队，有空就慢慢跑；第 i 个任务就跑 `python run.py i`
+
+创建文件 `batch.sh` （文件名可改）
 
 ```shell
 #!/bin/bash
@@ -154,17 +173,60 @@ exit
 python run.py ${SLURM_ARRAY_TASK_ID}
 ```
 
+执行以下命令
+
+```shell
+conda activate env
+sbatch batch.sh
+```
+
 ## 任务优先级与调度策略
 
-TODO
+进入队列的任务按照以下公式计算优先级：
+
+```
+P
+```
+
+
 
 ## 任务限制
 
-**每个用户在集群中最多同时运行 6 个任务**；等待队列中的任务数量不受限制。
+从 2022 年 2 月 1 日起，集群启用新的使用限制：
 
-**每个任务最长运行时间为 5 天。**
+### 累计资源使用时限制
 
-## srun: 提交任务并前台运行
+对所有**当前运行**任务和历史运行任务，Slurm 系统统计申请资源量（CPU、内存、GPU）与**已使用时间**的乘积，该乘积的总和称为**累计资源使用时**。该统计量以 **3 天**为周期减半。当累计资源使用时超过下列限制时，**当前所有正在运行的任务将被杀死**并不能提交新任务：
+
+* CPU：230400 个 \* 分钟 （160 个 \* 1 天）
+* 内存：576000000 MB \* 分钟（400 GB \* 1 天）
+* A100 GPU：34560 个 \* 分钟（8 个 A100 GPU \* 3 天）
+
+!!! info "历史使用量已清零"
+    所有用户累计资源使用时已经在 2022 年 2 月 15 日清零。
+
+!!! example "例子"
+    对于重度 GPU 用户，最大化使用集群的方法是连续使用 4 张 A100 GPU
+
+
+### 当前资源使用时限制
+
+对所有**当前运行**任务，Slurm 系统统计申请资源量（CPU、内存、GPU）与**任务声明使用时间**（`srun` ， `salloc` ， `sbatch ` 中的 `-t/--time` 参数指定）的乘积。当新提交的任务使得该乘积之和超过下列限制时，该新任务将**进入队列等待**，直到正在占用资源的任务结束运行：
+
+* A100 GPU：11520 个 \* 分钟（8 个 A100 GPU \* 1 天）
+
+### 高优先级任务限制
+
+每一个用户最多提交 1 个高优先级任务。
+
+每一个组最多提交 4 个高优先级任务。
+
+!!! tip "绕开限制"
+    如果有特殊需求需要临时放宽以上限制，请联系管理员
+
+## Slurm 系统命令详解
+
+### srun: 提交任务并前台运行
 
 ```shell
 srun --gres=gpu:a100:GPU_COUNT --time=d-hh:mm:ss [--mem=20000] CMD
@@ -214,7 +276,7 @@ CMD 为程序正常执行时的命令。使用 `srun` 命令提交任务后，�
     提交运行容器的任务需要在使用 `srun` 命令使用额外的一些参数，具体使用方法请参考[这里](https://co1lin.github.io/AIR-Server-Doc/gpu/)。
     需要运行容器的任务只能通过 `srun` 提交（不能通过 `sbatch`）。
 
-## squeue: 查看任务队列
+### squeue: 查看任务队列
 
 ```shell
 squeue
@@ -252,7 +314,7 @@ JOBIDJOBID     USER    GROUP       NAME              STATE     QOS              
 - `REASON`: 任务排队原因
 - `PRIORITY`: TODO
 
-## scontrol: 查看正在运行任务的状态
+### scontrol: 查看正在运行任务的状态
 
 ```shell
 scontrol show job JOBID
@@ -260,7 +322,7 @@ scontrol show job JOBID
 
 该命令返回任务的详细状态。在该命令的输出中，能够找到关于任务的所有信息：提交时间、开始时间、运行时长、申请资源、排队时长、排队原因等。
 
-## sinfo: 查看集群运算节点的状态
+### sinfo: 查看集群运算节点的状态
 
 ```shell
 sinfo
@@ -300,7 +362,7 @@ air-node-05         idle        up    gpu:a100:8                    0/160/0/160 
 - `ALLOC_MEM`: 节点已分配内存，单位为MB
 - `REASON`: 节点异常状态原因
 
-## scancel: 取消任务
+### scancel: 取消任务
 
 ```shell
 scancel JOBID
@@ -312,7 +374,7 @@ scancel JOBID
 
 该操作不可逆，执行前请再三确认。
 
-## sbatch: 批量提交后台任务
+### sbatch: 批量提交后台任务
 
 ```shell
 sbatch run.sh
