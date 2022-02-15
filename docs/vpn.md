@@ -8,7 +8,7 @@
 
 1. 打开浏览器输入 [https://103.242.175.254](https://103.242.175.254)，点击下载
 
-   <img src="./vpn_login.png" style="zoom: 33%;" />
+   <img src="vpn_login.png" style="zoom: 33%;" />
 
 2. 安装 aTrust 客户端
 3. 安装完成后进入网页端输入用户名、密码登陆

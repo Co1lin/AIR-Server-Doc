@@ -8,10 +8,11 @@ classDef className fill:#f9f,stroke:#333,stroke-width:4px;
         D[[air-node-04]];
         D1[[air-node-05]];
         E[(air-storage)];
+        Z[[air-debug-1]];
         G{{2 * A100}};
         H{{8 * A100}};
-        I{{6 * A100}};
-        J{{8 * A100}};
+        I{{8 * A100}};
+        J{{6 * A100}};
         J1{{8 * A100}};
 
         subgraph sB[Slurm System]
@@ -19,7 +20,7 @@ classDef className fill:#f9f,stroke:#333,stroke-width:4px;
             A==>|slurm|C;
             A==>|slurm|D;
             A==>|slurm|D1;
-            A=====G;
+
             B===H;
             C===I;
             D===J;
@@ -31,10 +32,16 @@ classDef className fill:#f9f,stroke:#333,stroke-width:4px;
         D----|nfs|E;
         D1----|nfs|E;
 
-    end
-    F([103.242.175.247]);
 
-    F-.-A;
+
+    F([VPN]);
+    Z===G;
+    Z----|nfs|E;
+    F-.-|10.0.0.251|A;
+    F-.-|10.0.0.242|Z;
+	end
+	T((User));
+	T-->|103.242.175.254|F;
     style sA fill:#EED,stroke:#DDD;
     style sB fill:#DEE;
 ```
