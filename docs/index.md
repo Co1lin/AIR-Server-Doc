@@ -52,4 +52,4 @@
 
 ## 服务器架构
 
-![all](2.png)
+![image-20220508183452114](https://s2.loli.net/2022/05/08/zG31khPDH6Elfdw.png)
