@@ -8,6 +8,7 @@ nav:
   - 'basis.md'
   - 'conda.md'
   - 'gpu.md'
+  - 'vnc.md'
   - 'enroot.md'
 
 theme:
