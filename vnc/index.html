@@ -13,7 +13,7 @@
     
     
       
-        <title>使用 Docker - Server Usage Guide of AIR</title>
+        <title>VNC - Server Usage Guide of AIR</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker" class="md-skip">
+        <a href="#vnc" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              使用 Docker
+              VNC
             
           </span>
         </div>
@@ -302,11 +302,59 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../vnc/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          VNC
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         VNC
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-vnc-server" class="md-nav__link">
+    1. 配置 VNC Server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-vnc-viewer" class="md-nav__link">
+    2. 安装 VNC Viewer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -353,22 +401,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    简介
+  <a href="#1-vnc-server" class="md-nav__link">
+    1. 配置 VNC Server
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#image-container" class="md-nav__link">
-    请及时清理不用的 image 和 container
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#imagecontainer" class="md-nav__link">
-    如何保存 image/container
+  <a href="#2-vnc-viewer" class="md-nav__link">
+    2. 安装 VNC Viewer
   </a>
   
 </li>
@@ -386,61 +427,69 @@
               
   
                 
-  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/docker.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/Co1lin/AIR-Server-Doc/edit/main/docs/vnc.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="docker">使用 Docker</h1>
-<h2 id="_1">简介</h2>
-<p>Docker 在 AIR 服务器上的常见作用：</p>
+<h1 id="vnc">VNC</h1>
+<p>​   运维团队在 AIR 的部分服务器上安装了可视化图形界面，可以使用支持 VNC 协议的客户端连入。本文便是对其使用方法的简单说明。</p>
+<p>​   目前安装了 VNC Server 的服务器有：</p>
 <ul>
-<li>无需主机上的 <code>sudo</code> 权限执行命令；</li>
-<li>使用他人打包好的实验环境进行实验，免去配环境的麻烦，以及修改 CUDA 版本等在主机上会影响他人的操作。</li>
+<li>10.0.0.14</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">区分 image 和 container</p>
-<p>初学者常常混淆 Docker 中的 image 和 container 两个概念。</p>
-<ul>
-<li>image （镜像）是 <code>docker pull</code> 下来的，可以通过 <code>docker images</code> 查看系统上所有的 docker image 。</li>
-<li>container （容器）是执行 <code>docker run</code> 之后产生的。可以通过 <code>docker ps -a</code> 查看系统上所有 container 的运行情况。</li>
-<li>image 相当于系统安装光盘， container 相当于用 image 安装之后运行起来的主机。所以在 container 做修改并不会修改 image 。同样的 image ，无论从它跑起来的 container 怎么改，每次执行 <code>docker run</code> 之后生成的新容器内部文件都是一样的。</li>
-</ul>
-</div>
-<h2 id="image-container">请及时清理不用的 image 和 container</h2>
-<p>前面提到：</p>
-<ul>
-<li>用 <code>docker images</code> 查看所有的镜像。</li>
-<li>用 <code>docker ps -a</code> 查看所有的容器。</li>
-</ul>
-<p>为节约磁盘空间，</p>
-<ul>
-<li>对于不用的镜像，请及时用 <code>docker rmi &lt;image_id&gt;</code> 删除。</li>
-<li>对于不用的容器，请及时用 <code>docker stop &lt;container_id&gt;</code> 和  <code>docker rm &lt;container_id&gt;</code> 停止并删除。</li>
-</ul>
-<h2 id="imagecontainer">如何保存 image/container</h2>
-<p>前面提到，修改 container 并不会修改 image 。但是可以通过</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>docker commit &lt;container_id&gt; &lt;img_name&gt;:&lt;img_tag&gt;
+<h2 id="1-vnc-server">1. 配置 VNC Server</h2>
+<p>​   如果您之前没有配置过 VNC Server，首先 SSH 到上述服务器中，然后输入：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>vncserver
 </code></pre></div>
-<p>将一个 container commit 成为一个被标记为 <code>img_name:img_tag</code> 的 image 。这可以用于：在某个 image 的 container 中做了修改，保存修改之后状态为 image ，这样可以从新 image 启动，不必从旧 image 启动之后再重复自己的修改。</p>
-<p>在不同机器间传输 image ，除了将 image 发布到类似于 <a href="https://hub.docker.com/">Docker Hub</a> 的仓库然后在其它机器上拉取，还可以通过以下方式以文件形式保存、加载 image 。</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>docker save container_id &gt; container.tar
-<span class="linenos" data-linenos="2 "></span>docker load &lt; container.tar
+<p>​   您可能会看到类似于如下的提示：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>Warning: discover-01:5 is taken because of /tmp/.X5-lock
+<span class="linenos" data-linenos=" 2 "></span>Remove this file if there is no X server discover-01:5
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span>Warning: discover-01:8 is taken because of /tmp/.X8-lock
+<span class="linenos" data-linenos=" 5 "></span>Remove this file if there is no X server discover-01:8
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span>New &#39;X&#39; desktop is discover-01:27
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span>Starting applications specified in /home/gaoha/.vnc/xstartup
+<span class="linenos" data-linenos="10 "></span>Log file is /home/gaoha/.vnc/discover-01:27.log
 </code></pre></div>
-<p>显然，结合上述的 <code>commit</code>, <code>save</code>, <code>load</code> 三者，就可以实现 container 的保存与加载。</p>
-<div class="admonition danger">
-<p class="admonition-title">防止 Docker 的 layer （层）信息丢失！</p>
-<p>docker 分层的文件系统使得不同 image 可以共享共有的层。而上述 <code>commit</code>, <code>save</code>, <code>load</code> 操作都能够保留层信息，可以实现层共享或者回退。</p>
-<p>而另一组操作 <code>export</code>, <code>import</code> 虽然也能实现 image 的保存和加载，但会丢失层信息！先 <code>export</code> 再 <code>import</code> 之后的 image 只会有（通常很大的）一层！这使得你的 image 如果传到 docker 仓库上再被 pull 时无法共享机器上现有的层，每次更新时不能仅仅更新最后做了修改的层，而是要更新整个 image ，大大增加了网络传输量和磁盘空间占用；同时也无法根据历史实现回退。因此不推荐这种操作。</p>
-</div>
+<p>​   注意这里 <code>New 'X' desktop is discover-01:27</code> 说明我们的 VNC 识别号为 27，请暂时记住这个 ID。</p>
+<p>​   接着，我们要修改配置文件使得默认打开 gnome 桌面。在此之前，我们先将上述打开的服务端关闭：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>vncserver -kill :27
+</code></pre></div>
+<p>​   通过指定上述识别 ID，我们就可以结束一个 VNC 服务端进程。</p>
+<p>​   我们使用文本编辑器打开 <code>~/.vnc/xstartup</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span># Use nano or vim as you like
+<span class="linenos" data-linenos="2 "></span>nano ~/.vnc/xstartup
+<span class="linenos" data-linenos="3 "></span>vim ~/.vnc/xstartup
+</code></pre></div>
+<p>​   将其修改为：</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="ch">#!/bin/sh</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nb">unset</span> SESSION_MANAGER
+<span class="linenos" data-linenos=" 4 "></span><span class="nb">exec</span> /etc/X11/xinit/xinitrc
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span>xrdb <span class="nv">$HOME</span>/.Xresources
+<span class="linenos" data-linenos=" 7 "></span>xsetroot -solid grey
+<span class="linenos" data-linenos=" 8 "></span>vncconfig -iconic <span class="p">&amp;</span>
+<span class="linenos" data-linenos=" 9 "></span>x-terminal-emulator -geometry 80x24+10+10 -ls -title <span class="s2">&quot;</span><span class="nv">$VNCDESKTOP</span><span class="s2"> Desktop&quot;</span> <span class="p">&amp;</span>
+<span class="linenos" data-linenos="10 "></span>gnome-session <span class="p">&amp;</span>
+</code></pre></div>
+<p>接着，只需使用 <code>vncserver</code> 重新启动服务端进程，记住 ID 号即可。</p>
+<h2 id="2-vnc-viewer">2. 安装 VNC Viewer</h2>
+<p>​   <a href="https://www.realvnc.com/en/connect/download/viewer/">VNC Viewer</a> 是支持 VNC 协议的客户端。我们已在上述服务器上安装了服务端，在您的电脑上要做的，只有安装 VNC Viewer 这一件事。选择适用于您系统版本的客户端，进行安装即可。</p>
+<p><img alt="image-20220621203727944" src="https://s2.loli.net/2022/06/21/sOVNyLbw18fBWQe.png" /></p>
+<p>​   在 VNC Viewer 中添加服务器，对端 IP 地址填入 <code>&lt;Server IP&gt;:&lt;ID&gt;</code>，接着进行连接即可。</p>
+<p><img alt="image-20220621204540421" src="https://s2.loli.net/2022/06/21/mKHLszABZICoFp9.png" /></p>
 
               
 
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:tianbeiwen88@gmail.com'>TB5zhh</a> (1.89%), <a href='mailto:mail@co1in.me'>Co1lin</a> (98.11%)</span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:admin@cc7w.cf'>c7w</a></span>
       </small>
     </div>
   
@@ -453,6 +502,42 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../gpu/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 通过 slurm 系统使用 GPU 资源" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              通过 slurm 系统使用 GPU 资源
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../enroot/" class="md-footer__link md-footer__link--next" aria-label="Next: 在集群中使用容器应用" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              在集群中使用容器应用
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
