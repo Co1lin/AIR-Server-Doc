@@ -5,13 +5,15 @@
 ​	目前安装了 VNC Server 的服务器有：
 
 + 10.0.0.14
++ 10.0.0.15
++ 10.0.0.21
 
 ## 配置 VNC Server
 
 ​	如果您之前没有配置过 VNC Server，首先 SSH 到上述服务器中，然后输入：
 
 ```bash
-vncserver
+vncserver -localhost no
 ```
 
 ​	您可能会看到类似于如下的提示：
@@ -51,15 +53,10 @@ vim ~/.vnc/xstartup
 
 ```bash
 #!/bin/sh
-
 unset SESSION_MANAGER
-exec /etc/X11/xinit/xinitrc
-
 xrdb $HOME/.Xresources
-xsetroot -solid grey
 vncconfig -iconic &
-x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
-gnome-session &
+dbus-launch --exit-with-session gnome-session &
 ```
 
 接着，只需使用 `vncserver` 重新启动服务端进程，记住 ID 号即可。
