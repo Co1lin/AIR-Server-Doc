@@ -7,6 +7,7 @@
 + 10.0.0.14
 + 10.0.0.15
 + 10.0.0.21
++ 10.0.0.22
 
 ## 配置 VNC Server
 
@@ -59,7 +60,7 @@ vncconfig -iconic &
 dbus-launch --exit-with-session gnome-session &
 ```
 
-接着，只需使用 `vncserver` 重新启动服务端进程，记住 ID 号即可。
+接着，只需使用 `vncserver -localhost no` 重新启动服务端进程，记住 ID 号即可。注意这里要提供 `-localhost no` 表示允许非本机器访问。
 
 ## 安装 VNC Viewer
 
